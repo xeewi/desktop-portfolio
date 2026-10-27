@@ -1,0 +1,9 @@
+.ds-avatar {
+  flex: none; display: grid; place-items: center; font-weight: 600; color: var(--avatar-color); text-shadow: var(--avatar-text-shadow);
+  border-radius: var(--avatar-radius); background: var(--avatar-bg); border: var(--avatar-border); box-shadow: var(--avatar-shadow);
+}
+.ds-avatar--lg { width: 84px; height: 84px; font-size: 32px; }
+.ds-avatar--sm { width: 56px; height: 56px; font-size: 20px; }
+@media (max-width: 760px), (max-height: 500px) {
+  .ds-avatar--lg { width: 64px; height: 64px; font-size: 24px; }
+}

@@ -1,0 +1,4 @@
+.ds-clock { display: var(--clock-display); width: 140px; filter: drop-shadow(0 6px 10px #0009); }
+@media (max-width: 760px) and (min-height: 501px) {
+  .ds-clock { width: 110px; }
+}

@@ -1,0 +1,5 @@
+.ds-pill {
+  font-size: 12px; padding: 1px 9px;
+  border-radius: var(--pill-radius); color: var(--pill-color);
+  background: var(--pill-bg); border: var(--pill-border); box-shadow: var(--pill-shadow);
+}

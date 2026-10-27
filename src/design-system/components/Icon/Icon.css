@@ -1,0 +1,4 @@
+.ds-icon {
+  display: inline-block; flex: none; width: 1em; height: 1em; vertical-align: middle;
+  background: center / contain no-repeat;
+}

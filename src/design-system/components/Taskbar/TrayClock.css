@@ -1,0 +1,7 @@
+.ds-trayclock {
+  display: var(--trayclock-display); align-items: center;
+  position: var(--trayclock-position); left: var(--trayclock-left); transform: var(--trayclock-transform);
+  height: var(--trayclock-h); padding: var(--trayclock-padding); border-radius: var(--trayclock-radius);
+  font-size: 12.5px; font-weight: var(--trayclock-weight); color: var(--trayclock-color); text-shadow: var(--trayclock-text-shadow);
+  background: var(--trayclock-bg); border-left: var(--trayclock-border-left); box-shadow: var(--trayclock-shadow);
+}

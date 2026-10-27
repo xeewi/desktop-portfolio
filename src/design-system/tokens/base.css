@@ -1,0 +1,532 @@
+/* Component tokens — default values (= the Vista look).
+ *
+ * Three layers:
+ *   1. palette  (--accent, --paper, --wall…)  → themes/*.ts, set inline on <html>
+ *   2. tokens   (--win-radius, --task-bg…)    → this file + chromes/*.css
+ *   3. components read tokens only            → components/X/X.css
+ *
+ * Declared on every [data-chrome] element (the page *and* each theme preview), so a preview
+ * always gets a complete, isolated token set. Chromes override with the same specificity,
+ * loaded after this file. A token set to `initial` means "fall back to the component's own value".
+ *
+ * Breakpoints (CSS can't share constants — keep in sync with runtime/media.ts):
+ *   touch   = (max-width: 760px), (max-height: 500px)
+ *   desktop = (min-width: 761px) and (min-height: 501px)
+ */
+[data-chrome] {
+  /* ---- page ---- */
+  --body-size: 14px;
+  --taskbar-h: 42px;
+  /* safe-area padding inside the bar: bottom bar by default, top bar for the shells */
+  --tb-inset-top: 0px;
+  --tb-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --tb: calc(var(--taskbar-h) + var(--tb-inset-top) + var(--tb-inset-bottom));
+  /* touch: space kept free above / below full-screen windows and the icon grid */
+  --touch-top: env(safe-area-inset-top, 0px);
+  --touch-bottom: var(--tb);
+
+  /* ---- wallpaper ---- */
+  --wallpaper-ribbons: block;
+
+  /* ---- desktop icons ---- */
+  --icons-top: 16px;
+  --icons-left: 12px;
+  --icons-right: auto;
+  --desk-icon-shadow: 0 1px 2px #000, 0 0 6px #000a;
+  --desk-icon-hover-bg: linear-gradient(#ffffff40, #ffffff18);
+  --desk-icon-hover-border: #ffffff66;
+  --desk-icon-hover-shadow: inset 0 1px #ffffff55;
+  --desk-icon-hover-radius: 4px;
+  --desk-icon-label-padding: 0;
+  --desk-icon-label-hover-bg: transparent;
+  --desk-icon-label-hover-color: inherit;
+  --desk-icon-label-hover-outline: none;
+
+  /* ---- tile (app icon). The images are the --icon-* tokens, from icons/icons.css ---- */
+  --tile-sm-font: 20px;    /* icon size in menus */
+  --tile-lg-size: 52px;    /* desktop icon box */
+  --tile-lg-font: 48px;    /* desktop icon size */
+  --tile-lg-filter: none;
+
+  /* ---- gadgets ---- */
+  --gadgets-top: 18px;
+  --gadgets-left: auto;
+  --gadgets-right: 18px;
+  /* ---- wallpaper signature (name printed on the wallpaper): the side away from the icons ---- */
+  --signature-left: auto;
+  --signature-right: 48px;
+  --signature-align: right;
+  --clock-display: block;
+  --note-bg: linear-gradient(#fff9c8, #f6e98a);
+  --note-radius: 3px;
+  --note-shadow: 0 6px 14px #0007, inset 0 1px #fff;
+  --note-transform: rotate(2deg);
+
+  /* ---- window frame ---- */
+  --win-padding: 0 7px 7px;
+  --win-radius: 8px 8px 6px 6px;
+  --win-bg: linear-gradient(180deg, #ffffff40, #ffffff10 40px), var(--glass);
+  --win-bg-active: linear-gradient(180deg, #ffffff55, #ffffff18 40px), var(--glass-active);
+  --win-backdrop: blur(16px) saturate(170%);
+  --win-border: 1px solid #ffffff99;
+  --win-border-active: var(--win-border);
+  --win-shadow: 0 0 0 1px #00000088, inset 0 0 0 1px #ffffff40, 0 14px 40px #000a;
+  --win-shadow-active: 0 0 0 1px #000000aa, inset 0 0 0 1px #ffffff55, 0 20px 60px #000c;
+  --win-filter-inactive: none;
+  --win-overflow: visible;
+  --win-animation: pop .18s ease-out;
+  /* desktop-only layout */
+  --win-offset-top: 0px;
+  --win-max-h: calc(100dvh - var(--tb) - 16px);
+  --win-maxed-left: 0px;
+  --win-maxed-top: 0px;
+  --win-maxed-width: 100vw;
+  --win-maxed-height: calc(100dvh - var(--tb));
+  --win-body-bg: var(--paper);
+  --win-body-border: 1px solid #00000066;
+  --win-body-radius: 2px;
+  --win-body-shadow: 0 0 0 1px #ffffff55;
+  --win-body-padding: 0;
+  --win-body-text-shadow: none;
+
+  /* ---- title bar ---- */
+  --titlebar-h: 32px;
+  --titlebar-padding: 0;
+  --titlebar-margin: 0;
+  --titlebar-radius: 0;
+  --titlebar-bg: transparent;
+  --titlebar-bg-active: var(--titlebar-bg);
+  --titlebar-border-bottom: none;
+  --title-family: inherit;
+  --title-lh: inherit;
+  --title-size: 13px;
+  --title-touch-size: 15px;
+  --title-weight: 400;
+  --title-color: var(--title-ink);
+  --title-color-active: var(--title-ink);
+  --title-shadow: 0 0 10px var(--title-glow), 0 0 4px var(--title-glow);
+  --title-align: left;
+  --title-opacity: 1;
+  --title-icon-display: inline;
+  --title-icon-filter: drop-shadow(0 0 3px var(--title-glow));
+
+  /* ---- window controls (minimize / maximize / close) ---- */
+  --ctrls-align: flex-start;
+  --ctrls-touch-align: center;
+  --ctrls-gap: 0px;
+  --ctrls-order: 0;
+  --ctrls-padding: 0;
+  --ctrl-w: 28px;
+  --ctrl-h: 19px;
+  --ctrl-close-w: 44px;
+  --ctrl-border: 1px solid #00000077;
+  --ctrl-border-width: 0 1px 1px 0;
+  --ctrl-first-border-width: 0 1px 1px 1px;
+  --ctrl-radius: 0;
+  --ctrl-first-radius: 0 0 0 5px;
+  --ctrl-close-radius: 0 0 5px 0;
+  --ctrl-bg: linear-gradient(#ffffffaa, #ffffff40 50%, #ffffff10 51%, #ffffff50);
+  --ctrl-min-bg: var(--ctrl-bg);
+  --ctrl-max-bg: var(--ctrl-bg);
+  --ctrl-close-bg: linear-gradient(color-mix(in srgb, var(--close) 45%, #fff), color-mix(in srgb, var(--close) 75%, #fff) 50%, var(--close) 51%, color-mix(in srgb, var(--close) 65%, #fd8));
+  --ctrl-inactive-bg: initial;
+  --ctrl-shadow: inset 0 0 0 1px #ffffff77;
+  --ctrl-active-shadow: initial;
+  --ctrl-hover-bg: linear-gradient(color-mix(in srgb, var(--accent) 25%, #fff), color-mix(in srgb, var(--accent) 65%, #fff) 50%, var(--accent) 51%, color-mix(in srgb, var(--accent) 55%, #fff));
+  --ctrl-hover-filter: none;
+  --ctrl-close-margin: 0;
+  --ctrl-min-order: 0;
+  --ctrl-max-order: 0;
+  --ctrl-close-order: 0;
+  --ctrl-close-hover-bg: initial;
+  --ctrl-close-hover-filter: brightness(1.2) saturate(1.2);
+  --ctrl-close-hover-shadow: inset 0 0 0 1px #fff8, 0 0 12px var(--close);
+  --ctrl-icon-size: 10px;
+  --ctrl-icon-color: #fff;
+  --ctrl-icon-filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000);
+  --ctrl-icon-opacity: 1;
+  --ctrl-icon-hover-opacity: 1;
+  --ctrl-icon-hover-size: var(--ctrl-icon-size);
+  --ctrl-close-icon-color: var(--ctrl-icon-color);
+  --ctrl-close-hover-icon-color: var(--ctrl-close-icon-color);
+  --ctrl-touch-w: 44px;
+  --ctrl-touch-h: 34px;
+  --ctrl-touch-close-w: 52px;
+  /* padding + content-box clip = small visible button inside a 44px tap target (traffic lights) */
+  --ctrl-touch-padding: 0;
+  --ctrl-touch-clip: border-box;
+  --ctrl-touch-border-top: 1px;
+  --ctrl-touch-radius: 0;
+  --ctrl-touch-first-radius: 6px 0 0 6px;
+  --ctrl-touch-close-radius: 0 6px 6px 0;
+
+  /* ---- taskbar ---- */
+  --taskbar-top: auto;
+  --taskbar-bottom: 0;
+  --taskbar-padding: 0 10px 0 62px;
+  --taskbar-gap: 8px;
+  --taskbar-bg: linear-gradient(#ffffff26, #ffffff08 50%, #00000040 51%), var(--taskbar);
+  --taskbar-backdrop: blur(12px);
+  --taskbar-border-top: 1px solid #ffffff40;
+  --taskbar-shadow: 0 -1px 0 #000a;
+  --taskbar-layer-bg: none;
+  --taskbar-layer-backdrop: none;
+
+  /* start button */
+  --start-display: inline-block;
+  --start-position: absolute;
+  --start-left: 6px;
+  --start-bottom: calc(1px + env(safe-area-inset-bottom, 0px));
+  --start-w: 50px;
+  --start-h: 50px;
+  --start-padding: 0;
+  --start-gap: 0;
+  --start-radius: 50%;
+  --start-border: 1px solid #000a;
+  --start-bg: radial-gradient(60% 40% at 50% 22%, #ffffffcc, #ffffff00), radial-gradient(70% 60% at 50% 100%, var(--orb-glow), transparent 70%), radial-gradient(circle at 50% 60%, var(--orb-a), var(--orb-b) 75%);
+  --start-shadow: inset 0 0 0 1px #ffffff55, 0 0 10px #000;
+  --start-family: inherit;
+  --start-lh: inherit;
+  --start-size: 22px;
+  --start-weight: 700;
+  --start-style: normal;
+  --start-transform: none;
+  --start-color: #fff;
+  --start-text-shadow: 0 0 8px var(--orb-glow), 0 1px 2px #000;
+  --start-hover-filter: brightness(1.2);
+  --start-hover-shadow: inset 0 0 0 1px #fff8, 0 0 18px var(--orb-glow);
+  --start-hover-bg: initial;
+  --start-hover-color: initial;
+  --start-on-shadow: initial;
+  --start-logo-display: inline;
+  --start-logo-w: auto;
+  --start-logo-h: auto;
+  --start-logo-radius: 0;
+  --start-logo-bg: none;
+  --start-logo-color: inherit;
+  --start-logo-size: inherit;
+  --start-logo-text-shadow: inherit;
+  --start-label-display: none;
+
+  /* app name (macOS menu bar) */
+  --appname-display: none;
+
+  /* tasks / dock */
+  --tasks-position: static;
+  --tasks-flex: 1;
+  --tasks-top: auto;
+  --tasks-left: auto;
+  --tasks-bottom: auto;
+  --tasks-width: auto;
+  --tasks-max-width: none; /* a floating dock: the screen's width, its buttons shrink to fit */
+  --tasks-height: auto;
+  --tasks-direction: row;
+  --tasks-align: normal;
+  --tasks-gap: 4px;
+  --tasks-padding: 0;
+  --tasks-transform: none;
+  --tasks-radius: 0;
+  --tasks-border: 0;
+  --tasks-shadow: none;
+  --tasks-bg: none;
+  --tasks-backdrop: none;
+  --task-closed-display: none;
+  --task-w: 170px;
+  --task-touch-w: 44px;
+  --task-touch-icon-size: 18px;
+  --task-h: 32px;
+  --task-padding: 0 10px;
+  --task-justify: flex-start;
+  --task-radius: 3px;
+  --task-border-width: 1px;
+  --task-border-color: #ffffff22;
+  --task-color: #fff;
+  --task-bg: linear-gradient(#ffffff22, #ffffff08 50%, #00000022 51%);
+  --task-shadow: inset 0 0 0 1px #00000044;
+  --task-hover-bg: linear-gradient(#ffffff40, #ffffff15 50%, #00000010 51%);
+  --task-hover-transform: none;
+  --task-transition: none;
+  --task-on-bg: linear-gradient(color-mix(in srgb, var(--accent) 55%, transparent), color-mix(in srgb, var(--accent) 30%, transparent) 50%, color-mix(in srgb, var(--accent) 40%, transparent) 51%);
+  --task-on-border-color: color-mix(in srgb, var(--accent) 50%, #fff);
+  --task-on-shadow: inset 0 0 8px var(--accent);
+  --task-on-weight: inherit;
+  --task-icon-size: inherit;
+  --task-icon-lh: normal;
+  --task-label-display: inline;
+  --task-dot-display: none;
+  --task-dot-top: auto;
+  --task-dot-left: auto;
+  --task-dot-bottom: auto;
+  --task-dot-transform: none;
+  --task-dot-size: 4px;
+  --task-dot-color: var(--accent);
+  --task-dot-opacity: 1;
+
+  /* tray button (language) */
+  --traybtn-display: inline-block;
+  --traybtn-h: 26px;
+  --traybtn-margin-left: 0;
+  --traybtn-radius: 3px;
+  --traybtn-color: #fff;
+  --traybtn-weight: 600;
+  --traybtn-border: 1px solid #ffffff33;
+  --traybtn-bg: linear-gradient(color-mix(in srgb, var(--accent) 80%, #fff), var(--accent) 50%, color-mix(in srgb, var(--accent) 75%, #000) 51%);
+  --traybtn-shadow: inset 0 1px #ffffff55;
+  --traybtn-hover-filter: brightness(1.25);
+  --traybtn-hover-bg: initial;
+
+  /* tray clock */
+  --trayclock-display: block;
+  --trayclock-position: static;
+  --trayclock-left: auto;
+  --trayclock-transform: none;
+  --trayclock-h: auto;
+  --trayclock-padding: 0 8px;
+  --trayclock-color: #fff;
+  --trayclock-weight: inherit;
+  --trayclock-text-shadow: 0 1px 1px #000;
+  --trayclock-bg: none;
+  --trayclock-border-left: 1px solid #ffffff22;
+  --trayclock-shadow: none;
+  --trayclock-radius: 0;
+
+  /* ---- start menu ---- */
+  --startmenu-top: auto;
+  --startmenu-left: 0px;
+  --startmenu-bottom: var(--tb);
+  --startmenu-width: 420px;
+  --startmenu-direction: row;
+  --startmenu-wrap: nowrap;
+  --startmenu-padding: 8px;
+  --startmenu-gap: 8px;
+  --startmenu-radius: 8px 8px 0 0;
+  --startmenu-color: inherit;
+  --startmenu-bg: var(--taskbar);
+  --startmenu-backdrop: blur(16px) saturate(150%);
+  --startmenu-border: 1px solid #ffffff55;
+  --startmenu-shadow: 0 0 0 1px #000a, 0 10px 40px #000c;
+  --startmenu-animation: pop .15s ease-out;
+  --smbanner-display: none;
+  --smbanner-width: auto;
+  --smbanner-flex: none;
+  --smbanner-padding: 0;
+  --smbanner-margin: 0;
+  --smbanner-radius: 0;
+  --smbanner-writing-mode: horizontal-tb;
+  --smbanner-transform: none;
+  --smbanner-align: left;
+  --smbanner-family: inherit;
+  --smbanner-lh: inherit;
+  --smbanner-size: inherit;
+  --smbanner-weight: 700;
+  --smbanner-color: inherit;
+  --smbanner-shadow: none;
+  --smbanner-bg: none;
+  --smbanner-border-bottom: none;
+  --smapps-padding: 6px;
+  --smapps-bg: var(--paper);
+  --smapps-color: var(--ink);
+  --smapps-radius: 4px;
+  --smapps-border: 1px solid #0008;
+  --smitem-padding: 7px 8px;
+  --smitem-radius: 3px;
+  --smitem-border: 1px solid transparent;
+  --smitem-color: inherit;
+  --smitem-hover-bg: linear-gradient(color-mix(in srgb, var(--accent) 8%, var(--paper)), color-mix(in srgb, var(--accent) 20%, var(--paper)));
+  --smitem-hover-color: inherit;
+  --smitem-hover-border-color: color-mix(in srgb, var(--accent) 45%, var(--paper));
+  --smlinks-display: flex;
+  --smlinks-columns: none;
+  --smlinks-align: normal;
+  --smlinks-padding: 8px 4px;
+  --smlinks-margin: 0;
+  --smlinks-gap: 2px;
+  --smlinks-color: #fff;
+  --smlinks-bg: none;
+  --smlinks-border-left: none;
+  --smlinks-border-top: none;
+  --smlinks-shadow: none;
+  --smavatar-display: grid;
+  --smname-display: block;
+  --smlink-display: block;
+  --smlink-aspect: auto;
+  --smlink-align: normal;
+  --smlink-padding: 5px 8px;
+  --smlink-size: inherit;
+  --smlink-weight: inherit;
+  --smlink-radius: 3px;
+  --smlink-border: 1px solid transparent;
+  --smlink-color: #fff;
+  --smlink-bg: none;
+  --smlink-hover-bg: linear-gradient(#ffffff33, #ffffff10);
+  --smlink-hover-color: var(--smlink-color);
+  --smlink-hover-border-color: #ffffff44;
+  --smlink-hover-filter: none;
+  --smlink-hover-outline: none;
+  --smlink-touch-align: center;
+
+  /* ---- boot screen ---- */
+  --boot-bg: radial-gradient(circle at 50% 45%, var(--orb-a), var(--orb-b) 60%, #000);
+  --boot-title-display: block;
+  --boot-title-family: inherit;
+  --boot-title-lh: inherit;
+  --boot-title-style: normal;
+  --boot-title-weight: 300;
+  --boot-sub-display: block;
+  --boot-logo-radius: 50%;
+  --boot-logo-bg: radial-gradient(60% 40% at 50% 22%, #ffffffcc, #ffffff00), radial-gradient(70% 60% at 50% 100%, var(--orb-glow), transparent 70%), radial-gradient(circle at 50% 60%, var(--orb-a), var(--orb-b) 75%);
+  --boot-logo-shadow: 0 0 40px var(--orb-glow);
+  --boot-logo-color: #fff;
+  --boot-logo-text-shadow: 0 0 14px var(--orb-glow);
+  --boot-logo-size: 46px;
+  --boot-logo-weight: 700;
+  --spinner-w: 26px;
+  --spinner-h: 26px;
+  --spinner-radius: 50%;
+  --spinner-border: 3px solid #ffffff30;
+  --spinner-border-top-color: var(--orb-glow);
+  --spinner-border-right-color: #ffffff30;
+  --spinner-bg: none;
+  --spinner-animation: spin .9s linear infinite;
+
+  /* ---- content ---- */
+  --h1-size: 22px;
+  --h1-touch-size: 20px;
+  --h1-weight: 400;
+  --avatar-radius: 8px;
+  --avatar-bg: linear-gradient(#ffffff99, #ffffff00 50%), linear-gradient(135deg, color-mix(in srgb, var(--accent) 55%, #fff), var(--accent) 60%, var(--orb-glow));
+  --avatar-color: #fff;
+  --avatar-text-shadow: 0 1px 3px #0008;
+  --avatar-border: 3px solid #fff;
+  --avatar-shadow: 0 0 0 1px #8aa, 0 3px 8px #0005;
+  --btn-radius: 4px;
+  --btn-border: 1px solid var(--edge); /* 3:1 on --paper, from readable() */
+  --btn-color: var(--ink);
+  --btn-bg: linear-gradient(color-mix(in srgb, var(--paper) 90%, #fff), color-mix(in srgb, var(--paper) 93%, #000) 50%, color-mix(in srgb, var(--paper) 87%, #000) 51%, color-mix(in srgb, var(--paper) 81%, #000));
+  --btn-shadow: inset 0 0 0 1px #ffffff40;
+  --btn-hover-bg: linear-gradient(color-mix(in srgb, var(--accent) 6%, var(--paper)), color-mix(in srgb, var(--accent) 14%, var(--paper)) 50%, color-mix(in srgb, var(--accent) 26%, var(--paper)) 51%, color-mix(in srgb, var(--accent) 36%, var(--paper)));
+  --btn-hover-border-color: var(--accent);
+  --btn-hover-shadow: var(--btn-shadow);
+  --btn-active-shadow: var(--btn-shadow);
+  --btn-primary-bg: linear-gradient(color-mix(in srgb, var(--accent) 10%, var(--paper)), color-mix(in srgb, var(--accent) 24%, var(--paper)) 50%, color-mix(in srgb, var(--accent) 40%, var(--paper)) 51%, color-mix(in srgb, var(--accent) 58%, var(--paper)));
+  --btn-primary-border-color: var(--accent);
+  --btn-primary-color: var(--btn-color);
+  --btn-primary-shadow: var(--btn-shadow);
+  --btn-primary-radius: var(--btn-radius);
+  --btn-primary-outline: none;
+  --btn-primary-hover-filter: none;
+  --pill-radius: 10px;
+  --pill-color: var(--heading);
+  --pill-bg: linear-gradient(var(--paper), color-mix(in srgb, var(--accent) 15%, var(--paper)));
+  --pill-border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--paper));
+  --pill-shadow: none;
+  --stat-radius: 6px;
+  --stat-bg: linear-gradient(color-mix(in srgb, var(--accent) 4%, var(--paper)), color-mix(in srgb, var(--accent) 14%, var(--paper)));
+  --stat-border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--paper));
+  --stat-border-left: initial;
+  --stat-shadow: none;
+  --card-radius: 6px;
+  --card-border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--paper));
+  --card-bg: linear-gradient(var(--paper), color-mix(in srgb, var(--accent) 5%, var(--paper)));
+  --card-shadow: none;
+
+  /* ---- explorer ---- */
+  --toolbar-bg: linear-gradient(color-mix(in srgb, var(--accent) 4%, var(--paper)), color-mix(in srgb, var(--accent) 12%, var(--paper)));
+  --toolbar-color: var(--muted);
+  --toolbar-border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--paper));
+  --address-bg: var(--paper);
+  --address-color: inherit;
+  --address-border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--paper));
+  --address-radius: 0;
+  --address-shadow: none;
+  --side-bg: linear-gradient(90deg, color-mix(in srgb, var(--accent) 5%, var(--paper)), color-mix(in srgb, var(--accent) 10%, var(--paper)));
+  --side-border-right: 1px solid color-mix(in srgb, var(--accent) 22%, var(--paper));
+  --side-touch-border-right: 0;
+  --side-touch-border-bottom: 1px solid color-mix(in srgb, var(--accent) 22%, var(--paper));
+  --sideitem-radius: 3px;
+  --sideitem-border-width: 1px;
+  --sideitem-border-color: transparent;
+  --sideitem-color: inherit;
+  --sideitem-weight: inherit;
+  --sideitem-text-shadow: none;
+  --sideitem-sub-color: var(--muted);
+  --sideitem-sub-weight: inherit;
+  --sideitem-hover-bg: color-mix(in srgb, var(--accent) 10%, var(--paper));
+  --sideitem-hover-border-color: color-mix(in srgb, var(--accent) 30%, var(--paper));
+  --sideitem-on-bg: linear-gradient(color-mix(in srgb, var(--accent) 15%, var(--paper)), color-mix(in srgb, var(--accent) 26%, var(--paper)));
+  --sideitem-on-color: inherit;
+  --sideitem-on-border-color: var(--accent); /* the selection must stand out at 3:1 (WCAG 1.4.11) */
+  --sideitem-on-border-style: solid;
+  --sideitem-on-text-shadow: var(--sideitem-text-shadow);
+  --sideitem-on-sub-color: var(--muted);
+  --statusbar-bg: linear-gradient(color-mix(in srgb, var(--accent) 4%, var(--paper)), color-mix(in srgb, var(--accent) 12%, var(--paper)));
+  --statusbar-color: var(--muted);
+  --statusbar-border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--paper));
+  --statusbar-shadow: none;
+
+  /* ---- tabs ---- */
+  --tabs-border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, var(--paper));
+  --tabs-shadow: none;
+  --tab-radius: 4px 4px 0 0;
+  --tab-color: var(--muted);
+  --tab-bg: none;
+  --tab-shadow: none;
+  --tab-margin: 0 0 -1px;
+  --tab-hover-color: var(--ink);
+  --tab-hover-bg: color-mix(in srgb, var(--accent) 8%, var(--paper));
+  --tab-on-color: var(--ink);
+  --tab-on-bg: var(--paper);
+  --tab-on-weight: 600;
+  --tab-on-shadow: var(--tab-shadow);
+
+  /* ---- theme card + preview ---- */
+  --themecard-radius: 6px;
+  --themecard-on-bg: color-mix(in srgb, var(--accent) 16%, var(--paper));
+  --themecard-on-color: var(--ink);
+  --themecard-on-border: 1px solid var(--accent);
+  --themecard-on-sub-color: var(--muted);
+  --themecard-on-cur-color: var(--accent);
+  --pv-radius: 4px;
+  --pv-win-radius: 4px 4px 3px 3px;
+  --pv-win-padding: 0 3px 3px;
+  --pv-win-bg: linear-gradient(#ffffff55, #ffffff10 12px), var(--glass-active);
+  --pv-win-border: 1px solid #ffffff88;
+  --pv-win-shadow: 0 0 0 1px #0008, 0 4px 10px #0007;
+  --pv-win-overflow: visible;
+  --pv-title-bg: none;
+  --pv-title-margin: 0;
+  --pv-title-radius: 0;
+  --pv-title-padding: 1px 0 0;
+  --pv-title-justify: flex-end;
+  --pv-title-align: normal;
+  --pv-btn-w: 12px;
+  --pv-btn-h: 6px;
+  --pv-btn-radius: 0 0 2px 2px;
+  --pv-btn-margin: 0;
+  --pv-btn-bg: var(--close);
+  --pv-btn-shadow: none;
+  --pv-body-border: 1px solid #0006;
+  --pv-bar-top: auto;
+  --pv-bar-bottom: 0;
+  --pv-bar-h: 13px;
+  --pv-bar-bg: linear-gradient(#ffffff22, #00000033 51%), var(--taskbar);
+  --pv-bar-shadow: none;
+  --pv-orb-display: block;
+  --pv-orb-left: 3px;
+  --pv-orb-bottom: 1px;
+  --pv-orb-w: 15px;
+  --pv-orb-h: 15px;
+  --pv-orb-radius: 50%;
+  --pv-orb-bg: radial-gradient(60% 40% at 50% 22%, #fffc, #fff0), radial-gradient(circle at 50% 60%, var(--orb-a), var(--orb-b) 75%);
+  --pv-orb-shadow: 0 0 4px var(--orb-glow);
+  --pv-orb-opacity: 1;
+  --pv-dock-display: none;
+  --pv-dock-top: auto;
+  --pv-dock-left: auto;
+  --pv-dock-bottom: auto;
+  --pv-dock-w: 0;
+  --pv-dock-h: auto;
+  --pv-dock-radius: 0;
+  --pv-dock-bg: none;
+  --pv-dock-border: 0;
+}

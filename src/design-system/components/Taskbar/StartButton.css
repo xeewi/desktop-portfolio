@@ -1,0 +1,24 @@
+.ds-start {
+  display: var(--start-display); align-items: center; gap: var(--start-gap); flex: none;
+  position: var(--start-position); left: var(--start-left); bottom: var(--start-bottom);
+  width: var(--start-w); height: var(--start-h); padding: var(--start-padding);
+  border-radius: var(--start-radius); border: var(--start-border); background: var(--start-bg); box-shadow: var(--start-shadow);
+  font-family: var(--start-family); line-height: var(--start-lh); font-size: var(--start-size); font-weight: var(--start-weight);
+  font-style: var(--start-style); text-transform: var(--start-transform);
+  color: var(--start-color); text-shadow: var(--start-text-shadow);
+  transition: box-shadow .2s, filter .2s;
+}
+.ds-start:hover, .ds-start[aria-expanded='true'] {
+  filter: var(--start-hover-filter); box-shadow: var(--start-hover-shadow);
+  background: var(--start-hover-bg, var(--start-bg)); color: var(--start-hover-color, var(--start-color));
+}
+.ds-start[aria-expanded='true'] { box-shadow: var(--start-on-shadow, var(--start-hover-shadow)); }
+.ds-start__logo {
+  display: var(--start-logo-display); place-items: center;
+  width: var(--start-logo-w); height: var(--start-logo-h); border-radius: var(--start-logo-radius);
+  background: var(--start-logo-bg); color: var(--start-logo-color); font-size: var(--start-logo-size);
+  font-style: normal; text-transform: none; text-shadow: var(--start-logo-text-shadow);
+}
+.ds-start__label { display: var(--start-label-display); }
+/* the logo letter is drawn by CSS, with empty alt text, so the button's name is just its label (WCAG 2.5.3) */
+.ds-start__logo::before { content: 'G'; content: 'G' / ''; }

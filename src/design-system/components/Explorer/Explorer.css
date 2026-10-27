@@ -1,0 +1,47 @@
+/* fills the window and scrolls inside (sidebar and content each on their own), never shorter than 440px */
+.ds-explorer { display: flex; flex-direction: column; flex: 1; min-height: 440px; }
+.ds-explorer__toolbar {
+  display: flex; align-items: center; gap: 10px; padding: 6px 10px; flex: none;
+  background: var(--toolbar-bg); color: var(--toolbar-color); border-bottom: var(--toolbar-border);
+}
+.ds-explorer__address {
+  flex: 1; padding: 2px 8px; font-size: 13px;
+  background: var(--address-bg); color: var(--address-color); border: var(--address-border);
+  border-radius: var(--address-radius); box-shadow: var(--address-shadow);
+}
+.ds-explorer__body { flex: 1; display: flex; min-height: 0; }
+.ds-explorer__sidebar {
+  list-style: none; margin: 0; padding: 10px 6px; width: 200px; flex: none; overflow: auto;
+  background: var(--side-bg); border-right: var(--side-border-right);
+}
+.ds-explorer__item {
+  width: 100%; text-decoration: none; display: flex; gap: 8px; align-items: center; text-align: left; padding: 5px 8px; background: none;
+  border-style: solid; border-width: var(--sideitem-border-width); border-color: var(--sideitem-border-color);
+  border-radius: var(--sideitem-radius);
+  color: var(--sideitem-color); font-weight: var(--sideitem-weight); text-shadow: var(--sideitem-text-shadow);
+}
+.ds-explorer__item small { display: block; font-size: 11.5px; color: var(--sideitem-sub-color); font-weight: var(--sideitem-sub-weight); }
+.ds-explorer__item:hover { background: var(--sideitem-hover-bg); border-color: var(--sideitem-hover-border-color); }
+.ds-explorer__item[aria-current] {
+  background: var(--sideitem-on-bg); color: var(--sideitem-on-color); text-shadow: var(--sideitem-on-text-shadow);
+  border-color: var(--sideitem-on-border-color); border-style: var(--sideitem-on-border-style);
+}
+.ds-explorer__item[aria-current] small { color: var(--sideitem-on-sub-color); }
+.ds-explorer__dot { width: 12px; height: 12px; border-radius: 3px; flex: none; box-shadow: inset 0 1px #fff6, 0 0 0 1px #0003; }
+.ds-explorer__icon { width: 20px; height: 20px; border-radius: 4px; flex: none; object-fit: contain; background: #fff; }
+.ds-explorer__content { flex: 1; overflow: auto; }
+.ds-explorer__status {
+  flex: none; padding: 3px 10px; font-size: 12px;
+  color: var(--statusbar-color); background: var(--statusbar-bg); border-top: var(--statusbar-border); box-shadow: var(--statusbar-shadow);
+}
+@media (max-width: 760px), (max-height: 500px) {
+  .ds-explorer { min-height: 0; }
+  .ds-explorer__body { flex-direction: column; }
+  .ds-explorer__sidebar {
+    width: auto; display: flex; gap: 4px; overflow-x: auto; padding: 6px; scrollbar-width: none;
+    border-right: var(--side-touch-border-right); border-bottom: var(--side-touch-border-bottom);
+  }
+  .ds-explorer__sidebar li { flex: none; }
+  .ds-explorer__item { min-height: 40px; }
+  .ds-explorer__item small { display: none; }
+}

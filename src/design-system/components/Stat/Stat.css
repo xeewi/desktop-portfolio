@@ -1,0 +1,7 @@
+.ds-stat {
+  text-align: center; padding: 10px 6px;
+  border-radius: var(--stat-radius); background: var(--stat-bg); box-shadow: var(--stat-shadow);
+  border: var(--stat-border); border-left: var(--stat-border-left, var(--stat-border));
+}
+.ds-stat b { display: block; font-size: 24px; color: var(--accent); font-weight: 600; }
+.ds-stat span { font-size: 12px; color: var(--muted); }

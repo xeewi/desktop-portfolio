@@ -1,0 +1,58 @@
+.ds-wallpaper { position: absolute; inset: 0; background: var(--wall); transition: background .4s; }
+.ds-wallpaper__ribbon {
+  display: var(--wallpaper-ribbons);
+  position: absolute; border-radius: 50%;
+  filter: blur(28px); mix-blend-mode: screen; opacity: .9;
+  animation: drift 26s ease-in-out infinite alternate;
+}
+.ds-wallpaper__ribbon:nth-child(1) {
+  width: 140vw; height: 22vh; left: -20vw; top: 38vh;
+  background: linear-gradient(90deg, transparent, var(--rib1a) 30%, var(--rib1b) 60%, transparent);
+  transform: rotate(-14deg);
+}
+.ds-wallpaper__ribbon:nth-child(2) {
+  width: 120vw; height: 12vh; left: -10vw; top: 52vh;
+  background: linear-gradient(90deg, transparent, var(--rib2a) 40%, var(--rib2b) 70%, transparent);
+  transform: rotate(-8deg); animation-duration: 34s; opacity: .7;
+}
+.ds-wallpaper__ribbon:nth-child(3) {
+  width: 60vw; height: 60vw; right: -20vw; top: -30vw;
+  background: radial-gradient(circle, var(--rib3), transparent 65%);
+  animation-duration: 40s;
+}
+/* Frutiger Aero bubbles */
+.ds-wallpaper::after {
+  content: ''; display: var(--wallpaper-ribbons); position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 70% 30%, #ffffff22 0 2px, transparent 3px),
+    radial-gradient(circle at 30% 70%, #ffffff18 0 30px, transparent 31px),
+    radial-gradient(circle at 85% 60%, #ffffff12 0 60px, transparent 61px),
+    radial-gradient(circle at 15% 25%, #ffffff10 0 14px, transparent 15px);
+}
+@keyframes drift { to { translate: 6vw -4vh; scale: 1.08; } }
+@media (prefers-reduced-motion: reduce) {
+  .ds-wallpaper__ribbon { animation: none; }
+}
+
+/* Signature: printed into the wallpaper, bottom right, above the taskbar / dock.
+   --wall-ink is light on dark wallpapers, dark on light ones; overlay blends it into the colours below. */
+.ds-wallpaper__signature {
+  position: absolute; left: var(--signature-left); right: var(--signature-right); bottom: 110px; max-width: min(52vw, 640px);
+  text-align: var(--signature-align); font-family: var(--font); color: var(--wall-ink);
+  mix-blend-mode: var(--wall-blend); opacity: .85; user-select: none; pointer-events: none;
+}
+.ds-wallpaper__name {
+  font-size: clamp(36px, 5.2vw, 76px); font-weight: 300; line-height: 1; letter-spacing: -.02em;
+}
+.ds-wallpaper__title { margin-top: 10px; font-size: clamp(14px, 1.35vw, 20px); font-weight: 600; }
+.ds-wallpaper__place { margin-top: 4px; font-size: 13px; opacity: .8; }
+.ds-wallpaper__stats {
+  display: flex; flex-wrap: wrap; justify-content: var(--signature-align); gap: 4px 18px;
+  margin: 14px 0 0; padding: 14px 0 0; list-style: none; font-size: 12px;
+  border-top: 1px solid currentColor;
+}
+.ds-wallpaper__stats b { font-size: 18px; font-weight: 700; }
+/* phones: the icon grid and the business card already say who this is */
+@media (max-width: 760px), (max-height: 500px) {
+  .ds-wallpaper__signature { display: none; }
+}

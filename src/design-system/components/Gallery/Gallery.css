@@ -1,0 +1,10 @@
+.ds-gallery { list-style: none; margin: 14px 0 4px; padding: 0 0 6px; display: flex; gap: 10px; overflow-x: auto; }
+.ds-gallery li { flex: none; }
+.ds-gallery a { display: block; border-radius: 6px; }
+.ds-gallery img {
+  display: block; height: 220px; width: auto; max-width: 420px; object-fit: cover; object-position: top;
+  border-radius: 6px; border: 1px solid var(--edge); background: #fff;
+}
+@media (max-width: 760px), (max-height: 500px) {
+  .ds-gallery img { height: 180px; max-width: 280px; }
+}

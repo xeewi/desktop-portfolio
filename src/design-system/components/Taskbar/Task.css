@@ -1,0 +1,28 @@
+.ds-task {
+  position: relative; display: flex; align-items: center; justify-content: var(--task-justify); gap: 6px;
+  width: var(--task-w); height: var(--task-h); min-width: 0; padding: var(--task-padding);
+  color: var(--task-color); border-radius: var(--task-radius);
+  border-style: solid; border-width: var(--task-border-width); border-color: var(--task-border-color);
+  background: var(--task-bg); box-shadow: var(--task-shadow);
+  transition: var(--task-transition); transform-origin: bottom center;
+}
+.ds-task[data-closed] { display: var(--task-closed-display); }
+.ds-task:hover { background: var(--task-hover-bg); transform: var(--task-hover-transform); }
+.ds-task[data-active] {
+  background: var(--task-on-bg); border-color: var(--task-on-border-color); box-shadow: var(--task-on-shadow); font-weight: var(--task-on-weight);
+}
+.ds-task__icon { font-size: var(--task-icon-size); line-height: var(--task-icon-lh); }
+.ds-task__label { display: var(--task-label-display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12.5px; }
+/* "running" indicator (docks) */
+.ds-task[data-open]::after {
+  content: ''; display: var(--task-dot-display); position: absolute;
+  top: var(--task-dot-top); left: var(--task-dot-left); bottom: var(--task-dot-bottom); transform: var(--task-dot-transform);
+  width: var(--task-dot-size); height: var(--task-dot-size); border-radius: 50%;
+  background: var(--task-dot-color); opacity: var(--task-dot-opacity);
+}
+@media (max-width: 760px), (max-height: 500px) {
+  /* a container, so the icon shrinks with its button when the dock has to fit the screen */
+  .ds-task { width: var(--task-touch-w); justify-content: center; padding: 0; container-type: inline-size; }
+  .ds-task__icon { font-size: min(var(--task-touch-icon-size), 70cqi); }
+  .ds-task__label { display: none; }
+}

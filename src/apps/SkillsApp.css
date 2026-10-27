@@ -1,0 +1,7 @@
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; margin-top: 14px; }
+@media (max-width: 760px), (max-height: 500px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+@media (max-height: 500px) {
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+}

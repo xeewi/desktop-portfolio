@@ -1,0 +1,13 @@
+.ds-desktop-icons {
+  position: absolute; top: var(--icons-top); left: var(--icons-left); right: var(--icons-right);
+  display: grid; gap: 6px; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 96px);
+  max-height: calc(100dvh - var(--tb) - 24px);
+}
+@media (max-width: 760px), (max-height: 500px) {
+  .ds-desktop-icons {
+    /* in the page flow, so the gadgets' business card can follow it */
+    position: relative; left: auto; right: auto; top: auto; margin: calc(16px + var(--touch-top)) 12px 0;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); grid-template-rows: none; grid-auto-flow: row; max-height: none;
+    justify-items: center; gap: 14px 6px;
+  }
+}

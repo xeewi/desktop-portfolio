@@ -1,0 +1,35 @@
+.ds-preview {
+  position: relative; display: block; height: 92px; overflow: hidden;
+  border-radius: var(--pv-radius); background: var(--wall); box-shadow: 0 0 0 1px #0006, 0 2px 6px #0004;
+}
+.ds-preview__win {
+  position: absolute; left: 14%; top: 12%; width: 62%; height: 56%; display: flex; flex-direction: column;
+  border-radius: var(--pv-win-radius); padding: var(--pv-win-padding); background: var(--pv-win-bg);
+  border: var(--pv-win-border); box-shadow: var(--pv-win-shadow); overflow: var(--pv-win-overflow);
+}
+.ds-preview__title {
+  height: 10px; flex: none; display: flex; justify-content: var(--pv-title-justify); align-items: var(--pv-title-align);
+  padding: var(--pv-title-padding); margin: var(--pv-title-margin); border-radius: var(--pv-title-radius); background: var(--pv-title-bg);
+}
+.ds-preview__title::after {
+  content: ''; width: var(--pv-btn-w); height: var(--pv-btn-h); border-radius: var(--pv-btn-radius);
+  margin: var(--pv-btn-margin); background: var(--pv-btn-bg); box-shadow: var(--pv-btn-shadow);
+}
+.ds-preview__body { flex: 1; background: var(--paper); border: var(--pv-body-border); }
+.ds-preview__body::before { content: ''; display: block; margin: 5px; height: 4px; width: 50%; background: var(--accent); border-radius: 2px; }
+.ds-preview__bar {
+  position: absolute; left: 0; right: 0; top: var(--pv-bar-top); bottom: var(--pv-bar-bottom); height: var(--pv-bar-h);
+  background: var(--pv-bar-bg); box-shadow: var(--pv-bar-shadow);
+}
+.ds-preview__orb {
+  display: var(--pv-orb-display); position: absolute; left: var(--pv-orb-left); bottom: var(--pv-orb-bottom);
+  width: var(--pv-orb-w); height: var(--pv-orb-h); border-radius: var(--pv-orb-radius);
+  background: var(--pv-orb-bg); box-shadow: var(--pv-orb-shadow); opacity: var(--pv-orb-opacity);
+}
+/* dock (Ubuntu on the left, macOS at the bottom) */
+.ds-preview::after {
+  content: ''; display: var(--pv-dock-display); position: absolute;
+  top: var(--pv-dock-top); left: var(--pv-dock-left); bottom: var(--pv-dock-bottom);
+  width: var(--pv-dock-w); height: var(--pv-dock-h); border-radius: var(--pv-dock-radius);
+  background: var(--pv-dock-bg); border: var(--pv-dock-border);
+}

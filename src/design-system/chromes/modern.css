@@ -1,0 +1,211 @@
+/* Windows 10: flat. */
+[data-chrome='modern'] {
+  --desk-icon-hover-bg: #ffffff26;
+  --desk-icon-hover-border: #ffffff40;
+  --desk-icon-hover-shadow: none;
+  --desk-icon-hover-radius: 0;
+  --note-radius: 0;
+  --note-transform: none;
+
+  --win-padding: 0;
+  --win-radius: 0;
+  --win-bg: var(--paper);
+  --win-bg-active: var(--paper);
+  --win-border: 1px solid color-mix(in srgb, var(--ink) 25%, var(--paper));
+  --win-border-active: 1px solid var(--accent);
+  --win-shadow: 0 8px 30px #0004;
+  --win-shadow-active: 0 12px 40px #0006;
+  --win-body-border: 0;
+  --win-body-radius: 0;
+  --win-body-shadow: none;
+
+  --titlebar-padding: 0 0 0 10px;
+  --titlebar-bg: var(--title-a);
+  --title-size: 12.5px;
+  --title-color: color-mix(in srgb, var(--title-ink) 65%, var(--title-a)); /* dimmed, still 4.5:1 */
+
+  --ctrls-align: stretch;
+  --ctrls-touch-align: stretch;
+  --ctrl-h: 100%;
+  --ctrl-border: 0;
+  --ctrl-border-width: 0;
+  --ctrl-first-border-width: 0;
+  --ctrl-first-radius: 0;
+  --ctrl-close-radius: 0;
+  --ctrl-bg: transparent;
+  --ctrl-close-bg: transparent;
+  --ctrl-shadow: none;
+  --ctrl-hover-bg: color-mix(in srgb, var(--title-ink) 12%, transparent);
+  --ctrl-close-hover-bg: #e81123;
+  --ctrl-close-hover-filter: none;
+  --ctrl-close-hover-shadow: initial;
+  --ctrl-icon-color: var(--title-ink);
+  --ctrl-close-hover-icon-color: #fff;
+  --ctrl-touch-h: 100%;
+  --ctrl-touch-border-top: 0;
+  --ctrl-touch-first-radius: 0;
+  --ctrl-touch-close-radius: 0;
+
+  --avatar-radius: 50%;
+  --avatar-bg: var(--accent);
+  --avatar-color: var(--on-accent);
+  --avatar-text-shadow: none;
+  --avatar-border: 0;
+  --avatar-shadow: none;
+  --btn-radius: 0;
+  --btn-border: 1px solid var(--edge);
+  --btn-bg: color-mix(in srgb, var(--ink) 12%, var(--paper));
+  --btn-shadow: none;
+  --btn-hover-bg: var(--btn-bg);
+  --btn-hover-border-color: var(--ink);
+  --btn-primary-bg: var(--accent);
+  --btn-primary-color: var(--on-accent);
+  --btn-primary-hover-filter: brightness(1.1);
+  --pill-radius: 2px;
+  --pill-bg: color-mix(in srgb, var(--accent) 14%, var(--paper));
+  --pill-border: 0;
+  --stat-radius: 0;
+  --stat-bg: color-mix(in srgb, var(--accent) 8%, var(--paper));
+  --stat-border: 0;
+  --stat-border-left: 3px solid var(--accent);
+  --card-radius: 0;
+
+  --toolbar-bg: var(--paper);
+  --side-bg: color-mix(in srgb, var(--ink) 4%, var(--paper));
+  --side-border-right: 0;
+  --sideitem-radius: 0;
+  --sideitem-border-width: 0 0 0 3px;
+  --sideitem-hover-bg: color-mix(in srgb, var(--ink) 8%, var(--paper));
+  --sideitem-hover-border-color: transparent;
+  --sideitem-on-bg: color-mix(in srgb, var(--accent) 16%, var(--paper));
+  --sideitem-on-border-color: var(--accent);
+  --statusbar-bg: var(--paper);
+
+  --tab-radius: 0;
+  --themecard-radius: 0;
+  --pv-radius: 0;
+
+  --taskbar-padding: 0;
+  --taskbar-gap: 0;
+  --taskbar-bg: var(--taskbar);
+  --taskbar-backdrop: blur(20px) saturate(140%);
+  --taskbar-border-top: 0;
+  --taskbar-shadow: none;
+  --start-position: static;
+  --start-w: 48px;
+  --start-h: 100%;
+  --start-radius: 0;
+  --start-border: 0;
+  --start-bg: transparent;
+  --start-shadow: none;
+  --start-size: 18px;
+  --start-color: var(--taskbar-ink);
+  --start-text-shadow: none;
+  --start-hover-filter: none;
+  --start-hover-shadow: none;
+  --start-hover-bg: #ffffff1a;
+  --start-hover-color: var(--accent);
+  --tasks-gap: 0;
+  --tasks-height: 100%;
+  --task-w: 48px;
+  --task-touch-w: 48px;
+  --task-h: 100%;
+  --task-padding: 0;
+  --task-justify: center;
+  --task-radius: 0;
+  --task-border-width: 0 0 2px;
+  --task-border-color: transparent;
+  --task-color: var(--taskbar-ink);
+  --task-bg: transparent;
+  --task-shadow: none;
+  --task-hover-bg: #ffffff1a;
+  --task-on-bg: #ffffff14;
+  --task-on-border-color: var(--accent);
+  --task-on-shadow: none;
+  --task-icon-size: 18px;
+  --task-label-display: none;
+  --traybtn-h: 100%;
+  --traybtn-radius: 0;
+  --traybtn-color: var(--taskbar-ink);
+  --traybtn-border: 0;
+  --traybtn-bg: transparent;
+  --traybtn-shadow: none;
+  --traybtn-hover-filter: none;
+  --traybtn-hover-bg: #ffffff1a;
+  --trayclock-padding: 0 12px;
+  --trayclock-color: var(--taskbar-ink);
+  --trayclock-text-shadow: none;
+  --trayclock-border-left: 0;
+
+  --startmenu-padding: 6px;
+  --startmenu-gap: 6px;
+  --startmenu-radius: 0;
+  --startmenu-color: #fff;
+  --startmenu-backdrop: blur(24px) saturate(140%);
+  --startmenu-border: 0;
+  --startmenu-shadow: 0 0 20px #0008;
+  --startmenu-animation: none;
+  --smapps-bg: transparent;
+  --smapps-color: #fff;
+  --smapps-radius: 0;
+  --smapps-border: 0;
+  --smitem-radius: 0;
+  --smitem-border: 0;
+  --smitem-hover-bg: #ffffff1a;
+  /* links become coloured live tiles */
+  --smlinks-display: grid;
+  --smlinks-columns: 1fr 1fr;
+  --smlinks-align: start;
+  --smlinks-padding: 6px 0;
+  --smlinks-gap: 4px;
+  --smavatar-display: none;
+  --smname-display: none;
+  --smlink-display: flex;
+  --smlink-aspect: 1;
+  --smlink-align: flex-end;
+  --smlink-padding: 6px;
+  --smlink-size: 12px;
+  --smlink-radius: 0;
+  --smlink-border: 0;
+  --smlink-bg: var(--accent);
+  --smlink-color: var(--on-accent);
+  --smlink-hover-bg: var(--accent);
+  --smlink-hover-filter: brightness(1.15);
+  --smlink-hover-outline: 2px solid #fff6;
+  --smlink-touch-align: flex-end;
+
+  --boot-bg: var(--accent);
+  --boot-logo-radius: 0;
+  --boot-logo-bg: none;
+  --boot-logo-shadow: none;
+  --boot-logo-text-shadow: none;
+  --boot-logo-weight: 300;
+  --spinner-border: 2px solid transparent;
+  --spinner-border-top-color: #fff;
+  --spinner-border-right-color: #fff;
+
+  --pv-win-radius: 0;
+  --pv-win-padding: 0;
+  --pv-win-bg: var(--paper);
+  --pv-win-border: 1px solid var(--accent);
+  --pv-win-shadow: 0 4px 10px #0006;
+  --pv-title-bg: var(--title-a);
+  --pv-btn-bg: none;
+  --pv-body-border: 0;
+  --pv-bar-bg: var(--taskbar);
+  --pv-orb-bottom: 2px;
+  --pv-orb-w: 10px;
+  --pv-orb-h: 9px;
+  --pv-orb-radius: 0;
+  --pv-orb-bg: var(--taskbar-ink);
+  --pv-orb-shadow: none;
+  --pv-orb-opacity: .9;
+}
+
+@media (min-width: 761px) and (min-height: 501px) {
+  [data-chrome='modern'] {
+    --taskbar-h: 40px;
+    --ctrl-w: 46px;
+    --ctrl-close-w: 46px;
+  }
+}

@@ -1,0 +1,3 @@
+/* Design system entry: global base + all tokens. Component styles are imported by each component. */
+@import './styles/global.css';
+@import './chromes/index.css';

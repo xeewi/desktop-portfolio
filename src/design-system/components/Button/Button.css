@@ -1,0 +1,16 @@
+.ds-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 6px 18px; min-height: 30px; text-decoration: none;
+  border-radius: var(--btn-radius); border: var(--btn-border); color: var(--btn-color);
+  background: var(--btn-bg); box-shadow: var(--btn-shadow);
+}
+.ds-button:hover { border-color: var(--btn-hover-border-color); background: var(--btn-hover-bg); box-shadow: var(--btn-hover-shadow); }
+.ds-button--primary, .ds-button--primary:hover {
+  border-color: var(--btn-primary-border-color); border-radius: var(--btn-primary-radius);
+  background: var(--btn-primary-bg); color: var(--btn-primary-color); box-shadow: var(--btn-primary-shadow);
+  outline: var(--btn-primary-outline); outline-offset: 0;
+}
+.ds-button--primary:hover { filter: var(--btn-primary-hover-filter); }
+.ds-button:active { box-shadow: var(--btn-active-shadow); }
+.ds-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ds-button--block { display: flex; width: 100%; margin-top: 10px; padding: 10px; }

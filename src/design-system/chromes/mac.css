@@ -1,0 +1,188 @@
+/* macOS. */
+[data-chrome='mac'] {
+  --win-padding: 0;
+  --win-radius: 10px;
+  --win-bg: var(--paper);
+  --win-bg-active: var(--paper);
+  --win-border: 1px solid #0000002a;
+  --win-shadow: 0 0 0 .5px #0002, 0 8px 24px #0003;
+  --win-shadow-active: 0 0 0 .5px #0003, 0 20px 56px #0006;
+  --win-overflow: hidden;
+  --titlebar-padding: 0 10px;
+  --titlebar-bg: var(--title-a);
+  --titlebar-border-bottom: 1px solid #0000001a;
+  --title-weight: 600;
+  --title-align: center;
+  --title-opacity: .7; /* dimmed, still 4.5:1 */
+
+  /* traffic lights, on the left (touch: 22px lights in 44px targets, glyphs always shown) */
+  --ctrls-order: -1;
+  --ctrls-align: center;
+  --ctrls-gap: 0px;
+  --ctrl-border: 0;
+  --ctrl-radius: 50%;
+  --ctrl-first-radius: 50%;
+  --ctrl-close-radius: 50%;
+  --ctrl-shadow: none;
+  --ctrl-hover-bg: initial;
+  --ctrl-min-bg: #febc2e;
+  --ctrl-max-bg: #28c840;
+  --ctrl-close-bg: #ff5f57;
+  --ctrl-inactive-bg: #c8c8c8;
+  --ctrl-min-order: 1;
+  --ctrl-max-order: 2;
+  --ctrl-close-order: 0;
+  --ctrl-close-hover-filter: none;
+  --ctrl-close-hover-shadow: initial;
+  --ctrl-icon-color: #0009;
+  --ctrl-close-icon-color: #0009;
+  --ctrl-icon-opacity: 1;
+  --ctrl-icon-hover-opacity: 1;
+  --ctrl-touch-padding: 11px;
+
+  --btn-bg: var(--paper);
+  --btn-shadow: 0 1px 1px #0002;
+  --btn-hover-bg: var(--paper);
+  --stat-radius: 10px;
+  --card-radius: 10px;
+  --toolbar-bg: var(--title-a);
+  --sideitem-on-bg: var(--accent);
+  --sideitem-on-color: var(--on-accent);
+  --sideitem-on-sub-color: var(--on-accent);
+  --themecard-radius: 8px;
+
+  /* translucent menu bar: logo, app name … clock */
+  --taskbar-padding: 0 12px;
+  --taskbar-gap: 14px;
+  --taskbar-bg: transparent;
+  --taskbar-layer-bg: var(--taskbar);
+  --taskbar-layer-backdrop: blur(20px) saturate(180%);
+  --start-padding: 0 10px;
+  --start-radius: 6px;
+  --start-size: 17px;
+  --start-weight: 800;
+  --appname-display: block;
+  --traybtn-radius: 6px;
+  --trayclock-padding: 0 4px;
+  --trayclock-weight: 500;
+
+  /* glass dock */
+  --tasks-border: 1px solid #ffffff55;
+  --tasks-shadow: 0 10px 30px #0004;
+  --tasks-bg: color-mix(in srgb, var(--paper) 35%, transparent);
+  --tasks-backdrop: blur(20px) saturate(180%);
+  --task-on-bg: transparent;
+  --task-dot-color: var(--ink);
+  --task-dot-opacity: .7;
+
+  /* Apple menu: a plain drop-down list */
+  --startmenu-radius: 8px;
+  --startmenu-color: var(--taskbar-ink);
+  --startmenu-bg: color-mix(in srgb, var(--paper) 80%, transparent);
+  --startmenu-backdrop: blur(24px) saturate(180%);
+  --startmenu-border: 1px solid #0002;
+  --startmenu-direction: column;
+  --startmenu-width: 240px;
+  --startmenu-gap: 0;
+  --startmenu-padding: 5px;
+  --smapps-padding: 0;
+  --smapps-bg: transparent;
+  --smapps-border: 0;
+  --smitem-padding: 4px 8px;
+  --smitem-radius: 5px;
+  --smitem-color: var(--ink);
+  --smitem-hover-bg: var(--accent);
+  --smitem-hover-color: var(--on-accent);
+  --smitem-hover-border-color: transparent;
+  --smlinks-padding: 4px 0 0;
+  --smlinks-margin: 4px 0 0;
+  --smlinks-border-top: 1px solid #0002;
+  --smlinks-color: var(--ink);
+  --smavatar-display: none;
+  --smname-display: none;
+  --smlink-padding: 4px 8px;
+  --smlink-radius: 5px;
+  --smlink-color: var(--ink);
+  --smlink-hover-bg: var(--accent);
+  --smlink-hover-color: var(--on-accent);
+  --smlink-hover-border-color: transparent;
+  --smlink-touch-align: center;
+
+  --boot-bg: #000;
+  --boot-title-display: none;
+  --boot-sub-display: none;
+  --boot-logo-bg: none;
+  --boot-logo-shadow: none;
+  --boot-logo-text-shadow: none;
+  --boot-logo-size: 72px;
+  --spinner-w: 180px;
+  --spinner-h: 5px;
+  --spinner-radius: 3px;
+  --spinner-border: 0;
+  --spinner-bg: linear-gradient(#fff, #fff) 0 0 / 0% 100% no-repeat, #444;
+  --spinner-animation: macload 2s ease-out forwards;
+
+  --pv-title-padding: 1px 0 0 3px;
+  --pv-title-justify: flex-start;
+  --pv-btn-w: 4px;
+  --pv-btn-h: 4px;
+  --pv-btn-radius: 50%;
+  --pv-btn-bg: #ff5f57;
+  --pv-btn-shadow: 6px 0 #febc2e, 12px 0 #28c840;
+  --pv-dock-left: 30%;
+  --pv-dock-bottom: 3px;
+  --pv-dock-w: 40%;
+  --pv-dock-h: 9px;
+  --pv-dock-radius: 3px;
+  --pv-dock-bg: color-mix(in srgb, var(--paper) 45%, transparent);
+  --pv-dock-border: 1px solid #fff6;
+}
+
+/* desktop: thin menu bar, bigger dock that magnifies, 12px lights with hover glyphs */
+@media (min-width: 761px) and (min-height: 501px) {
+  [data-chrome='mac'] {
+    --taskbar-h: 26px;
+    --start-h: 22px;
+    --start-padding: 0 8px;
+    --start-radius: 4px;
+    --start-size: 15px;
+    --traybtn-h: 22px;
+    --traybtn-radius: 4px;
+    --tasks-bottom: 6px;
+    --tasks-height: 66px;
+    --tasks-align: flex-end;
+    --tasks-padding: 6px 10px;
+    --task-w: 52px;
+    --task-h: 52px;
+    --task-icon-size: 40px;
+    --task-hover-transform: scale(1.25) translateY(-4px);
+    --task-transition: transform .15s ease-out;
+    --icons-top: 38px;
+    --icons-left: auto;
+    --icons-right: 12px;
+    --gadgets-top: 38px;
+    --gadgets-left: 18px;
+    --gadgets-right: auto;
+    --signature-left: 48px;
+    --signature-right: auto;
+    --signature-align: left;
+    --win-offset-top: 26px;
+    --win-max-h: calc(100dvh - 26px - 110px);
+    --win-maxed-top: 26px;
+    --win-maxed-height: calc(100dvh - 26px - 84px);
+    --startmenu-top: 28px;
+    --titlebar-h: 28px;
+    --ctrls-gap: 12px; /* WCAG 2.5.8: 12px lights need their centres 24px apart (macOS uses 8px) */
+    --ctrl-w: 12px;
+    --ctrl-h: 12px;
+    --ctrl-close-w: 12px;
+    --ctrl-border: 1px solid #0002;
+    --ctrl-border-width: 1px;
+    --ctrl-first-border-width: 1px;
+    --ctrl-icon-color: #000;
+    --ctrl-close-icon-color: #000;
+    --ctrl-icon-opacity: 0;
+    --ctrl-icon-hover-opacity: .55;
+    --ctrl-icon-hover-size: 7px;
+  }
+}

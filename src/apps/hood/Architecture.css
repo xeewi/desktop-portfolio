@@ -1,0 +1,29 @@
+.arch-crumbs ol { display: flex; flex-wrap: wrap; align-items: center; list-style: none; margin: 0 0 8px; padding: 0; }
+.arch-crumbs li + li::before { content: '›' / ''; margin: 0 4px; color: var(--muted); }
+.arch-crumbs button {
+  min-height: 24px; padding: 0 4px; background: none; border: 0; color: var(--heading); text-decoration: underline;
+}
+.arch-crumbs button:focus-visible, .arch-entry:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.arch-crumbs [aria-current] { padding: 0 4px; font-weight: 600; }
+.arch-note { margin: 4px 0 10px; }
+
+.arch-list { list-style: none; margin: 8px 0 0; padding: 0; }
+.arch-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.arch-entry {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 28px; padding: 2px 6px;
+  background: none; border: 0; border-radius: 3px; text-align: left;
+}
+.arch-entry:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.arch-entry code { color: var(--heading); }
+.arch-role { color: var(--muted); font-size: .92em; }
+
+.arch-code {
+  margin: 8px 0 0; padding: 10px 0; overflow: auto; font-size: 12.5px; line-height: 1.55; counter-reset: line;
+  color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); border: 1px solid var(--edge); border-radius: 4px;
+}
+.arch-code:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+/* line numbers: drawn by CSS, so copying the code doesn't copy them; '' is what screen readers say for them */
+.arch-code code > span::before {
+  counter-increment: line; content: counter(line) / ''; display: inline-block; width: 3.5em; padding-right: 1em;
+  text-align: right; color: var(--muted); user-select: none;
+}

@@ -1,0 +1,11 @@
+.ds-themecard {
+  display: flex; flex-direction: column; gap: 4px; padding: 6px; text-align: left;
+  border: 1px solid transparent; border-radius: var(--themecard-radius); background: none; color: var(--ink);
+}
+.ds-themecard:hover { background: color-mix(in srgb, var(--accent) 8%, var(--paper)); border-color: color-mix(in srgb, var(--accent) 30%, var(--paper)); }
+.ds-themecard[aria-pressed='true'] { background: var(--themecard-on-bg); color: var(--themecard-on-color); border: var(--themecard-on-border); }
+.ds-themecard:focus-visible { outline: 2px solid var(--accent); }
+.ds-themecard b { font-size: 13.5px; }
+.ds-themecard small { font-size: 12px; color: var(--muted); line-height: 1.35; }
+.ds-themecard[aria-pressed='true'] small { color: var(--themecard-on-sub-color); }
+.ds-themecard__current { color: var(--themecard-on-cur-color); font-weight: 600; }

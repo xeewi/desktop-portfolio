@@ -1,0 +1,121 @@
+/* ---------- frame ---------- */
+.ds-window {
+  position: absolute; max-width: calc(100vw - 16px); max-height: var(--win-max-h);
+  display: flex; flex-direction: column;
+  margin-top: var(--win-offset-top);
+  padding: var(--win-padding); border-radius: var(--win-radius);
+  background: var(--win-bg); border: var(--win-border); box-shadow: var(--win-shadow);
+  backdrop-filter: var(--win-backdrop); -webkit-backdrop-filter: var(--win-backdrop);
+  overflow: var(--win-overflow); animation: var(--win-animation);
+  filter: var(--win-filter-inactive);
+}
+.ds-window[data-active] {
+  background: var(--win-bg-active); border: var(--win-border-active); box-shadow: var(--win-shadow-active); filter: none;
+}
+.ds-window[data-minimized] { display: none; }
+.ds-window[data-maximized] {
+  left: var(--win-maxed-left) !important; top: var(--win-maxed-top) !important; width: var(--win-maxed-width) !important;
+  max-width: none; height: var(--win-maxed-height) !important; max-height: none; margin: 0; border-radius: 0;
+}
+
+/* ---------- resize edges (desktop only: not rendered on touch) ---------- */
+.ds-window__edge { position: absolute; z-index: 1; touch-action: none; }
+.ds-window__edge[data-edge='n'], .ds-window__edge[data-edge='s'] { left: 10px; right: 10px; height: 6px; cursor: ns-resize; }
+.ds-window__edge[data-edge='e'], .ds-window__edge[data-edge='w'] { top: 10px; bottom: 10px; width: 6px; cursor: ew-resize; }
+.ds-window__edge[data-edge^='n'] { top: 0; }
+.ds-window__edge[data-edge^='s'] { bottom: 0; }
+.ds-window__edge[data-edge$='e'] { right: 0; }
+.ds-window__edge[data-edge$='w'] { left: 0; }
+.ds-window__edge[data-edge='ne'], .ds-window__edge[data-edge='nw'],
+.ds-window__edge[data-edge='se'], .ds-window__edge[data-edge='sw'] { width: 12px; height: 12px; }
+.ds-window__edge[data-edge='nw'], .ds-window__edge[data-edge='se'] { cursor: nwse-resize; }
+.ds-window__edge[data-edge='ne'], .ds-window__edge[data-edge='sw'] { cursor: nesw-resize; }
+
+/* ---------- title bar ---------- */
+.ds-window__titlebar {
+  display: flex; align-items: center; gap: 8px; height: var(--titlebar-h); flex: none;
+  user-select: none; touch-action: none; cursor: default;
+  padding: var(--titlebar-padding); margin: var(--titlebar-margin); border-radius: var(--titlebar-radius);
+  background: var(--titlebar-bg); border-bottom: var(--titlebar-border-bottom);
+}
+.ds-window[data-active] .ds-window__titlebar { background: var(--titlebar-bg-active); }
+.ds-window__icon { display: var(--title-icon-display); font-size: 15px; filter: var(--title-icon-filter); }
+.ds-window__title {
+  margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--title-family); line-height: var(--title-lh); font-size: var(--title-size); font-weight: var(--title-weight);
+  color: var(--title-color); text-shadow: var(--title-shadow); text-align: var(--title-align); opacity: var(--title-opacity);
+}
+.ds-window[data-active] .ds-window__title { color: var(--title-color-active); opacity: 1; }
+
+/* ---------- controls ---------- */
+.ds-window__controls {
+  /* above the resize edges, which would otherwise eat the buttons' corners */
+  position: relative; z-index: 2;
+  display: flex; align-self: var(--ctrls-align); gap: var(--ctrls-gap); order: var(--ctrls-order); padding: var(--ctrls-padding);
+}
+.ds-window__ctrl {
+  width: var(--ctrl-w); height: var(--ctrl-h); padding: 0; display: grid; place-items: center;
+  border: var(--ctrl-border); border-width: var(--ctrl-border-width); border-radius: var(--ctrl-radius);
+  background: var(--ctrl-bg); box-shadow: var(--ctrl-shadow);
+}
+.ds-window__ctrl--min {
+  order: var(--ctrl-min-order); background: var(--ctrl-min-bg);
+  border-width: var(--ctrl-first-border-width); border-radius: var(--ctrl-first-radius);
+}
+.ds-window__ctrl--max { order: var(--ctrl-max-order); background: var(--ctrl-max-bg); }
+.ds-window__ctrl--close {
+  order: var(--ctrl-close-order); width: var(--ctrl-close-w); margin: var(--ctrl-close-margin);
+  background: var(--ctrl-close-bg); border-radius: var(--ctrl-close-radius);
+}
+/* inactive window (macOS greys its traffic lights); :where keeps hover stronger */
+:where(.ds-window:not([data-active])) .ds-window__ctrl--min { background: var(--ctrl-inactive-bg, var(--ctrl-min-bg)); }
+:where(.ds-window:not([data-active])) .ds-window__ctrl--max { background: var(--ctrl-inactive-bg, var(--ctrl-max-bg)); }
+:where(.ds-window:not([data-active])) .ds-window__ctrl--close { background: var(--ctrl-inactive-bg, var(--ctrl-close-bg)); }
+.ds-window__ctrl:hover { filter: var(--ctrl-hover-filter); }
+.ds-window__ctrl--min:hover { background: var(--ctrl-hover-bg, var(--ctrl-min-bg)); }
+.ds-window__ctrl--max:hover { background: var(--ctrl-hover-bg, var(--ctrl-max-bg)); }
+.ds-window__ctrl--close:hover {
+  background: var(--ctrl-close-hover-bg, var(--ctrl-close-bg)); filter: var(--ctrl-close-hover-filter);
+  box-shadow: var(--ctrl-close-hover-shadow, var(--ctrl-shadow));
+}
+.ds-window__ctrl:active { box-shadow: var(--ctrl-active-shadow, var(--ctrl-shadow)); }
+.ds-window__ctrl svg {
+  width: var(--ctrl-icon-size); height: var(--ctrl-icon-size);
+  fill: var(--ctrl-icon-color); stroke: var(--ctrl-icon-color);
+  filter: var(--ctrl-icon-filter); opacity: var(--ctrl-icon-opacity);
+}
+.ds-window__ctrl--close svg { fill: var(--ctrl-close-icon-color); stroke: var(--ctrl-close-icon-color); }
+.ds-window__ctrl--close:hover svg { fill: var(--ctrl-close-hover-icon-color); stroke: var(--ctrl-close-hover-icon-color); }
+.ds-window__controls:hover svg { opacity: var(--ctrl-icon-hover-opacity); width: var(--ctrl-icon-hover-size); height: var(--ctrl-icon-hover-size); }
+
+/* ---------- body ---------- */
+.ds-window__body {
+  /* a column, so an app can fill the window and scroll inside itself (Explorer); other apps keep their
+     content height (min-height: auto) and the body scrolls */
+  flex: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column;
+  background: var(--win-body-bg); color: var(--ink); text-shadow: var(--win-body-text-shadow);
+  border: var(--win-body-border); border-radius: var(--win-body-radius); box-shadow: var(--win-body-shadow); padding: var(--win-body-padding);
+}
+.ds-window__body:focus-visible { outline-offset: -3px; }
+
+/* ---------- touch: full-screen windows, big targets (≥ 44px) ---------- */
+@media (max-width: 760px), (max-height: 500px) {
+  .ds-window, .ds-window[data-maximized] {
+    left: calc(6px + env(safe-area-inset-left, 0px)) !important; right: calc(6px + env(safe-area-inset-right, 0px));
+    top: calc(6px + var(--touch-top)) !important; width: auto !important; margin: 0;
+    height: calc(100dvh - var(--touch-top) - var(--touch-bottom) - 12px) !important; max-height: none; max-width: none;
+  }
+  .ds-window__titlebar { height: 44px; }
+  .ds-window__title { font-size: var(--title-touch-size); }
+  .ds-window__controls { align-self: var(--ctrls-touch-align); }
+  .ds-window__ctrl {
+    width: var(--ctrl-touch-w); height: var(--ctrl-touch-h); padding: var(--ctrl-touch-padding);
+    border-top-width: var(--ctrl-touch-border-top); border-radius: var(--ctrl-touch-radius);
+  }
+  /* beats the background shorthands of the hover / inactive rules */
+  .ds-window__controls .ds-window__ctrl { background-clip: var(--ctrl-touch-clip); }
+  .ds-window__ctrl--min { border-radius: var(--ctrl-touch-first-radius); }
+  .ds-window__ctrl--max { display: none; }
+  .ds-window__ctrl--close { width: var(--ctrl-touch-close-w); border-radius: var(--ctrl-touch-close-radius); }
+  .ds-window__ctrl svg, .ds-window__controls:hover svg { width: 12px; height: 12px; }
+}

@@ -1,0 +1,4 @@
+.ds-card {
+  padding: 12px 14px;
+  border-radius: var(--card-radius); border: var(--card-border); background: var(--card-bg); box-shadow: var(--card-shadow);
+}

@@ -1,0 +1,8 @@
+.ds-traybtn {
+  display: var(--traybtn-display); align-items: center;
+  height: var(--traybtn-h); min-width: 34px; padding: 0 6px; margin-left: var(--traybtn-margin-left);
+  border-radius: var(--traybtn-radius); border: var(--traybtn-border);
+  font-size: 12px; font-weight: var(--traybtn-weight); letter-spacing: .5px; color: var(--traybtn-color);
+  background: var(--traybtn-bg); box-shadow: var(--traybtn-shadow);
+}
+.ds-traybtn:hover { filter: var(--traybtn-hover-filter); background: var(--traybtn-hover-bg, var(--traybtn-bg)); }

@@ -1,0 +1,132 @@
+/* Shared by Ubuntu (gnome) and macOS (mac): flat bars, rounded flat content. */
+:is([data-chrome='gnome'], [data-chrome='mac']) {
+  --title-icon-display: none;
+  --win-body-border: 0;
+  --win-body-radius: 0;
+  --win-body-shadow: none;
+
+  --taskbar-bg: var(--taskbar);
+  --taskbar-border-top: 0;
+  --taskbar-shadow: none;
+  --start-border: 0;
+  --start-bg: var(--accent);
+  --start-shadow: none;
+  --start-text-shadow: none;
+  --start-hover-filter: none;
+  --start-hover-shadow: none;
+  --task-border-width: 0;
+  --task-color: var(--taskbar-ink);
+  --task-bg: transparent;
+  --task-shadow: none;
+  --task-hover-bg: transparent;
+  --task-on-bg: color-mix(in srgb, var(--taskbar-ink) 15%, transparent);
+  --task-on-shadow: none;
+  --traybtn-color: var(--taskbar-ink);
+  --traybtn-border: 0;
+  --traybtn-bg: transparent;
+  --traybtn-shadow: none;
+  --trayclock-color: var(--taskbar-ink);
+  --trayclock-text-shadow: none;
+  --trayclock-border-left: 0;
+
+  --avatar-radius: 50%;
+  --btn-radius: 6px;
+  --btn-border: 1px solid var(--edge);
+  --btn-primary-bg: var(--accent);
+  --btn-primary-color: var(--on-accent);
+  --btn-primary-shadow: none;
+  --btn-primary-hover-filter: brightness(1.08);
+  --pill-radius: 99px;
+  --pill-bg: color-mix(in srgb, var(--accent) 14%, var(--paper));
+  --pill-border: 0;
+  --stat-bg: color-mix(in srgb, var(--ink) 5%, var(--paper));
+  --stat-border: 0;
+
+  --toolbar-bg: var(--paper);
+  --toolbar-border: 1px solid color-mix(in srgb, var(--ink) 12%, var(--paper));
+  --address-bg: color-mix(in srgb, var(--ink) 7%, var(--paper));
+  --address-color: var(--ink);
+  --address-border: 0;
+  --address-radius: 6px;
+  --side-bg: color-mix(in srgb, var(--ink) 4%, var(--paper));
+  --side-border-right: 1px solid color-mix(in srgb, var(--ink) 10%, var(--paper));
+  --side-touch-border-right: var(--side-border-right);
+  --sideitem-radius: 6px;
+  --sideitem-border-width: 0;
+  --sideitem-hover-bg: color-mix(in srgb, var(--ink) 8%, var(--paper));
+  --statusbar-bg: var(--paper);
+  --statusbar-border: 1px solid color-mix(in srgb, var(--ink) 12%, var(--paper));
+
+  --pv-win-radius: 5px;
+  --pv-win-padding: 0;
+  --pv-win-bg: var(--paper);
+  --pv-win-border: 0;
+  --pv-win-shadow: 0 3px 8px #0006;
+  --pv-win-overflow: hidden;
+  --pv-title-bg: var(--title-a);
+  --pv-title-align: center;
+  --pv-body-border: 0;
+  --pv-bar-top: 0;
+  --pv-bar-bottom: auto;
+  --pv-bar-h: 7px;
+  --pv-bar-bg: var(--taskbar);
+  --pv-orb-display: none;
+  --pv-dock-display: block;
+
+  /* every size: bar on top, apps in a dock (closed apps included) */
+  --taskbar-top: 0;
+  --taskbar-bottom: auto;
+  --tb-inset-top: env(safe-area-inset-top, 0px);
+  --tb-inset-bottom: 0px;
+  --start-position: static;
+  --start-w: auto;
+  --start-bg: transparent;
+  --start-color: var(--taskbar-ink);
+  --start-hover-bg: color-mix(in srgb, var(--taskbar-ink) 16%, transparent);
+  --traybtn-margin-left: auto;
+  --tasks-position: fixed;
+  --tasks-flex: none;
+  --task-closed-display: flex;
+  --task-padding: 0;
+  --task-justify: center;
+  --task-label-display: none;
+  --task-dot-display: block;
+  --startmenu-bottom: auto;
+
+  /* touch: taller top bar, floating dock at the bottom, round controls in 44px targets */
+  --taskbar-h: 36px;
+  --start-h: 30px;
+  --traybtn-h: 30px;
+  --touch-top: var(--tb);
+  --touch-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  --tasks-left: 50%;
+  --tasks-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+  --tasks-width: max-content;
+  --tasks-max-width: calc(100vw - 16px);
+  --tasks-transform: translateX(-50%);
+  --tasks-align: center;
+  --tasks-gap: 4px;
+  --tasks-padding: 6px 8px;
+  --tasks-radius: 18px;
+  --task-touch-w: 48px;
+  --task-h: 48px;
+  --task-radius: 12px;
+  --task-touch-icon-size: 32px;
+  --task-icon-lh: 1;
+  --task-dot-bottom: -4px;
+  --task-dot-left: 50%;
+  --task-dot-transform: translateX(-50%);
+  --startmenu-top: calc(var(--tb) + 4px);
+  --startmenu-left: 8px;
+  --ctrls-touch-align: center;
+  --ctrl-touch-w: 44px;
+  --ctrl-touch-h: 44px;
+  --ctrl-touch-close-w: 44px;
+  --ctrl-touch-clip: content-box;
+  --ctrl-touch-border-top: 0;
+  --ctrl-touch-radius: 50%;
+  --ctrl-touch-first-radius: 50%;
+  --ctrl-touch-close-radius: 50%;
+}
+
+

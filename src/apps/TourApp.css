@@ -1,0 +1,2 @@
+.tour { display: grid; gap: 16px; list-style: none; margin: 14px 0 0; padding: 0; }
+.tour .ds-button { margin-top: 4px; }

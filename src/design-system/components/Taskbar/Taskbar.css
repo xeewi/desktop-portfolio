@@ -1,0 +1,23 @@
+.ds-taskbar {
+  position: absolute; left: 0; right: 0; top: var(--taskbar-top); bottom: var(--taskbar-bottom);
+  height: var(--tb); z-index: 9000;
+  display: flex; align-items: center; gap: var(--taskbar-gap);
+  padding: var(--taskbar-padding); padding-top: var(--tb-inset-top); padding-bottom: var(--tb-inset-bottom);
+  background: var(--taskbar-bg); border-top: var(--taskbar-border-top); box-shadow: var(--taskbar-shadow);
+  backdrop-filter: var(--taskbar-backdrop); -webkit-backdrop-filter: var(--taskbar-backdrop);
+}
+/* blur layer behind the bar's content (macOS menu bar), so the bar itself keeps no backdrop-filter
+   and fixed children (the dock) stay relative to the viewport */
+.ds-taskbar::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: var(--taskbar-layer-bg);
+  backdrop-filter: var(--taskbar-layer-backdrop); -webkit-backdrop-filter: var(--taskbar-layer-backdrop);
+}
+.ds-tasklist {
+  position: var(--tasks-position); flex: var(--tasks-flex); min-width: 0;
+  display: flex; flex-direction: var(--tasks-direction); align-items: var(--tasks-align); gap: var(--tasks-gap);
+  top: var(--tasks-top); left: var(--tasks-left); bottom: var(--tasks-bottom);
+  width: var(--tasks-width); max-width: var(--tasks-max-width); height: var(--tasks-height); padding: var(--tasks-padding); transform: var(--tasks-transform);
+  border-radius: var(--tasks-radius); border: var(--tasks-border); box-shadow: var(--tasks-shadow); background: var(--tasks-bg);
+  backdrop-filter: var(--tasks-backdrop); -webkit-backdrop-filter: var(--tasks-backdrop);
+}

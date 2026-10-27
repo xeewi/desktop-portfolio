@@ -1,0 +1,16 @@
+/* Above the taskbar (9000) and start menu (9001), below the boot screen. Never catches clicks. */
+.ds-spotlight { position: fixed; inset: 0; z-index: 9500; pointer-events: none; }
+.ds-spotlight__ring {
+  position: fixed; border-radius: 8px;
+  outline: 3px solid var(--accent);
+  /* white halo, then everything else dimmed */
+  box-shadow: 0 0 0 6px #fffc, 0 0 0 100vmax #0008;
+  transition: left .15s, top .15s, width .15s, height .15s;
+}
+.ds-spotlight__caption {
+  position: fixed; margin: 0; max-width: min(300px, calc(100vw - 16px));
+  display: grid; gap: 2px; padding: 8px 12px; border-radius: 6px;
+  background: var(--paper); color: var(--ink); border: 2px solid var(--accent);
+  box-shadow: 0 6px 20px #0006;
+}
+.ds-spotlight__caption small { color: var(--muted); }

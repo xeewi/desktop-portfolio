@@ -1,0 +1,14 @@
+.hood { display: flex; flex-direction: column; flex: 1 0 auto; }
+/* the file browser fits the window and scrolls inside, so Back stays in view */
+.hood:has(> .ds-explorer) { flex-shrink: 1; min-height: 0; }
+.hood > .ds-explorer { flex: 1; min-height: 0; }
+/* long screens (Technical choices, Tests) scroll under the bar: Back stays in view */
+.hood__bar {
+  position: sticky; top: 0; z-index: 1;
+  display: flex; align-items: center; gap: 14px; flex: none; padding: 10px 16px;
+  background: var(--win-body-bg); border-bottom: 1px solid var(--edge);
+}
+.hood__bar .ds-heading { margin: 0; }
+.hood__home { display: grid; gap: 10px; list-style: none; margin: 14px 0 0; padding: 0; }
+.hood-list { display: grid; gap: 18px; margin-top: 14px; }
+.hood-list .ds-button { margin-top: 4px; }

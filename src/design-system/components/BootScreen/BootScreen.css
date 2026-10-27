@@ -1,0 +1,26 @@
+.ds-boot {
+  position: fixed; inset: 0; z-index: 99999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  color: #fff; background: var(--boot-bg);
+  animation: fadeout .5s ease-in 1.7s forwards;
+}
+.ds-boot__logo {
+  width: 96px; height: 96px; border-radius: var(--boot-logo-radius); display: grid; place-items: center;
+  font-size: var(--boot-logo-size); font-weight: var(--boot-logo-weight); color: var(--boot-logo-color);
+  text-shadow: var(--boot-logo-text-shadow); background: var(--boot-logo-bg); box-shadow: var(--boot-logo-shadow);
+}
+.ds-boot__spinner {
+  width: var(--spinner-w); height: var(--spinner-h); border-radius: var(--spinner-radius);
+  border: var(--spinner-border); border-top-color: var(--spinner-border-top-color); border-right-color: var(--spinner-border-right-color);
+  background: var(--spinner-bg); animation: var(--spinner-animation);
+}
+.ds-boot__title {
+  display: var(--boot-title-display); margin: 0; font-size: 34px; letter-spacing: .5px; text-shadow: 0 2px 10px #000a;
+  font-family: var(--boot-title-family); line-height: var(--boot-title-lh); font-style: var(--boot-title-style); font-weight: var(--boot-title-weight);
+}
+.ds-boot__sub { display: var(--boot-sub-display); font-size: 15px; opacity: .75; letter-spacing: 1px; }
+/* spinner animations, picked by --spinner-animation */
+@keyframes spin { to { rotate: 360deg; } }
+@keyframes xpload { to { background-position: 60px 0; } }
+@keyframes macload { to { background-size: 100% 100%; } }
+@keyframes fadeout { to { opacity: 0; visibility: hidden; } }

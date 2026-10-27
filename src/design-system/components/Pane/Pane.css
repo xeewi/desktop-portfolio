@@ -1,0 +1,4 @@
+.ds-pane { padding: 22px 26px; }
+@media (max-width: 760px), (max-height: 500px) {
+  .ds-pane { padding: 16px; }
+}

@@ -1,0 +1,17 @@
+/* Shared by every chrome except Vista: no glass, no glow.
+   :not(:where(…)) keeps the same specificity as [data-chrome], so chrome files loaded after still win. */
+[data-chrome]:not(:where([data-chrome='vista'])) {
+  --wallpaper-ribbons: none;
+  --clock-display: none;
+  --tile-sm-font: 18px;
+  --tile-lg-size: 44px;
+  --tile-lg-font: 36px;
+  --tile-lg-filter: drop-shadow(1px 2px 1px #0006);
+  --win-backdrop: none;
+  --win-animation: none;
+  --title-shadow: none;
+  --title-touch-size: var(--title-size);
+  --title-icon-filter: none;
+  --ctrl-icon-filter: none;
+  --taskbar-backdrop: none;
+}

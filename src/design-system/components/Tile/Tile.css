@@ -1,0 +1,2 @@
+.ds-tile { display: grid; place-items: center; flex: none; width: 24px; height: 24px; font-size: var(--tile-sm-font); }
+.ds-tile--lg { width: var(--tile-lg-size); height: var(--tile-lg-size); font-size: var(--tile-lg-font); filter: var(--tile-lg-filter); }

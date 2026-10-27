@@ -1,0 +1,220 @@
+/* Windows XP: Luna. */
+[data-chrome='xp'] {
+  --luna-title: linear-gradient(180deg, color-mix(in srgb, var(--title-a), #fff 45%) 0, var(--title-a) 9%, color-mix(in srgb, var(--title-a), #fff 12%) 40%, var(--title-a) 88%, color-mix(in srgb, var(--title-a), #000 25%) 100%);
+  --luna-font: 'Trebuchet MS', Tahoma, sans-serif;
+
+  --desk-icon-shadow: 1px 1px 1px #000;
+  --desk-icon-hover-bg: color-mix(in srgb, var(--accent) 55%, transparent);
+  --desk-icon-hover-border: transparent;
+  --desk-icon-hover-shadow: none;
+
+  --win-padding: 0 3px 3px;
+  --win-radius: 8px 8px 0 0;
+  --win-bg: var(--title-b);
+  --win-bg-active: var(--title-b);
+  --win-border: 1px solid color-mix(in srgb, var(--title-b), #000 40%);
+  --win-shadow: 0 6px 18px #0006;
+  --win-shadow-active: var(--win-shadow);
+  --win-filter-inactive: saturate(.55) brightness(1.12);
+  --win-body-border: 0;
+  --win-body-radius: 0;
+  --win-body-shadow: none;
+
+  --titlebar-padding: 0 5px 0 8px;
+  --titlebar-margin: 0 -3px;
+  --titlebar-radius: 7px 7px 0 0;
+  --titlebar-bg: var(--luna-title);
+  --title-family: var(--luna-font);
+  --title-lh: normal;
+  --title-weight: 700;
+  --title-shadow: 1px 1px color-mix(in srgb, var(--title-a), #000 50%);
+
+  --ctrls-align: center;
+  --ctrls-gap: 2px;
+  --ctrl-border: 1px solid #fff;
+  --ctrl-border-width: 1px;
+  --ctrl-first-border-width: 1px;
+  --ctrl-radius: 3px;
+  --ctrl-first-radius: 3px;
+  --ctrl-close-radius: 3px;
+  --ctrl-bg: linear-gradient(135deg, color-mix(in srgb, var(--title-a), #fff 40%), var(--title-a) 60%, color-mix(in srgb, var(--title-a), #000 15%));
+  --ctrl-close-bg: linear-gradient(135deg, color-mix(in srgb, var(--close), #fff 45%), var(--close) 60%, color-mix(in srgb, var(--close), #000 20%));
+  --ctrl-shadow: none;
+  --ctrl-hover-bg: initial;
+  --ctrl-hover-filter: brightness(1.15);
+  --ctrl-close-hover-filter: brightness(1.15);
+  --ctrl-close-hover-shadow: initial;
+  --ctrl-touch-radius: 3px;
+  --ctrl-touch-first-radius: 3px;
+  --ctrl-touch-close-radius: 3px;
+
+  --btn-radius: 3px;
+  --btn-border: 1px solid #003c74;
+  --btn-color: #000;
+  --btn-bg: linear-gradient(#fff, #f0f0ea 80%, #d6d0c5);
+  --btn-shadow: none;
+  --btn-hover-bg: var(--btn-bg);
+  --btn-hover-border-color: #003c74;
+  --btn-hover-shadow: inset 0 -2px #f8b33a, inset 0 2px #ffe8a8;
+  --btn-primary-bg: var(--btn-bg);
+  --btn-primary-border-color: #003c74;
+  --btn-primary-shadow: inset 0 0 0 1px #c3d7f8, inset 0 -1px 0 1px #7da2ce;
+
+  --toolbar-bg: var(--face);
+  --toolbar-color: #333;
+  --toolbar-border: 1px solid #c0bca8;
+  --address-border: 1px solid #7f9db9;
+  /* the blue task pane of XP's explorer */
+  --side-bg: linear-gradient(color-mix(in srgb, var(--title-a), #fff 55%), color-mix(in srgb, var(--title-a), #fff 25%));
+  --side-border-right: 0;
+  --side-touch-border-bottom: 0;
+  --sideitem-color: #fff;
+  --sideitem-weight: 700;
+  --sideitem-text-shadow: 0 1px 1px #0004;
+  --sideitem-sub-color: #ffffffcc;
+  --sideitem-sub-weight: 400;
+  --sideitem-hover-bg: #ffffff33;
+  --sideitem-hover-border-color: transparent;
+  --sideitem-on-bg: #fff;
+  --sideitem-on-color: var(--heading);
+  --sideitem-on-border-color: var(--ink); /* the pane is accent-blue: accent would blend in */
+  --sideitem-on-text-shadow: none;
+  --sideitem-on-sub-color: var(--muted);
+  --statusbar-bg: var(--face);
+  --statusbar-color: #333;
+  --statusbar-border: 1px solid #c0bca8;
+
+  --taskbar-padding: 0;
+  --taskbar-gap: 6px;
+  --taskbar-bg: linear-gradient(color-mix(in srgb, var(--taskbar), #fff 28%) 0, var(--taskbar) 12%, var(--taskbar) 88%, color-mix(in srgb, var(--taskbar), #000 25%));
+  --taskbar-border-top: 1px solid color-mix(in srgb, var(--taskbar), #fff 45%);
+  --start-display: flex;
+  --start-position: static;
+  --start-w: auto;
+  --start-h: 100%;
+  --start-padding: 0 22px 0 10px;
+  --start-gap: 6px;
+  --start-radius: 0 12px 12px 0;
+  --start-border: 0;
+  --start-bg: linear-gradient(color-mix(in srgb, var(--orb-a), #fff 35%) 0, var(--orb-a) 15%, var(--orb-a) 70%, var(--orb-b));
+  --start-shadow: inset 0 0 0 1px #0002, 2px 0 4px #0004;
+  --start-family: var(--luna-font);
+  --start-lh: normal;
+  --start-size: 17px;
+  --start-style: italic;
+  --start-transform: lowercase;
+  --start-text-shadow: 1px 1px 2px #0008;
+  --start-hover-filter: brightness(1.12);
+  --start-hover-shadow: var(--start-shadow);
+  --start-logo-display: grid;
+  --start-logo-w: 18px;
+  --start-logo-h: 18px;
+  --start-logo-radius: 50%;
+  --start-logo-bg: radial-gradient(circle at 40% 35%, #fff, #d8e8ff 40%, #7aa0e0);
+  --start-logo-color: var(--orb-b);
+  --start-logo-size: 11px;
+  --start-logo-text-shadow: none;
+  --start-label-display: inline;
+  --task-color: var(--taskbar-ink);
+  --task-border-color: color-mix(in srgb, var(--taskbar), #000 25%);
+  --task-bg: color-mix(in srgb, var(--taskbar), #fff 8%); /* lighter fails AA under white labels */
+  --task-shadow: inset 0 1px #fff3;
+  --task-hover-bg: color-mix(in srgb, var(--taskbar), #fff 10%);
+  --task-on-bg: color-mix(in srgb, var(--taskbar), #000 28%);
+  --task-on-border-color: color-mix(in srgb, var(--taskbar), #000 40%);
+  --task-on-shadow: inset 1px 1px 2px #0006;
+  --traybtn-radius: 2px;
+  --traybtn-color: var(--taskbar-ink);
+  --traybtn-bg: color-mix(in srgb, var(--taskbar), #000 20%);
+  --traybtn-shadow: none;
+  --trayclock-display: flex;
+  --trayclock-h: 100%;
+  --trayclock-padding: 0 14px;
+  --trayclock-color: var(--taskbar-ink);
+  --trayclock-text-shadow: none;
+  --trayclock-bg: color-mix(in srgb, var(--taskbar), #4af 25%);
+  --trayclock-border-left: 1px solid color-mix(in srgb, var(--taskbar), #000 35%);
+  --trayclock-shadow: inset 1px 0 color-mix(in srgb, var(--taskbar), #fff 35%);
+
+  --startmenu-wrap: wrap;
+  --startmenu-padding: 0 2px 2px;
+  --startmenu-gap: 0;
+  --startmenu-bg: var(--title-b);
+  --startmenu-backdrop: none;
+  --startmenu-border: 1px solid color-mix(in srgb, var(--title-b), #000 40%);
+  --smbanner-display: block;
+  --smbanner-flex: 1 0 100%;
+  --smbanner-padding: 12px 14px;
+  --smbanner-margin: 0 -2px;
+  --smbanner-radius: 7px 7px 0 0;
+  --smbanner-family: var(--luna-font);
+  --smbanner-lh: normal;
+  --smbanner-size: 16px;
+  --smbanner-color: var(--title-ink);
+  --smbanner-shadow: 1px 1px 2px #0006;
+  --smbanner-bg: linear-gradient(color-mix(in srgb, var(--title-a), #fff 30%), var(--title-a) 30%, color-mix(in srgb, var(--title-a), #000 10%));
+  --smbanner-border-bottom: 2px solid #f8a84a;
+  --smapps-radius: 0;
+  --smapps-border: 0;
+  --smitem-hover-bg: var(--accent);
+  --smitem-hover-color: var(--on-accent);
+  --smitem-hover-border-color: transparent;
+  --smlinks-padding: 8px;
+  --smlinks-color: #00136b;
+  --smlinks-bg: color-mix(in srgb, var(--title-a), #fff 82%);
+  --smlinks-border-left: 1px solid color-mix(in srgb, var(--title-a), #fff 55%);
+  --smavatar-display: none;
+  --smname-display: none;
+  --smlink-color: #00136b;
+  --smlink-weight: 700;
+  --smlink-hover-bg: var(--accent);
+  --smlink-hover-color: var(--on-accent);
+  --smlink-hover-border-color: transparent;
+
+  --boot-bg: #000;
+  --boot-title-family: var(--luna-font);
+  --boot-title-lh: normal;
+  --boot-title-style: italic;
+  --boot-title-weight: 700;
+  --spinner-w: 120px;
+  --spinner-h: 14px;
+  --spinner-radius: 4px;
+  --spinner-border: 2px solid #b2b2b2;
+  --spinner-border-top-color: #b2b2b2;
+  --spinner-border-right-color: #b2b2b2;
+  --spinner-bg: repeating-linear-gradient(90deg, transparent 0 4px, #2a62e0 4px 12px, transparent 12px 14px) 0 0 / 200% 100%;
+  --spinner-animation: xpload 1s linear infinite;
+
+  --pv-win-radius: 5px 5px 0 0;
+  --pv-win-padding: 0 2px 2px;
+  --pv-win-bg: var(--title-b);
+  --pv-win-border: 0;
+  --pv-win-shadow: 0 3px 8px #0006;
+  --pv-title-bg: linear-gradient(color-mix(in srgb, var(--title-a), #fff 35%), var(--title-a) 40%);
+  --pv-title-margin: 0 -2px;
+  --pv-title-radius: 5px 5px 0 0;
+  --pv-btn-w: 7px;
+  --pv-btn-h: 7px;
+  --pv-btn-radius: 2px;
+  --pv-btn-margin: 1px 2px;
+  --pv-bar-bg: var(--taskbar);
+  --pv-orb-left: 0;
+  --pv-orb-bottom: 0;
+  --pv-orb-w: 26px;
+  --pv-orb-h: 13px;
+  --pv-orb-radius: 0 6px 6px 0;
+  --pv-orb-bg: var(--orb-a);
+  --pv-orb-shadow: none;
+}
+
+@media (min-width: 761px) and (min-height: 501px) {
+  [data-chrome='xp'] {
+    --taskbar-h: 32px;
+    --titlebar-h: 30px;
+    --ctrl-w: 21px;
+    --ctrl-h: 21px;
+    --ctrl-close-w: 21px;
+    --ctrls-gap: 3px; /* WCAG 2.5.8: centres 24px apart */
+    --task-h: 24px;
+  }
+}

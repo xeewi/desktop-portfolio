@@ -1,0 +1,13 @@
+.ds-desk-icon {
+  width: 92px; padding: 6px 4px; border: 1px solid transparent; border-radius: 4px;
+  background: none; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  color: var(--desk-ink, #fff); text-decoration: none; font-size: 12.5px; text-align: center;
+  text-shadow: var(--desk-icon-shadow);
+}
+.ds-desk-icon:hover, .ds-desk-icon:focus-visible {
+  background: var(--desk-icon-hover-bg); border-color: var(--desk-icon-hover-border);
+  box-shadow: var(--desk-icon-hover-shadow); border-radius: var(--desk-icon-hover-radius);
+}
+.ds-desk-icon__label { padding: var(--desk-icon-label-padding); }
+.ds-desk-icon:hover .ds-desk-icon__label,
+.ds-desk-icon:focus-visible .ds-desk-icon__label { background: var(--desk-icon-label-hover-bg); color: var(--desk-icon-label-hover-color); outline: var(--desk-icon-label-hover-outline); }

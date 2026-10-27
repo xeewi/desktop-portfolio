@@ -1,0 +1,6 @@
+.ds-note {
+  width: 170px; padding: 12px 14px; font-size: 12.5px; line-height: 1.45; color: #333;
+  background: var(--note-bg); border-radius: var(--note-radius);
+  box-shadow: var(--note-shadow); transform: var(--note-transform);
+}
+.ds-note small { color: #665; }
