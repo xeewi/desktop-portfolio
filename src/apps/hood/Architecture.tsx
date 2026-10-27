@@ -26,7 +26,7 @@ export function Architecture({ c, path, onOpen }: { c: Content; path: string; on
 
   return (
     <Explorer.Root>
-      <Explorer.Toolbar address={crumbs(path).map((p) => (p === '' ? 'personalBranding' : baseName(p))).join(' ▸ ')} />
+      <Explorer.Toolbar address={crumbs(path).map((p) => (p === '' ? 'desktop-portfolio' : baseName(p))).join(' ▸ ')} />
       <Explorer.Body>
         <Explorer.Sidebar>
           <Explorer.SidebarItem color="#6b6b6b" label={c.ui.archRoot} sub={c.ui.archRootSub} selected={path === ''} onSelect={() => onOpen('')} />

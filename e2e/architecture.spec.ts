@@ -23,7 +23,7 @@ test('browse folders down to a file and read its code; the path leads back up', 
   await hood(page).getByRole('button', { name: 'useLang.ts', exact: true }).click()
   await expect(title(page)).toHaveText('useLang.ts')
   await expect(hood(page).locator('pre')).toContainText('export function useLang')
-  await expect(hood(page)).toContainText('personalBranding ▸ src ▸ hooks ▸ useLang.ts')
+  await expect(hood(page)).toContainText('desktop-portfolio ▸ src ▸ hooks ▸ useLang.ts')
   await hood(page).getByRole('navigation', { name: 'Path' }).getByRole('button', { name: 'src/' }).click()
   await expect(title(page)).toHaveText('src/')
 })

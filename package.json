@@ -5,13 +5,13 @@
   "description": "Guillaume Gautier's resume as a desktop you can play with: 6 operating systems, 55 themes, English and French, WCAG 2.2 AA.",
   "author": "Guillaume Gautier <gg-xeewi@pm.me> (https://github.com/xeewi)",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/xeewi/personalBranding#readme",
+  "homepage": "https://github.com/xeewi/desktop-portfolio#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xeewi/personalBranding.git"
+    "url": "git+https://github.com/xeewi/desktop-portfolio.git"
   },
   "bugs": {
-    "url": "https://github.com/xeewi/personalBranding/issues"
+    "url": "https://github.com/xeewi/desktop-portfolio/issues"
   },
   "keywords": [
     "portfolio",
