@@ -2,7 +2,7 @@ import { Avatar, Button, Heading, Icon, Pane, Stat, Text } from '../design-syste
 import type { Content } from '../content'
 import './AboutApp.css'
 
-export function AboutApp({ c, onShowCareer, onContact }: { c: Content; onShowCareer: () => void; onContact: () => void }) {
+export function AboutApp({ c, onShowCareer, onShowProjects, onContact }: { c: Content; onShowCareer: () => void; onShowProjects: () => void; onContact: () => void }) {
   const { profile, ui } = c
   return (
     <Pane>
@@ -26,6 +26,7 @@ export function AboutApp({ c, onShowCareer, onContact }: { c: Content; onShowCar
         <Button variant="primary" onClick={onShowCareer}>
           {ui.seeCareer}
         </Button>
+        <Button onClick={onShowProjects}>{ui.seeProjects}</Button>
         <Button onClick={onContact}>{ui.contactMe}</Button>
       </div>
     </Pane>

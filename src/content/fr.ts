@@ -11,6 +11,7 @@ export const fr: Content = {
     close: 'Fermer',
     welcome: 'Bienvenue',
     seeCareer: 'Voir mon parcours',
+    seeProjects: 'Voir mes projets',
     contactMe: 'Me contacter',
     address: 'Ordinateur ▸ Carrière ▸ ',
     newTab: '(s’ouvre dans un nouvel onglet)',
@@ -79,14 +80,14 @@ export const fr: Content = {
     location: 'Paris · Full remote',
     intro: [
       "Développeur full-stack depuis plus de 10 ans, spécialisé front-end (React, TypeScript) avec une vraie pratique du back et de l'infra (NestJS, Node, AWS, Scaleway).",
-      "Deux fois CTO : j'ai construit des produits de zéro jusqu'à la prod et dirigé des équipes jusqu'à 10 personnes. En mission senior, on me fait venir pour nettoyer, structurer et faire grandir des codebases existantes : audits de legacy, migrations en monorepo, consolidation de design systems.",
+      "Deux fois CTO : j'ai construit des produits de zéro jusqu'à la prod et dirigé l'équipe tech et produit. En mission senior, on me fait venir pour nettoyer, structurer et faire grandir des codebases existantes : audits de legacy, migrations en monorepo, consolidation de design systems.",
       "J'intègre l'IA agentique (Claude Code, agents sur mesure) dans les workflows des équipes, et je forme les devs à bien s'en servir.",
     ],
     stats: [
       { value: '10+', label: "ans d'expérience" },
       { value: '2×', label: 'CTO' },
-      { value: '10', label: "personnes dans l'équipe max" },
-      { value: '7', label: 'entreprises en 10 ans' },
+      { value: 'IA', label: 'agentique : outillage et formation des équipes' },
+      { value: 'Legacy', label: 'audits, nettoyage, migrations monorepo' },
     ],
   },
   experiences: [

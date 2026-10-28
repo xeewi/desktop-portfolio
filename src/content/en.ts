@@ -11,6 +11,7 @@ export const en = {
     close: 'Close',
     welcome: 'Welcome',
     seeCareer: 'See my career',
+    seeProjects: 'See my projects',
     contactMe: 'Contact me',
     address: 'Computer ▸ Career ▸ ',
     newTab: '(opens in a new tab)',
@@ -79,14 +80,14 @@ export const en = {
     location: 'Paris, France · Full remote',
     intro: [
       'Full-stack engineer with 10+ years of experience, specialised in front-end (React, TypeScript) with solid back-end and infrastructure practice (NestJS, Node, AWS, Scaleway).',
-      "Twice CTO, building products from zero to production and leading teams of up to 10. As a senior engineer, I'm brought in to clean up, structure and scale existing codebases: legacy audits, monorepo migrations, design system consolidation.",
+      "Twice CTO, building products from zero to production and leading the tech and product team. As a senior engineer, I'm brought in to clean up, structure and scale existing codebases: legacy audits, monorepo migrations, design system consolidation.",
       'I integrate agentic AI tooling (Claude Code, custom agents) into team workflows and train developers to use it well.',
     ],
     stats: [
       { value: '10+', label: 'years of experience' },
       { value: '2×', label: 'CTO' },
-      { value: '10', label: 'people in the largest team I led' },
-      { value: '7', label: 'companies in 10 years' },
+      { value: 'AI', label: 'agentic tooling and team training' },
+      { value: 'Legacy', label: 'audits, clean-ups, monorepo migrations' },
     ],
   },
   experiences: [

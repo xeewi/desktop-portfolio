@@ -81,7 +81,7 @@ export default function App() {
   const switchOs = (next: Os) => pickOs(next) && setBooting(motionOk())
 
   const body: Record<AppId, ReactNode> = {
-    about: <AboutApp c={c} onShowCareer={() => open('xp')} onContact={() => open('contact')} />,
+    about: <AboutApp c={c} onShowCareer={() => open('xp')} onShowProjects={() => open('projects')} onContact={() => open('contact')} />,
     tour: <TourApp c={c} onOpen={open} />,
     xp: <ExperienceApp c={c} />,
     skills: <SkillsApp c={c} />,

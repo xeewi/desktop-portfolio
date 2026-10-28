@@ -3,10 +3,15 @@ import { appWindow, desktopIcon, task, visit } from './helpers.ts'
 
 test.beforeEach(({ page }) => visit(page))
 
-test('About me: buttons open the career and contact windows', async ({ page }) => {
+test('About me: buttons open the career, projects and contact windows', async ({ page }) => {
   await appWindow(page, 'About me').getByRole('button', { name: 'See my career' }).click()
   await expect(appWindow(page, 'Experience')).toHaveAttribute('data-active', 'true')
   // Experience now covers About: bring About back from the taskbar first, like a visitor would
+  await task(page, 'About me').click()
+  // keyboard path for projects
+  await appWindow(page, 'About me').getByRole('button', { name: 'See my projects' }).focus()
+  await page.keyboard.press('Enter')
+  await expect(appWindow(page, 'Projects & talks')).toHaveAttribute('data-active', 'true')
   await task(page, 'About me').click()
   await appWindow(page, 'About me').getByRole('button', { name: 'Contact me' }).click()
   await expect(appWindow(page, 'Contact')).toHaveAttribute('data-active', 'true')
