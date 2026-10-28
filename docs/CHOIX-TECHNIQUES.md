@@ -170,6 +170,9 @@ src/
   C'est le motif *composition root*.
 - **Le contenu est séparé du code** : changer une phrase ne touche aucun composant.
 - **Colocation** : chaque composant a son dossier avec son `.tsx`, son `.css` et ses tests éventuels.
+- **D'autres sites dans une fenêtre** (`WebApp`) : une `iframe` avec un titre, et un lien « Ouvrir dans un
+  nouvel onglet » au cas où le site refuserait d'être intégré. Les tests remplacent ces sites par une page
+  factice : on teste la fenêtre, pas le serveur de quelqu'un d'autre.
 
 **Comment.**
 - Registre des applications (`src/apps/registry.ts`) : un tableau déclare id, icône et largeur. Bureau, menu
@@ -261,6 +264,12 @@ et un composant `Window` qui utilise les **Pointer Events** natifs. Pas de bibli
 - **Hauteur libre par défaut** : `h` est indéfini tant que l'utilisateur n'a pas redimensionné, la fenêtre
   épouse son contenu.
 - **Fenêtre nouvellement ouverte ramenée dans l'écran** si la fenêtre du navigateur est petite.
+- **La hauteur maximale tient compte de la position** : `max-height` = place disponible moins le `top` de la
+  fenêtre (`--win-y`). Une fenêtre haute ouverte bas devient plus courte et défile à l'intérieur, au lieu de
+  dépasser sous la barre des tâches.
+- **Le bureau ne défile jamais** : `overflow: clip` et non `hidden`. Une boîte en `hidden` peut encore être
+  défilée par `focus()` ; donner le focus au menu Démarrer de XP pendant qu'il montait de sous l'écran faisait
+  sauter tout le bureau (test de non-régression dans `motion.spec.ts`).
 - La largeur utilisée pendant le glisser est la largeur **rendue** (`getBoundingClientRect`), pas la prop, car
   un `max-width` CSS peut la réduire.
 
@@ -357,6 +366,9 @@ générée.
   `@media (desktop) { html[data-chrome] { … } }`. Le sélecteur `html[data-chrome]` est un cran plus
   spécifique que `[data-chrome]` des fichiers de chrome : il gagne **sans `!important`**.
 - Appliqué dans un `useLayoutEffect`, donc avant l'affichage : pas de flash du thème par défaut.
+- **OS de la première visite : l'inverse de celui du visiteur** (`defaultOsId()`, lu dans le user agent,
+  seule source disponible). Windows sur ordinateur → macOS ; macOS, Linux, mobiles et inconnus → Windows XP.
+  Un choix mémorisé passe toujours avant.
 
 **Références.**
 - MDN, *CSSStyleDeclaration.setProperty()* : <https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/setProperty>
