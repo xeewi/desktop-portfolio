@@ -131,7 +131,7 @@ export function Window(p: Props) {
       data-closing={p.closing || undefined}
       data-anim={anim}
       data-moving={moving || undefined}
-      style={{ left: p.x, top: p.y, zIndex: 10 + p.z, width: p.width, height: p.height }}
+      style={{ left: p.x, top: p.y, zIndex: 10 + p.z, width: p.width, height: p.height, ['--win-y' as string]: `${p.y}px` }}
       onPointerDown={p.onFocus}
       // tabbing into a window behind another brings it to the front, so focus is never hidden
       onFocus={() => !p.active && p.onFocus()}

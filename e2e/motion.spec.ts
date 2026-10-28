@@ -67,3 +67,17 @@ test('reduced motion: minimising and closing are instant', async ({ browser }) =
   await win.getByRole('button', { name: 'Close' }).click()
   await expect(win).toHaveCount(0, { timeout: 100 })
 })
+
+// regression: on XP the start menu slides up from below the screen, and moving focus into it scrolled the whole
+// desktop up while it slid (the screen jumped)
+for (const o of OSES)
+  test(`${o.os}: opening the start menu never moves the desktop`, async ({ page }) => {
+    await visit(page, { os: o.os })
+    await page.locator('.ds-boot').click()
+    const desktop = page.locator('.ds-desktop')
+    await taskbar(page).getByRole('button', { name: /^(Start|Activities)$/ }).click()
+    for (let i = 0; i < 5; i++) {
+      expect(await desktop.evaluate((d) => d.scrollTop)).toBe(0)
+      await page.waitForTimeout(30)
+    }
+  })

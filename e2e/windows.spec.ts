@@ -21,6 +21,22 @@ test('every desktop icon opens its window, in front, with a taskbar button', asy
   }
 })
 
+// regression: a tall window opening low (Under the hood) ran past the bottom of the screen, and the desktop
+// scrolled to show it, making the whole screen jump
+for (const os of ['vista', 'mac'])
+  test(`every window opens fully above the taskbar (${os})`, async ({ page }) => {
+    await visit(page, { os })
+    const bottom = (await page.getByRole('contentinfo').boundingBox())!
+    for (const name of APPS) {
+      await desktopIcon(page, name).click()
+      const win = await box(page, name)
+      // macOS: the dock floats over the desktop, the window only has to stay on screen
+      expect(win.y + win.height, name).toBeLessThanOrEqual(os === 'mac' ? page.viewportSize()!.height : bottom.y)
+      await appWindow(page, name).getByRole('button', { name: 'Close' }).click()
+    }
+    expect(await page.locator('.ds-desktop').evaluate((d) => d.scrollTop)).toBe(0)
+  })
+
 test('clicking a window behind brings it to the front', async ({ page }) => {
   await desktopIcon(page, 'Skills').click()
   await expect(appWindow(page, 'About me')).not.toHaveAttribute('data-active')

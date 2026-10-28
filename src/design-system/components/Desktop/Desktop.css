@@ -1,2 +1,4 @@
-.ds-desktop { position: fixed; inset: 0; overflow: hidden; }
+/* clip, not hidden: a hidden box can still be scrolled by focus(), and focusing a menu that is still sliding in
+   from below the screen (XP) scrolled the whole desktop away */
+.ds-desktop { position: fixed; inset: 0; overflow: clip; }
 .ds-workspace { display: contents; }

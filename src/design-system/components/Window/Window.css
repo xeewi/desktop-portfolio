@@ -1,6 +1,8 @@
 /* ---------- frame ---------- */
 .ds-window {
-  position: absolute; max-width: calc(100vw - 16px); max-height: var(--win-max-h);
+  /* --win-max-h is the room from the top of the desktop: a window that opens lower is shorter, so its bottom
+     stays on screen (the desktop never scrolls to show it) */
+  position: absolute; max-width: calc(100vw - 16px); max-height: max(160px, var(--win-max-h) - var(--win-y, 0px));
   display: flex; flex-direction: column;
   margin-top: var(--win-offset-top);
   padding: var(--win-padding); border-radius: var(--win-radius);
