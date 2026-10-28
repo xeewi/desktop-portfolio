@@ -1,15 +1,16 @@
 import { useState } from 'react'
 
-/** `h` is unset until the user resizes: the window then fits its content. */
-export type WindowState = { open: boolean; min: boolean; max: boolean; x: number; y: number; w: number; h?: number; z: number }
+/** `h` is unset until the user resizes: the window then fits its content.
+ *  `closing`: still on screen while its closing animation plays. */
+export type WindowState = { open: boolean; closing?: boolean; min: boolean; max: boolean; x: number; y: number; w: number; h?: number; z: number }
 type AppMeta<Id extends string> = { id: Id; width: number }
 
-/** The window on top among those on screen (open, not minimised): the one that has focus. */
+/** The window on top among those on screen (open, not closing, not minimised): the one that has focus. */
 export function topWindow<Id extends string>(wins: Record<Id, WindowState>): Id | undefined {
   let top: Id | undefined
   for (const id of Object.keys(wins) as Id[]) {
     const w = wins[id]
-    if (w.open && !w.min && (top === undefined || w.z > wins[top].z)) top = id
+    if (w.open && !w.closing && !w.min && (top === undefined || w.z > wins[top].z)) top = id
   }
   return top
 }
@@ -48,7 +49,7 @@ export function useWindowManager<Id extends string>(apps: readonly AppMeta<Id>[]
       const cur = w[id]
       const x = cur.open ? cur.x : Math.max(8, Math.min(cur.x, innerWidth - cur.w - 8))
       const y = cur.open ? cur.y : Math.max(0, Math.min(cur.y, innerHeight - 200))
-      return { ...w, [id]: { ...cur, x, y, open: true, min: false, z: top + 1 } }
+      return { ...w, [id]: { ...cur, x, y, open: true, closing: false, min: false, z: top + 1 } }
     })
 
   return {
@@ -59,7 +60,9 @@ export function useWindowManager<Id extends string>(apps: readonly AppMeta<Id>[]
     resize: (id: Id, x: number, y: number, w: number, h: number) => patch(id, { x, y, w, h }),
     minimize: (id: Id) => patch(id, { min: true }),
     toggleMaximize: (id: Id) => patch(id, { max: !wins[id].max }),
-    close: (id: Id) => patch(id, { open: false, max: false }),
+    /** starts the closing animation; the window calls `closed` when it's over */
+    close: (id: Id) => patch(id, { closing: true }),
+    closed: (id: Id) => patch(id, { open: false, closing: false, max: false }),
     /** taskbar click: minimise the focused window, otherwise bring it up */
     toggle: (id: Id) => (focused === id ? patch(id, { min: true }) : focus(id)),
   }

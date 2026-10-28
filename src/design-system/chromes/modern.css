@@ -209,3 +209,21 @@
     --ctrl-close-w: 46px;
   }
 }
+
+/* Motion: Windows 10 zooms windows in and out (Fluent curves: fast out, slow in), slides the start menu up
+   and raises new taskbar buttons; the boot spinner is a ring of dots. */
+[data-chrome='modern'] {
+  --win-animation: win-open .2s cubic-bezier(0, 0, 0, 1);
+  --win-open-scale: .92;
+  --win-close-animation: win-close .17s cubic-bezier(.4, 0, 1, 1) both;
+  --win-close-scale: .92;
+  --win-min-animation: win-min .25s cubic-bezier(.4, 0, 1, 1);
+  --win-restore-animation: win-unmin .25s cubic-bezier(0, 0, 0, 1);
+  --win-max-transition: left .2s cubic-bezier(0, 0, 0, 1), top .2s cubic-bezier(0, 0, 0, 1), width .2s cubic-bezier(0, 0, 0, 1), height .2s cubic-bezier(0, 0, 0, 1);
+  --task-launch-animation: task-rise .25s cubic-bezier(0, 0, 0, 1);
+  --startmenu-animation: sm-rise .25s cubic-bezier(0, 0, 0, 1);
+  --spinner-w: 34px;
+  --spinner-h: 34px;
+  --spinner-border: 4px dotted #fff;
+  --spinner-animation: spin 1.6s cubic-bezier(.5, .15, .5, .85) infinite;
+}

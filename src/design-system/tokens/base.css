@@ -74,7 +74,16 @@
   --win-shadow-active: 0 0 0 1px #000000aa, inset 0 0 0 1px #ffffff55, 0 20px 60px #000c;
   --win-filter-inactive: none;
   --win-overflow: visible;
-  --win-animation: pop .18s ease-out;
+  /* motion, keyframes in Window.css. Vista / 7: zoom and fade in and out, shrink into the taskbar button */
+  --win-animation: win-open .25s cubic-bezier(.2, .8, .2, 1);
+  --win-open-scale: .9;
+  --win-close-animation: win-close .2s ease-in both;
+  --win-close-scale: .9;
+  --win-min-animation: win-min .3s cubic-bezier(.4, 0, 1, 1);
+  --win-restore-animation: win-unmin .3s cubic-bezier(0, 0, .2, 1);
+  --win-max-animation: none;
+  --win-unmax-animation: none;
+  --win-max-transition: left .25s ease-out, top .25s ease-out, width .25s ease-out, height .25s ease-out;
   /* desktop-only layout */
   --win-offset-top: 0px;
   --win-max-h: calc(100dvh - var(--tb) - 16px);
@@ -243,7 +252,10 @@
   --task-color: #fff;
   --task-bg: linear-gradient(#ffffff22, #ffffff08 50%, #00000022 51%);
   --task-shadow: inset 0 0 0 1px #00000044;
-  --task-hover-bg: linear-gradient(#ffffff40, #ffffff15 50%, #00000010 51%);
+  /* Windows 7: a glow under the pointer (--mx, set by Task) */
+  --task-hover-bg: radial-gradient(48px 28px at var(--mx, 50%) 100%, #ffffff55, transparent), linear-gradient(#ffffff40, #ffffff15 50%, #00000010 51%);
+  /* plays when an app opens (keyframes in Task.css) */
+  --task-launch-animation: task-fade .3s ease-out;
   --task-hover-transform: none;
   --task-transition: none;
   --task-on-bg: linear-gradient(color-mix(in srgb, var(--accent) 55%, transparent), color-mix(in srgb, var(--accent) 30%, transparent) 50%, color-mix(in srgb, var(--accent) 40%, transparent) 51%);
@@ -305,7 +317,7 @@
   --startmenu-backdrop: blur(16px) saturate(150%);
   --startmenu-border: 1px solid #ffffff55;
   --startmenu-shadow: 0 0 0 1px #000a, 0 10px 40px #000c;
-  --startmenu-animation: pop .15s ease-out;
+  --startmenu-animation: sm-fade .2s ease-out;
   --smbanner-display: none;
   --smbanner-width: auto;
   --smbanner-flex: none;
@@ -380,6 +392,7 @@
   --boot-logo-text-shadow: 0 0 14px var(--orb-glow);
   --boot-logo-size: 46px;
   --boot-logo-weight: 700;
+  --boot-logo-animation: logoglow 1.2s ease-in-out infinite alternate;
   --spinner-w: 26px;
   --spinner-h: 26px;
   --spinner-radius: 50%;

@@ -8,6 +8,7 @@
   width: 96px; height: 96px; border-radius: var(--boot-logo-radius); display: grid; place-items: center;
   font-size: var(--boot-logo-size); font-weight: var(--boot-logo-weight); color: var(--boot-logo-color);
   text-shadow: var(--boot-logo-text-shadow); background: var(--boot-logo-bg); box-shadow: var(--boot-logo-shadow);
+  animation: var(--boot-logo-animation);
 }
 .ds-boot__spinner {
   width: var(--spinner-w); height: var(--spinner-h); border-radius: var(--spinner-radius);
@@ -23,4 +24,6 @@
 @keyframes spin { to { rotate: 360deg; } }
 @keyframes xpload { to { background-position: 60px 0; } }
 @keyframes macload { to { background-size: 100% 100%; } }
+@keyframes logoglow { to { box-shadow: 0 0 80px var(--orb-glow); filter: brightness(1.2); } }
+@keyframes logoin { from { opacity: 0; } }
 @keyframes fadeout { to { opacity: 0; visibility: hidden; } }

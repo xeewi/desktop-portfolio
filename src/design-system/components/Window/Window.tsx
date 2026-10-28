@@ -1,6 +1,6 @@
-import { useEffect, useRef, type PointerEvent, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent, type ReactNode } from 'react'
 import { Icon, type IconName } from '../Icon/Icon'
-import { dragTo, EDGES, resizeRect, type Edge, type Rect } from './geometry'
+import { dragTo, EDGES, longestMs, minimizeTarget, resizeRect, type Edge, type Rect } from './geometry'
 import './Window.css'
 
 export type WindowLabels = { minimize: string; maximize: string; close: string }
@@ -18,6 +18,11 @@ type Props = {
   active: boolean
   minimized: boolean
   maximized: boolean
+  /** playing its closing animation: `onClosed` is called when it's over */
+  closing?: boolean
+  onClosed?: () => void
+  /** where the window flies when minimised (its taskbar button), in viewport coordinates */
+  minimizeTo?: () => DOMRect | null | undefined
   /** false on touch layouts: the window is full-screen there. Also turns resizing off. */
   draggable: boolean
   labels: WindowLabels
@@ -38,6 +43,48 @@ export function Window(p: Props) {
   const body = useRef<HTMLDivElement>(null)
   const rendered = () => frame.current!.getBoundingClientRect()
 
+  // Motion (keyframes picked per OS by the --win-*-animation tokens): data-anim says which change came last,
+  // and stays until the next one, so the animation doesn't replay when something else changes.
+  const [anim, setAnim] = useState<'restore' | 'max' | 'unmax'>()
+  const [was, setWas] = useState({ min: p.minimized, max: p.maximized })
+  if (was.min !== p.minimized || was.max !== p.maximized) {
+    setWas({ min: p.minimized, max: p.maximized })
+    if (was.min && !p.minimized) setAnim('restore')
+    else if (was.max !== p.maximized) setAnim(p.maximized ? 'max' : 'unmax')
+  }
+  // no maximise transition while dragging or resizing: the window must follow the pointer
+  const [moving, setMoving] = useState(false)
+  // latest callbacks, for the effects below that must only run when minimised / closing changes
+  const cb = useRef({ minimizeTo: p.minimizeTo, onClosed: p.onClosed })
+  useLayoutEffect(() => {
+    cb.current = { minimizeTo: p.minimizeTo, onClosed: p.onClosed }
+  })
+
+  // the way to the taskbar button, for the minimise / restore keyframes (layout box: ignores the animation)
+  useLayoutEffect(() => {
+    const el = frame.current!
+    const at = el.offsetParent?.getBoundingClientRect() ?? { x: 0, y: 0 }
+    const to = cb.current.minimizeTo?.()
+    const bar = (el.firstElementChild as HTMLElement).offsetTop + (el.firstElementChild as HTMLElement).offsetHeight
+    const m = minimizeTarget(
+      { x: at.x + el.offsetLeft, y: at.y + el.offsetTop, w: el.offsetWidth, h: el.offsetHeight },
+      to ? { x: to.x, y: to.y, w: to.width, h: to.height } : undefined,
+      bar,
+      { w: innerWidth, h: innerHeight },
+    )
+    const unit = { dx: 'px', dy: 'px', x: 'px', y: 'px', scale: '', sx: '', sy: '' }
+    for (const [k, u] of Object.entries(unit)) el.style.setProperty(`--min-${k}`, m[k as keyof typeof unit] + u)
+    el.style.setProperty('--min-funnel', `${m.funnel * 100}%`)
+    el.style.setProperty('--min-bar', `${bar}px`)
+  }, [p.minimized])
+
+  // closing: unmount once the closing animation is over (at once when the OS has none, or reduced motion)
+  useLayoutEffect(() => {
+    if (!p.closing) return
+    const t = setTimeout(() => cb.current.onClosed?.(), longestMs(getComputedStyle(frame.current!).animationDuration))
+    return () => clearTimeout(t)
+  }, [p.closing])
+
   // Keyboard and screen-reader users land in the window they open or switch to.
   // Not on page load (no user activation yet), and not when focus is already inside.
   const shown = p.active && !p.minimized
@@ -50,6 +97,7 @@ export function Window(p: Props) {
     const r = rendered()
     sizing.current = { edge, px: e.clientX, py: e.clientY, start: { x: p.x, y: p.y, w: r.width, h: r.height } }
     e.currentTarget.setPointerCapture(e.pointerId)
+    setMoving(true)
   }
   const resize = (e: PointerEvent) => {
     const s = sizing.current
@@ -62,6 +110,7 @@ export function Window(p: Props) {
     if (p.maximized || !p.draggable || (e.target as HTMLElement).closest('button')) return
     drag.current = { dx: e.clientX - p.x, dy: e.clientY - p.y }
     e.currentTarget.setPointerCapture(e.pointerId)
+    setMoving(true)
   }
   const move = (e: PointerEvent) => {
     if (!drag.current) return
@@ -79,6 +128,9 @@ export function Window(p: Props) {
       data-active={p.active || undefined}
       data-minimized={p.minimized || undefined}
       data-maximized={p.maximized || undefined}
+      data-closing={p.closing || undefined}
+      data-anim={anim}
+      data-moving={moving || undefined}
       style={{ left: p.x, top: p.y, zIndex: 10 + p.z, width: p.width, height: p.height }}
       onPointerDown={p.onFocus}
       // tabbing into a window behind another brings it to the front, so focus is never hidden
@@ -89,7 +141,10 @@ export function Window(p: Props) {
         className="ds-window__titlebar"
         onPointerDown={down}
         onPointerMove={move}
-        onPointerUp={() => (drag.current = null)}
+        onPointerUp={() => {
+          drag.current = null
+          setMoving(false)
+        }}
         onDoubleClick={p.onToggleMaximize}
       >
         <span className="ds-window__icon">
@@ -122,7 +177,10 @@ export function Window(p: Props) {
             data-edge={edge}
             onPointerDown={(e) => startResize(e, edge)}
             onPointerMove={resize}
-            onPointerUp={() => (sizing.current = null)}
+            onPointerUp={() => {
+              sizing.current = null
+              setMoving(false)
+            }}
             aria-hidden
           />
         ))}

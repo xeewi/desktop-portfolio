@@ -131,3 +131,17 @@
     --ctrl-icon-size: 8px;
   }
 }
+
+/* Motion, from gnome-shell (windowManager.js): windows grow out of their bottom edge in 150 ms, close by
+   shrinking to 80 % in 150 ms, minimise into their dock icon in 400 ms (ease-out-expo). */
+[data-chrome='gnome'] {
+  --win-animation: win-grow .15s cubic-bezier(.16, 1, .3, 1);
+  --win-close-animation: win-close .15s cubic-bezier(.25, .46, .45, .94) both;
+  --win-close-scale: .8;
+  --win-min-animation: win-min .4s cubic-bezier(.16, 1, .3, 1);
+  --win-restore-animation: win-unmin .4s cubic-bezier(.16, 1, .3, 1);
+  --win-max-transition: left .25s cubic-bezier(.25, .46, .45, .94), top .25s cubic-bezier(.25, .46, .45, .94), width .25s cubic-bezier(.25, .46, .45, .94), height .25s cubic-bezier(.25, .46, .45, .94);
+  --task-launch-animation: task-pulse .4s ease-out;
+  --startmenu-animation: sm-drop .15s ease-out;
+  --boot-logo-animation: logoin 1s ease-out;
+}

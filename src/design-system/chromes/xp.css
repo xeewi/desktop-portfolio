@@ -218,3 +218,15 @@
     --task-h: 24px;
   }
 }
+
+/* Motion: XP keeps the 95 title-bar animation; the start menu scrolls up out of the taskbar. */
+[data-chrome='xp'] {
+  --win-close-animation: none;
+  --win-min-animation: win-caption-min .25s linear;
+  --win-restore-animation: win-caption-unmin .25s linear;
+  --win-max-animation: win-caption-max .2s linear;
+  --win-unmax-animation: win-caption-unmax .2s linear;
+  --win-max-transition: left .2s linear, top .2s linear, width .2s linear, height .2s linear;
+  --task-launch-animation: none;
+  --startmenu-animation: sm-scroll .2s ease-out;
+}

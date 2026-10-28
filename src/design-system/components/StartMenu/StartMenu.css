@@ -47,3 +47,12 @@
   .ds-startmenu__app, .ds-startmenu__link { min-height: 44px; display: flex; align-items: center; }
   .ds-startmenu__link { align-items: var(--smlink-touch-align); }
 }
+
+/* opening, picked per OS by --startmenu-animation */
+@keyframes sm-fade { from { opacity: 0; } }
+/* XP: scrolls up out of the taskbar */
+@keyframes sm-scroll { from { clip-path: inset(0 0 100% 0); translate: 0 100%; } }
+/* Windows 10: rises and fades in */
+@keyframes sm-rise { from { opacity: 0; translate: 0 40px; } }
+/* GNOME: drops from the top bar */
+@keyframes sm-drop { from { opacity: 0; translate: 0 -10px; } }

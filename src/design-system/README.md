@@ -78,6 +78,20 @@ so the script maps each icon name to freedesktop names once, for every OS. Credi
   (`components/Icon/Icon.tsx`), then run the script.
 - **Give one theme other icons**: `{ tokens: { '--icon-folder': `url(${importedUrl})` } }` on its `t(...)` line.
 
+## Motion
+
+Each OS animates the way the real one does, picked by tokens (defaults and comments in `tokens/base.css`, each
+OS's values in the `Motion` block at the end of its chrome file). Keyframes live with their component:
+
+- windows (`Window.css`): `--win-animation` (open), `--win-close-animation`, `--win-min-animation`,
+  `--win-restore-animation`, `--win-max-animation` / `--win-unmax-animation`, `--win-max-transition`.
+  Minimising flies to the taskbar button: `Window` measures it (`minimizeTo`) and sets `--min-*`
+  (`minimizeTarget` in `geometry.ts`). A closing window stays mounted for as long as its animation lasts.
+- taskbar / dock (`Task.css`): `--task-launch-animation` plays when an app opens.
+- start menu (`StartMenu.css`): `--startmenu-animation`. Boot screen: `--spinner-animation`, `--boot-logo-animation`.
+
+`prefers-reduced-motion` turns all of it off (`styles/global.css`): everything still happens, at once.
+
 ## Breakpoints
 
 CSS can't share constants, so they are written out and kept in sync with `runtime/media.ts`:

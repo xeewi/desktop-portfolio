@@ -46,3 +46,10 @@ describe('initialWindows', () => {
     expect(topWindow(initialWindows(apps, [], 400))).toBeUndefined()
   })
 })
+
+describe('closing windows', () => {
+  // a window playing its closing animation has already lost focus
+  it('are skipped by topWindow', () => {
+    expect(topWindow({ a: w(1), b: w(3, { closing: true }) })).toBe('a')
+  })
+})

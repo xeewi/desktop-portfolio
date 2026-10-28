@@ -186,3 +186,18 @@
     --ctrl-icon-hover-size: 7px;
   }
 }
+
+/* Motion: macOS zooms new windows in, fades closed ones out, minimises with the genie effect, bounces the
+   dock icon of an app that opens. Menus open at once. */
+[data-chrome='mac'] {
+  --win-animation: win-open .2s ease-out;
+  --win-open-scale: .9;
+  --win-close-animation: win-close .2s ease-in both;
+  --win-close-scale: .96;
+  --win-min-animation: win-genie-min .5s ease-in;
+  --win-restore-animation: win-genie-unmin .5s ease-out;
+  --win-max-transition: left .3s ease-in-out, top .3s ease-in-out, width .3s ease-in-out, height .3s ease-in-out;
+  --task-launch-animation: task-bounce .7s ease-in-out 2;
+  --startmenu-animation: none;
+  --boot-logo-animation: logoin .8s ease-out;
+}

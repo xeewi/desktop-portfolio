@@ -126,6 +126,9 @@ export default function App() {
             active={wm.focused === a.id}
             minimized={w.min}
             maximized={w.max}
+            closing={w.closing}
+            onClosed={() => wm.closed(a.id)}
+            minimizeTo={() => document.getElementById(`task-${a.id}`)?.getBoundingClientRect()}
             draggable={!touch}
             labels={labels}
             onFocus={() => wm.focus(a.id)}
@@ -166,9 +169,10 @@ export default function App() {
           {APPS.map((a) => (
             <Task
               key={a.id}
+              id={`task-${a.id}`}
               icon={a.icon}
               label={c.ui.apps[a.id]}
-              open={wm.wins[a.id].open}
+              open={wm.wins[a.id].open && !wm.wins[a.id].closing}
               active={wm.focused === a.id}
               onClick={() => wm.toggle(a.id)}
             />

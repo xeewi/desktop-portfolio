@@ -268,3 +268,22 @@
     --trayclock-h: 22px;
   }
 }
+
+/* Motion: Windows 95 only animates the title bar, flying between the window and its taskbar button
+   (minimise, restore, maximise). Opening, closing and menus are instant. */
+[data-chrome='classic'] {
+  --win-close-animation: none;
+  --win-min-animation: win-caption-min .25s linear;
+  --win-restore-animation: win-caption-unmin .25s linear;
+  --win-max-animation: win-caption-max .2s linear;
+  --win-unmax-animation: win-caption-unmax .2s linear;
+  --win-max-transition: left .2s linear, top .2s linear, width .2s linear, height .2s linear;
+  --task-launch-animation: none;
+  /* splash: the colour band scrolling under the logo */
+  --spinner-w: 260px;
+  --spinner-h: 8px;
+  --spinner-radius: 0;
+  --spinner-border: 0;
+  --spinner-bg: repeating-linear-gradient(90deg, #000080 0, #1084d0 30px, #000080 60px);
+  --spinner-animation: xpload .6s linear infinite;
+}
