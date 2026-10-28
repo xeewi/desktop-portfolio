@@ -5,7 +5,7 @@ import './Icon.css'
 export const ICON_NAMES = [
   'user', 'work', 'tools', 'folder', 'mail', 'appearance', 'pdf', 'computer', 'terminal',
   'file', 'code', 'location', 'info', 'display', 'network', 'server', 'cloud', 'ai', 'check', 'language',
-  'search', 'video', 'gaming', 'editor', 'windows', 'mouse', 'accessibility', 'image', 'keyboard', 'science', 'package',
+  'search', 'video', 'gaming', 'editor', 'windows', 'mouse', 'accessibility', 'image', 'keyboard', 'science', 'package', 'money',
 ] as const
 export type IconName = (typeof ICON_NAMES)[number]
 

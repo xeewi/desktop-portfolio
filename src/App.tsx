@@ -89,6 +89,7 @@ export default function App() {
     contact: <ContactApp c={c} />,
     costcalc: <WebApp c={c} url={links.costcalc} title={c.ui.apps.costcalc} />,
     mixcoach: <WebApp c={c} url={links.mixcoach} title={c.ui.apps.mixcoach} />,
+    directchange: <WebApp c={c} url={links.directchange} title={c.ui.apps.directchange} />,
     themes: <PersonalizeApp c={c} lang={lang} os={os} theme={theme} onPickTheme={pickTheme} onChangeOs={() => open('system')} />,
     system: <SystemApp c={c} os={os} onPickOs={switchOs} />,
     hood: <HoodApp c={c} onShow={show} />,

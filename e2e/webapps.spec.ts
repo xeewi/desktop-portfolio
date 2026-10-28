@@ -36,7 +36,7 @@ test('Projects opens each site in its window, with the keyboard', async ({ page 
   await visit(page)
   await desktopIcon(page, 'Projects & talks').click()
   const projects = appWindow(page, 'Projects & talks')
-  for (const [project, name] of [['MixCoach', 'MixCoach'], ['noMigrationCost', 'Migration cost']]) {
+  for (const [project, name] of [['MixCoach', 'MixCoach'], ['noMigrationCost', 'Migration cost'], ['DirectChange', 'DirectChange']]) {
     const open = projects.getByRole('button', { name: `Open ${project}` })
     await open.focus()
     await page.keyboard.press('Enter')

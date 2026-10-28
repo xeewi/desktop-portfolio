@@ -2,7 +2,7 @@ import type { Content } from './en'
 
 export const fr: Content = {
   ui: {
-    apps: { about: 'À propos de moi', tour: 'Visite guidée', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', contact: 'Contact', costcalc: 'Coût de migration', mixcoach: 'MixCoach', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
+    apps: { about: 'À propos de moi', tour: 'Visite guidée', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', contact: 'Contact', costcalc: 'Coût de migration', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
     desktop: 'Bureau',
     start: 'Démarrer',
     activities: 'Activités',
@@ -254,6 +254,13 @@ export const fr: Content = {
       desc: 'Chiffre en euros le coût caché du code dupliqué face à une librairie partagée : chaque fonctionnalité construite deux fois, chaque bug corrigé deux fois. Année par année, il montre quand le partage devient rentable.',
       stack: ['React', 'TypeScript', 'shadcn/ui', 'Recharts'],
       opens: 'costcalc',
+    },
+    {
+      name: 'DirectChange',
+      icon: 'money',
+      desc: 'Chaque prix du web dans votre devise, au taux du jour : un petit badge juste à côté de chaque prix étranger. Une extension de navigateur, 36 langues, sans compte ni pistage.',
+      stack: ['Extension navigateur', 'JavaScript', 'Shadow DOM'],
+      opens: 'directchange',
     },
     {
       name: 'wheel2pad',

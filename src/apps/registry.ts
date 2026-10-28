@@ -14,6 +14,7 @@ export const APPS = [
   // other sites of mine, in a frame. Last, so the first icon column doesn't change
   { id: 'costcalc', icon: 'package', width: 960, web: true },
   { id: 'mixcoach', icon: 'video', width: 960, web: true },
+  { id: 'directchange', icon: 'money', width: 960, web: true },
 ] as const satisfies readonly { id: string; icon: IconName; width: number; web?: true }[]
 
 export type AppId = (typeof APPS)[number]['id']

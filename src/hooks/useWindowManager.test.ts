@@ -47,6 +47,12 @@ describe('initialWindows', () => {
     expect(initialWindows(apps, ['a'], 1600, false, 64).a.x).toBe(initialWindows(apps, ['a'], 1600).a.x + 64)
   })
 
+  // regression: with a 12th app, its window started so low it was squashed against the taskbar
+  it('starts the cascade over instead of sliding windows off the bottom', () => {
+    const many = Array.from({ length: 20 }, (_, i) => ({ id: `app${i}`, width: 600 }))
+    for (const win of Object.values(initialWindows(many, [], 1600))) expect(win.y).toBeLessThanOrEqual(40 + 11 * 20)
+  })
+
   it('opens nothing when asked for nothing (phones)', () => {
     expect(topWindow(initialWindows(apps, [], 400))).toBeUndefined()
   })

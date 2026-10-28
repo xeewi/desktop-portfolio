@@ -26,7 +26,8 @@ export function initialWindows<Id extends string>(apps: readonly AppMeta<Id>[], 
   return Object.fromEntries(
     apps.map((a, i) => {
       const k = open.indexOf(a.id)
-      if (k < 0) return [a.id, { open: false, min: false, max: false, x: 220 + i * 36, y: 40 + i * 30, w: a.width, z: 1 }]
+      // a tight cascade that starts over every 12 apps: further down, a window has no room left above the taskbar
+      if (k < 0) return [a.id, { open: false, min: false, max: false, x: 220 + (i % 12) * 36, y: 40 + (i % 12) * 20, w: a.width, z: 1 }]
       const x = Math.max(8, Math.min(next, right - a.width))
       next = x + a.width + 16
       return [a.id, { open: true, min: false, max: false, x, y: 40, w: a.width, z: 1 + open.length - k }]

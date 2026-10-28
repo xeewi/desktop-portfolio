@@ -42,6 +42,8 @@ const NAMES = {
   keyboard: ['input-keyboard'],
   science: ['applications-science', 'utilities-system-monitor'],
   package: ['package-x-generic'],
+  // the Windows themes have no money icon: a calculator there, GnuCash's bills and coins on macOS
+  money: ['gnucash-icon', 'accessories-calculator'],
 }
 
 /** chrome id (see themes/define.ts) → icon theme. `roots` in order of preference, `names` overrides NAMES. */

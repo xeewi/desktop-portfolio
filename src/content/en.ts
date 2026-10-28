@@ -2,7 +2,7 @@ import type { IconName } from '../design-system'
 
 export const en = {
   ui: {
-    apps: { about: 'About me', tour: 'Guided tour', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', contact: 'Contact', costcalc: 'Migration cost', mixcoach: 'MixCoach', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
+    apps: { about: 'About me', tour: 'Guided tour', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', contact: 'Contact', costcalc: 'Migration cost', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
     desktop: 'Desktop',
     start: 'Start',
     activities: 'Activities',
@@ -254,6 +254,13 @@ export const en = {
       desc: 'Puts a euro figure on the hidden cost of duplicated code versus a shared library: every feature built twice, every bug fixed twice. Year by year, it shows when sharing pays for itself.',
       stack: ['React', 'TypeScript', 'shadcn/ui', 'Recharts'],
       opens: 'costcalc' as const,
+    },
+    {
+      name: 'DirectChange',
+      icon: 'money' as IconName,
+      desc: "Every price on the web, in your own currency, at today's live rate: a small badge right next to each foreign price. A browser extension, 36 languages, no account, no tracking.",
+      stack: ['Browser extension', 'JavaScript', 'Shadow DOM'],
+      opens: 'directchange' as const,
     },
     {
       name: 'wheel2pad',

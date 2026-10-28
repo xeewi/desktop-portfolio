@@ -33,6 +33,7 @@
   --icon-keyboard: url('./vista/keyboard.png');
   --icon-science: url('./vista/science.png');
   --icon-package: url('./vista/package.png');
+  --icon-money: url('./vista/money.png');
 }
 
 /* Chicago95, GPL-3.0: https://github.com/grassmunk/Chicago95 */
@@ -68,6 +69,7 @@
   --icon-keyboard: url('./classic/keyboard.svg');
   --icon-science: url('./classic/science.svg');
   --icon-package: url('./classic/package.svg');
+  --icon-money: url('./classic/money.svg');
 }
 
 /* Windows XP (B00merang), GPL-2.0: https://github.com/B00merang-Artwork/Windows-XP */
@@ -103,6 +105,7 @@
   --icon-keyboard: url('./xp/keyboard.png');
   --icon-science: url('./xp/science.png');
   --icon-package: url('./xp/package.png');
+  --icon-money: url('./xp/money.png');
 }
 
 /* Windows 10 (B00merang), no license stated: https://github.com/B00merang-Artwork/Windows-10 */
@@ -138,6 +141,7 @@
   --icon-keyboard: url('./modern/keyboard.png');
   --icon-science: url('./modern/science.png');
   --icon-package: url('./modern/package.png');
+  --icon-money: url('./modern/money.png');
 }
 
 /* Yaru, CC-BY-SA-4.0: https://github.com/ubuntu/yaru */
@@ -173,6 +177,7 @@
   --icon-keyboard: url('./gnome/keyboard.png');
   --icon-science: url('./gnome/science.png');
   --icon-package: url('./gnome/package.png');
+  --icon-money: url('./gnome/money.png');
 }
 
 /* WhiteSur, GPL-3.0: https://github.com/vinceliuice/WhiteSur-icon-theme */
@@ -208,4 +213,5 @@
   --icon-keyboard: url('./mac/keyboard.svg');
   --icon-science: url('./mac/science.svg');
   --icon-package: url('./mac/package.svg');
+  --icon-money: url('./mac/money.svg');
 }
