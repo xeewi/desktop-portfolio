@@ -21,6 +21,8 @@ for (const o of OSES) {
   test(`${o.os}: windows minimise, restore, maximise and close the way this OS does`, async ({ page }) => {
     await visit(page, { os: o.os })
     await page.locator('.ds-boot').click()
+    await desktopIcon(page, 'Experience').click() // a second window, for focus to land in once About me closes
+    await task(page, 'About me').click()
     const win = appWindow(page, 'About me')
     const frame = page.locator('#win-about') // stays reachable while minimised (out of the accessibility tree)
 
@@ -42,7 +44,7 @@ for (const o of OSES) {
     expect(await frame.evaluate((e) => getComputedStyle(e).getPropertyValue('--win-close-animation'))).toContain(o.close)
     await page.keyboard.press('Enter')
     await expect(frame).toHaveCount(0)
-    await expect(appWindow(page, 'Guided tour').locator('.ds-window__body')).toBeFocused()
+    await expect(appWindow(page, 'Experience').locator('.ds-window__body')).toBeFocused()
   })
 
   test(`${o.os}: start menu and app launch animations`, async ({ page }) => {

@@ -72,7 +72,7 @@ for (const [width, height] of [[375, 667], [412, 915]])
     const icons = await page.getByRole('navigation', { name: 'Desktop' }).locator('.ds-desk-icon').evaluateAll((els) => els.map((e) => e.getBoundingClientRect().bottom))
     const card = (await page.locator('.ds-gadgets').boundingBox())!
     expect(card.y).toBeGreaterThanOrEqual(Math.max(...icons))
-    for (const name of ['CV.pdf', 'Guided tour']) await page.getByRole('navigation', { name: 'Desktop' }).getByRole(name === 'CV.pdf' ? 'link' : 'button', { name }).click({ trial: true })
+    for (const name of ['CV.pdf', 'DirectChange']) await page.getByRole('navigation', { name: 'Desktop' }).getByRole(name === 'CV.pdf' ? 'link' : 'button', { name }).click({ trial: true })
   })
 
 // regression: the macOS / Ubuntu dock was wider than the phone and ran off both sides

@@ -32,7 +32,8 @@ for (const os of OSES)
 for (const os of OSES)
   test(`axe: a window in the background on ${os}`, async ({ page }) => {
     await visit(page, { os })
-    await expect(appWindow(page, 'Guided tour')).not.toHaveAttribute('data-active')
+    await desktopIcon(page, 'Experience').click()
+    await expect(appWindow(page, 'About me')).not.toHaveAttribute('data-active')
     expect(await a11yViolations(page)).toEqual([])
   })
 

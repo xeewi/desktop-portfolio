@@ -20,12 +20,13 @@ import {
   Wallpaper,
   Window,
   Workspace,
+  OSES,
   type Os,
 } from './design-system'
 import { content, links } from './content'
 import { APPS, type AppId } from './apps/registry'
 import { AboutApp } from './apps/AboutApp'
-import { TourApp } from './apps/TourApp'
+import { surprise } from './apps/surprise'
 import { ExperienceApp } from './apps/ExperienceApp'
 import { SkillsApp } from './apps/SkillsApp'
 import { ProjectsApp } from './apps/ProjectsApp'
@@ -53,7 +54,7 @@ export default function App() {
   // on phones we start on the desktop: the icon grid is the home screen
   // macOS keeps its desktop icons on the right
   // Ubuntu's dock pushes the icons 64px right (gnome.css --icons-left)
-  const wm = useWindowManager(APPS, matchMedia(TOUCH).matches ? [] : ['about', 'tour'], os.chrome === 'mac', os.chrome === 'gnome' ? 64 : 0)
+  const wm = useWindowManager(APPS, matchMedia(TOUCH).matches ? [] : ['about'], os.chrome === 'mac', os.chrome === 'gnome' ? 64 : 0)
   const [startOpen, setStartOpen] = useState(false)
   const [booting, setBooting] = useState(motionOk)
   const closeStart = useCallback(() => setStartOpen(false), [])
@@ -79,10 +80,14 @@ export default function App() {
   }
   // switching OS replays the boot screen
   const switchOs = (next: Os) => pickOs(next) && setBooting(motionOk())
+  const surpriseMe = () => {
+    const s = surprise(OSES, os)
+    switchOs(s.os)
+    pickTheme(s.theme)
+  }
 
   const body: Record<AppId, ReactNode> = {
-    about: <AboutApp c={c} onShowCareer={() => open('xp')} onShowProjects={() => open('projects')} onContact={() => open('contact')} />,
-    tour: <TourApp c={c} onOpen={open} />,
+    about: <AboutApp c={c} lang={lang} onOpen={open} onToggleLang={toggleLang} onSurprise={surpriseMe} />,
     xp: <ExperienceApp c={c} />,
     skills: <SkillsApp c={c} />,
     projects: <ProjectsApp c={c} onOpen={open} />,

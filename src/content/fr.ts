@@ -2,7 +2,7 @@ import type { Content } from './en'
 
 export const fr: Content = {
   ui: {
-    apps: { about: 'À propos de moi', tour: 'Visite guidée', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', contact: 'Contact', costcalc: 'Coût de migration', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
+    apps: { about: 'À propos de moi', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', contact: 'Contact', costcalc: 'Coût de migration', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
     desktop: 'Bureau',
     start: 'Démarrer',
     activities: 'Activités',
@@ -41,15 +41,22 @@ export const fr: Content = {
     why: 'Pourquoi',
     showMe: 'Montre-moi',
     back: 'Retour',
-    tourTitle: 'Ce que vous pouvez faire ici',
-    tourIntro: 'Ce site est un bureau avec lequel on peut jouer. Quelques idées :',
+    site: [
+      'Bienvenue ! Plutôt qu’une énième page CV, j’ai construit un ordinateur dont on peut vraiment se servir. C’est la façon la plus parlante que j’ai trouvée pour montrer ce que je sais faire, comment je réfléchis et comment je construis les choses.',
+      'C’est aussi un petit hommage à ma carrière : dix ans de produits, d’équipes et de codebases, habillés aux couleurs des systèmes qui ont marqué l’histoire du bureau, de Windows 95 à macOS. Chaque fenêtre en raconte un morceau.',
+      'Tout fonctionne pour de vrai : déplacez les fenêtres, changez de thème, redémarrez sur un autre système. Et pour savoir comment c’est fait, chaque choix technique est expliqué sous le capot, tests compris.',
+    ],
+    meTitle: 'Qui je suis',
+    tryTitle: 'À essayer',
     openApp: (app: string) => `Ouvrir « ${app} »`,
-    tour: {
-      themes: { icon: 'appearance', title: 'Changer de style', text: 'Choisissez parmi 55 thèmes : couleurs, fond d’écran, polices. Tous restent lisibles, un test vérifie leur contraste.' },
-      system: { icon: 'computer', title: 'Changer de système', text: 'Windows 95, XP, Vista, 10, Ubuntu ou macOS : les fenêtres, les icônes et la barre des tâches changent avec. Votre choix est gardé pour la prochaine fois.' },
-      hood: { icon: 'terminal', title: 'Regarder sous le capot', text: 'Comment le site est construit et pourquoi : les choix techniques, le code à parcourir fichier par fichier et les derniers résultats des tests.' },
-      windows: { icon: 'mouse', title: 'S’en servir comme d’un bureau', text: 'Déplacez les fenêtres par leur barre de titre, redimensionnez-les, réduisez-les ou agrandissez-les. Le menu démarrer et la barre des tâches marchent aussi, au clavier également.' },
-      lang: { icon: 'language', title: 'Lire en anglais', text: 'Le bouton EN / FR de la barre des tâches passe tout le site en anglais.' },
+    surpriseMe: 'Surprenez-moi',
+    tries: {
+      surprise: { icon: 'science', title: 'Envie de hasard ?', text: 'Redémarrez sur un système et un thème tirés au sort.' },
+      themes: { icon: 'appearance', title: 'Changer de style', text: '55 thèmes, tous vérifiés pour le contraste.' },
+      system: { icon: 'computer', title: 'Changer de système', text: 'De Windows 95 à macOS : fenêtres, icônes et barre des tâches suivent.' },
+      hood: { icon: 'terminal', title: 'Regarder sous le capot', text: 'Les choix techniques, le code, les derniers résultats des tests.' },
+      lang: { icon: 'language', title: 'Lire en anglais', text: 'Tout le site, en anglais.' },
+      windows: { icon: 'mouse', title: 'S’en servir comme d’un bureau', text: 'Déplacez, redimensionnez, réduisez. Le clavier marche aussi.' },
     },
     hoodIntro: 'Le côté technique de ce site : les choix derrière, son code et ses tests.',
     hoodHome: {

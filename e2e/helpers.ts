@@ -17,7 +17,7 @@ export async function visit(page: Page, { os = 'vista', lang = 'en' }: { os?: st
 }
 
 /** App titles in English, in desktop order. */
-export const APPS = ['About me', 'Experience', 'Skills', 'Projects & talks', 'Contact', 'Personalize', 'Change OS', 'Under the hood', 'Guided tour'] as const
+export const APPS = ['About me', 'Experience', 'Skills', 'Projects & talks', 'Contact', 'Personalize', 'Change OS', 'Under the hood'] as const
 
 /** Windows that show another site of mine in a frame. Kept out of APPS: axe would audit those sites too. */
 export const WEB_APPS = { 'Migration cost': 'https://migration-cost.xeewi.cool', MixCoach: 'https://mixcoach.xeewi.cool', DirectChange: 'https://directchange.xeewi.cool' } as const
@@ -74,6 +74,7 @@ export async function a11yViolations(page: Page) {
  *  (top, right, bottom, left), the WCAG contrast between the control's edge (1px inside) and the
  *  background just outside (4px out), median along the middle of the side. Desktop (1 css px = 1 px). */
 export async function edgeContrast(page: Page, el: import('@playwright/test').Locator): Promise<number[]> {
+  await el.scrollIntoViewIfNeeded() // measured on a screenshot of the viewport
   const r = (await el.boundingBox())!
   const png = (await page.screenshot()).toString('base64')
   return page.evaluate(

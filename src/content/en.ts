@@ -2,7 +2,7 @@ import type { IconName } from '../design-system'
 
 export const en = {
   ui: {
-    apps: { about: 'About me', tour: 'Guided tour', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', contact: 'Contact', costcalc: 'Migration cost', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
+    apps: { about: 'About me', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', contact: 'Contact', costcalc: 'Migration cost', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
     desktop: 'Desktop',
     start: 'Start',
     activities: 'Activities',
@@ -41,15 +41,22 @@ export const en = {
     why: 'Why',
     showMe: 'Show me',
     back: 'Back',
-    tourTitle: 'What you can do here',
-    tourIntro: 'This site is a desktop you can play with. A few things to try:',
+    site: [
+      'Welcome! Instead of one more resume page, I built a computer you can actually use. It’s the clearest way I found to show what I can do, how I think, and how I build things.',
+      'It’s also a small tribute to my career: ten years of products, teams and codebases, dressed up as the systems that shaped the desktop, from Windows 95 to macOS. Every window tells a piece of that story.',
+      'Everything here works for real: drag the windows, change the theme, reboot into another system. And if you want to know how it’s made, every technical choice is explained under the hood, tests included.',
+    ],
+    meTitle: 'Who I am',
+    tryTitle: 'Things to try',
     openApp: (app: string) => `Open “${app}”`,
-    tour: {
-      themes: { icon: 'appearance' as IconName, title: 'Change the look', text: 'Pick one of 55 themes: colours, wallpaper, fonts. Every one stays readable, a test checks its contrast.' },
-      system: { icon: 'computer' as IconName, title: 'Switch operating system', text: 'Windows 95, XP, Vista, 10, Ubuntu or macOS: windows, icons and taskbar change with it. Your choice is kept for next time.' },
-      hood: { icon: 'terminal' as IconName, title: 'Look under the hood', text: 'How the site is built and why: the technical choices, the code to browse file by file, and the latest test results.' },
-      windows: { icon: 'mouse' as IconName, title: 'Use it like a desktop', text: 'Drag windows by their title bar, resize, minimise or maximise them. The start menu and the taskbar work too, with the keyboard as well.' },
-      lang: { icon: 'language' as IconName, title: 'Read it in French', text: 'The EN / FR button in the taskbar switches the whole site to French.' },
+    surpriseMe: 'Surprise me',
+    tries: {
+      surprise: { icon: 'science' as IconName, title: 'Feeling lucky?', text: 'Reboot into a random system, with a random theme.' },
+      themes: { icon: 'appearance' as IconName, title: 'Change the look', text: '55 themes, every one checked for contrast.' },
+      system: { icon: 'computer' as IconName, title: 'Switch operating system', text: 'From Windows 95 to macOS: windows, icons and taskbar follow.' },
+      hood: { icon: 'terminal' as IconName, title: 'Look under the hood', text: 'The technical choices, the code, the latest test results.' },
+      lang: { icon: 'language' as IconName, title: 'Read it in French', text: 'The whole site, in French.' },
+      windows: { icon: 'mouse' as IconName, title: 'Use it like a desktop', text: 'Drag, resize, minimise. The keyboard works too.' },
     },
     hoodIntro: 'The technical side of this site: the choices behind it, its code, and its tests.',
     hoodHome: {

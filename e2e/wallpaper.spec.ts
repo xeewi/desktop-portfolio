@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { visit } from './helpers.ts'
+import { taskbar, visit } from './helpers.ts'
 
 const signature = (page: import('@playwright/test').Page) => page.getByTestId('wallpaper-signature')
 
@@ -9,7 +9,7 @@ test('the wallpaper says whose site this is, in the current language', async ({ 
   await expect(signature(page)).toContainText('Guillaume Gautier')
   await expect(signature(page)).toContainText('Senior Full-Stack Engineer')
   await expect(signature(page)).toContainText('2× CTO')
-  await page.getByRole('button', { name: 'Passer en français' }).click()
+  await taskbar(page).getByRole('button', { name: /^EN/ }).click()
   await expect(signature(page)).toContainText(/ans d.expérience/)
 })
 

@@ -3,12 +3,9 @@ import { APPS, appWindow, box, desktopIcon, dragBy, task, visit } from './helper
 
 test.beforeEach(({ page }) => visit(page))
 
-test('opens "About me" and the guided tour side by side on start, About me in front', async ({ page }) => {
+test('opens only "About me" on start, in front', async ({ page }) => {
   await expect(appWindow(page, 'About me')).toHaveAttribute('data-active', 'true')
-  await expect(appWindow(page, 'Guided tour')).toBeVisible()
-  await expect(page.getByRole('region')).toHaveCount(2)
-  const about = await box(page, 'About me')
-  expect((await box(page, 'Guided tour')).x).toBeGreaterThanOrEqual(about.x + about.width)
+  await expect(page.getByRole('region')).toHaveCount(1)
 })
 
 test('every desktop icon opens its window, in front, with a taskbar button', async ({ page }) => {
@@ -59,13 +56,13 @@ test('maximise with the button and by double-clicking the title bar', async ({ p
   await win.getByRole('button', { name: 'Maximize' }).click()
   expect((await box(page, 'About me')).width).toBe(1280)
   await win.locator('.ds-window__titlebar').dblclick()
-  expect((await box(page, 'About me')).width).toBe(620)
+  expect((await box(page, 'About me')).width).toBe(680)
 })
 
 test('close removes the window', async ({ page }) => {
   await appWindow(page, 'About me').getByRole('button', { name: 'Close' }).click()
   await expect(appWindow(page, 'About me')).toHaveCount(0)
-  await expect(page.getByRole('region')).toHaveCount(1)
+  await expect(page.getByRole('region')).toHaveCount(0)
 })
 
 test('dragging the title bar moves the window on both axes', async ({ page }) => {
