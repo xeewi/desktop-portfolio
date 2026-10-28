@@ -1,8 +1,10 @@
 .ds-desktop-icons {
   position: absolute; top: var(--icons-top); left: var(--icons-left); right: var(--icons-right);
   display: grid; gap: 6px; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 96px);
-  max-height: calc(100dvh - var(--tb) - 24px);
+  max-height: calc(100dvh - var(--tb) - 24px); direction: var(--icons-direction);
 }
+/* only the column order flips, never the labels */
+.ds-desktop-icons > * { direction: ltr; }
 @media (max-width: 760px), (max-height: 500px) {
   .ds-desktop-icons {
     /* in the page flow, so the gadgets' business card can follow it */

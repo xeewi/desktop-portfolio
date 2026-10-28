@@ -70,3 +70,12 @@ test('apps use the OS icons, never emoji', async ({ page }) => {
     await win.getByRole('button', { name: 'Close' }).click()
   }
 })
+
+// regression: on macOS the icon columns filled from the left, leaving the rightmost one half empty
+test('macOS fills the rightmost icon column first', async ({ page }) => {
+  await visit(page, { os: 'mac' })
+  const first = (await desktopIcon(page, 'About me').boundingBox())!
+  const last = (await page.getByRole('link', { name: 'CV.pdf' }).boundingBox())!
+  expect(first.x).toBeGreaterThan(last.x)
+  expect(first.x + first.width).toBeGreaterThan(1280 - 40)
+})

@@ -160,6 +160,8 @@
     --icons-top: 38px;
     --icons-left: auto;
     --icons-right: 12px;
+    /* columns fill from the right, like the Finder */
+    --icons-direction: rtl;
     --gadgets-top: 38px;
     --gadgets-left: 18px;
     --gadgets-right: auto;

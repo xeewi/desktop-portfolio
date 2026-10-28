@@ -32,6 +32,8 @@
   --icons-top: 16px;
   --icons-left: 12px;
   --icons-right: auto;
+  /* rtl: the first column is on the right (macOS) */
+  --icons-direction: ltr;
   --desk-icon-shadow: 0 1px 2px #000, 0 0 6px #000a;
   --desk-icon-hover-bg: linear-gradient(#ffffff40, #ffffff18);
   --desk-icon-hover-border: #ffffff66;
