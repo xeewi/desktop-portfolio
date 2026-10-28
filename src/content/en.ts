@@ -2,7 +2,7 @@ import type { IconName } from '../design-system'
 
 export const en = {
   ui: {
-    apps: { about: 'About me', tour: 'Guided tour', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', contact: 'Contact', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
+    apps: { about: 'About me', tour: 'Guided tour', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', contact: 'Contact', costcalc: 'Migration cost', mixcoach: 'MixCoach', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
     desktop: 'Desktop',
     start: 'Start',
     activities: 'Activities',
@@ -14,6 +14,8 @@ export const en = {
     contactMe: 'Contact me',
     address: 'Computer ▸ Career ▸ ',
     newTab: '(opens in a new tab)',
+    openInTab: 'Open in a new tab',
+    openProject: (name: string) => `Open ${name}`,
     status: (n: number) => `${n} item(s) · 10 years of career`,
     skillsTitle: 'Control Panel',
     skillsSub: 'What I can do, sorted by category.',
@@ -240,28 +242,24 @@ export const en = {
   ],
   projects: [
     {
-      name: 'opensauron',
-      icon: 'search' as IconName,
-      desc: 'Scan a barcode to find out which brand and group a product belongs to, and which documented cases concern them. Sourced facts, never a verdict. Open code, open data.',
-      stack: ['Open source', 'Open data'],
+      name: 'MixCoach',
+      icon: 'video' as IconName,
+      desc: 'A mixing coach inside Ableton Live: it listens to every track and says, in plain words, what to fix in the mix, how, and why. One click applies the fix. 18 languages.',
+      stack: ['Max for Live', 'Python', 'JavaScript'],
+      opens: 'mixcoach' as const,
     },
     {
-      name: 'Twitch Layout',
-      icon: 'video' as IconName,
-      desc: 'Real-time OBS overlays. Every source (Twitch, OBS…) is normalised into a single event format: adding a platform means writing an adapter, not a rewrite.',
-      stack: ['React', 'Vite', 'Node', 'Socket.io'],
+      name: 'noMigrationCost',
+      icon: 'package' as IconName,
+      desc: 'Puts a euro figure on the hidden cost of duplicated code versus a shared library: every feature built twice, every bug fixed twice. Year by year, it shows when sharing pays for itself.',
+      stack: ['React', 'TypeScript', 'shadcn/ui', 'Recharts'],
+      opens: 'costcalc' as const,
     },
     {
       name: 'wheel2pad',
       icon: 'gaming' as IconName,
-      desc: "Plug any racing wheel into a game that doesn't support it, without touching the game: the wheel becomes a virtual Xbox controller and force feedback is synthesised.",
+      desc: "Plug any racing wheel into a game that doesn't support it, without touching the game: the wheel becomes a virtual Xbox controller and force feedback is synthesised. Still in development.",
       stack: ['Python', 'SDL2', 'ViGEmBus'],
-    },
-    {
-      name: 'avmd',
-      icon: 'editor' as IconName,
-      desc: 'A Markdown editor for audio-video scripts, as a desktop app.',
-      stack: ['Electron', 'TypeScript'],
     },
   ],
   /** Under the hood: one note per technical choice. Which part of the screen each one shows: apps/hoodTargets.ts */

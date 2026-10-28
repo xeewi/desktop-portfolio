@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { APPS, a11yViolations, eachScreen, appWindow, desktopIcon, dragBy, visit } from './helpers.ts'
+import { APPS, WEB_APPS, a11yViolations, eachScreen, appWindow, desktopIcon, dragBy, visit } from './helpers.ts'
 
 test.beforeEach(({ page }) => visit(page))
 
@@ -86,3 +86,12 @@ for (const os of ['mac', 'ubuntu'])
     expect(dock.x + dock.width).toBeLessThanOrEqual(320)
     for (const b of await page.locator('.ds-tasklist .ds-task').evaluateAll((els) => els.map((e) => e.getBoundingClientRect().width))) expect(b).toBeGreaterThanOrEqual(24)
   })
+
+test('a site window fills the phone screen', async ({ page }) => {
+  for (const name of Object.keys(WEB_APPS)) await page.route(WEB_APPS[name as keyof typeof WEB_APPS], (r) => r.fulfill({ contentType: 'text/html', body: '<!doctype html><html lang="en"><title>stub</title></html>' }))
+  await desktopIcon(page, 'MixCoach').click()
+  const frame = appWindow(page, 'MixCoach').locator('iframe')
+  await expect(frame).toBeVisible()
+  expect((await frame.boundingBox())!.width).toBeGreaterThan(page.viewportSize()!.width - 60)
+  expect(await a11yViolations(page)).toEqual([])
+})

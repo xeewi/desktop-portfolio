@@ -2,7 +2,7 @@ import type { Content } from './en'
 
 export const fr: Content = {
   ui: {
-    apps: { about: 'À propos de moi', tour: 'Visite guidée', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', contact: 'Contact', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
+    apps: { about: 'À propos de moi', tour: 'Visite guidée', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', contact: 'Contact', costcalc: 'Coût de migration', mixcoach: 'MixCoach', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
     desktop: 'Bureau',
     start: 'Démarrer',
     activities: 'Activités',
@@ -14,6 +14,8 @@ export const fr: Content = {
     contactMe: 'Me contacter',
     address: 'Ordinateur ▸ Carrière ▸ ',
     newTab: '(s’ouvre dans un nouvel onglet)',
+    openInTab: 'Ouvrir dans un nouvel onglet',
+    openProject: (name: string) => `Ouvrir ${name}`,
     status: (n) => `${n} élément(s) · 10 ans de parcours`,
     skillsTitle: 'Panneau de configuration',
     skillsSub: 'Ce que je sais faire, rangé par catégorie.',
@@ -240,28 +242,24 @@ export const fr: Content = {
   ],
   projects: [
     {
-      name: 'opensauron',
-      icon: 'search',
-      desc: 'Scanner un code-barres pour savoir à quelle marque et quel groupe appartient un produit, et quelles affaires documentées les concernent. Des faits sourcés, jamais un verdict. Code et données ouverts.',
-      stack: ['Open source', 'Open data'],
+      name: 'MixCoach',
+      icon: 'video',
+      desc: 'Un coach de mixage dans Ableton Live : il écoute chaque piste et explique, en mots simples, quoi corriger dans le mix, comment et pourquoi. Un clic applique la correction. 18 langues.',
+      stack: ['Max for Live', 'Python', 'JavaScript'],
+      opens: 'mixcoach',
     },
     {
-      name: 'Twitch Layout',
-      icon: 'video',
-      desc: 'Overlays OBS temps réel. Toutes les sources (Twitch, OBS…) sont normalisées en un seul format d’événement : ajouter une plateforme = écrire un adaptateur, pas réécrire.',
-      stack: ['React', 'Vite', 'Node', 'Socket.io'],
+      name: 'noMigrationCost',
+      icon: 'package',
+      desc: 'Chiffre en euros le coût caché du code dupliqué face à une librairie partagée : chaque fonctionnalité construite deux fois, chaque bug corrigé deux fois. Année par année, il montre quand le partage devient rentable.',
+      stack: ['React', 'TypeScript', 'shadcn/ui', 'Recharts'],
+      opens: 'costcalc',
     },
     {
       name: 'wheel2pad',
       icon: 'gaming',
-      desc: 'Brancher n’importe quel volant sur un jeu qui ne le supporte pas, sans toucher au jeu : le volant devient une manette Xbox virtuelle et le retour de force est synthétisé.',
+      desc: 'Brancher n’importe quel volant sur un jeu qui ne le supporte pas, sans toucher au jeu : le volant devient une manette Xbox virtuelle et le retour de force est synthétisé. Encore en cours de développement.',
       stack: ['Python', 'SDL2', 'ViGEmBus'],
-    },
-    {
-      name: 'avmd',
-      icon: 'editor',
-      desc: 'Éditeur de scripts audio-vidéo en Markdown, en appli desktop.',
-      stack: ['Electron', 'TypeScript'],
     },
   ],
   hood: {

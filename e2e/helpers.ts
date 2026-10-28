@@ -19,6 +19,9 @@ export async function visit(page: Page, { os = 'vista', lang = 'en' }: { os?: st
 /** App titles in English, in desktop order. */
 export const APPS = ['About me', 'Experience', 'Skills', 'Projects & talks', 'Contact', 'Personalize', 'Change OS', 'Under the hood', 'Guided tour'] as const
 
+/** Windows that show another site of mine in a frame. Kept out of APPS: axe would audit those sites too. */
+export const WEB_APPS = { 'Migration cost': 'https://migration-cost.xw22.xyz', MixCoach: 'https://xeewi.github.io/mixcoach/' } as const
+
 /** Runs `check` on every screen of an open app: Under the hood has a home screen, three screens behind it,
  *  and a file open in Architecture. Ends back on its home screen. */
 export async function eachScreen(page: Page, app: string, check: (screen: string) => Promise<void>) {

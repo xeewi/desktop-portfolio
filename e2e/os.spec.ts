@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { APPS, appWindow, desktopIcon, eachScreen, visit } from './helpers.ts'
+import { APPS, WEB_APPS, appWindow, desktopIcon, eachScreen, visit } from './helpers.ts'
 
 const OSES = [
   { name: 'Windows 95', chrome: 'classic' },
@@ -43,7 +43,7 @@ test('each OS has its own icons, and they load', async ({ page }) => {
     await pickOs(page, os.name)
     await expect(page.locator('html')).toHaveAttribute('data-chrome', os.chrome)
     const urls = await page.locator('nav .ds-icon').evaluateAll((els) => els.map((e) => getComputedStyle(e).backgroundImage))
-    expect(urls).toHaveLength(APPS.length + 1) // every app + CV.pdf
+    expect(urls).toHaveLength(APPS.length + Object.keys(WEB_APPS).length + 1) // every app + CV.pdf
     for (const u of urls) {
       const src = u.match(/^url\("(.+)"\)$/)?.[1]
       expect(src, 'icon has an image').toBeTruthy()

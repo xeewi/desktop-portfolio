@@ -1,0 +1,4 @@
+/* the window fits its content until resized: the frame needs a height of its own, and grows with the window */
+.webapp { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; }
+.webapp-bar { display: flex; justify-content: flex-end; padding: 8px; }
+.webapp-frame { flex: 1 1 auto; min-height: 0; height: min(70vh, 680px); width: 100%; border: 0; }

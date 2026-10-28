@@ -1,8 +1,9 @@
-import { BulletList, Card, Feature, Heading, Pane, PillList, Text } from '../design-system'
+import { BulletList, Button, Card, Feature, Heading, Pane, PillList, Text } from '../design-system'
 import type { Content } from '../content'
+import type { AppId } from './registry'
 import './ProjectsApp.css'
 
-export function ProjectsApp({ c }: { c: Content }) {
+export function ProjectsApp({ c, onOpen }: { c: Content; onOpen: (id: AppId) => void }) {
   const { projects, talks, ui } = c
   return (
     <Pane>
@@ -14,6 +15,11 @@ export function ProjectsApp({ c }: { c: Content }) {
             <Feature icon={p.icon} title={p.name}>
               <p>{p.desc}</p>
               <PillList items={p.stack} />
+              {'opens' in p && p.opens && (
+                <div className="projects-open">
+                  <Button onClick={() => onOpen(p.opens)}>{ui.openProject(p.name)}</Button>
+                </div>
+              )}
             </Feature>
           </Card>
         ))}

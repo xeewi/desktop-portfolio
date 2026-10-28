@@ -42,6 +42,11 @@ describe('initialWindows', () => {
     expect(w.b.x + w.b.w).toBeLessThanOrEqual(1280 - 220)
   })
 
+  // regression: on Ubuntu the dock pushes the icons right, and the first window covered their second column
+  it('leaves room for a dock on the left', () => {
+    expect(initialWindows(apps, ['a'], 1600, false, 64).a.x).toBe(initialWindows(apps, ['a'], 1600).a.x + 64)
+  })
+
   it('opens nothing when asked for nothing (phones)', () => {
     expect(topWindow(initialWindows(apps, [], 400))).toBeUndefined()
   })

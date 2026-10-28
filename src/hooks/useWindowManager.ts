@@ -19,10 +19,10 @@ export function topWindow<Id extends string>(wins: Record<Id, WindowState>): Id 
 const ICONS = 220
 
 /** Windows at start. Those in `open` sit side by side, in desktop order, clear of the desktop icons (on the right
- *  on macOS, on the left elsewhere), the first one on top. The others are staggered, ready for when they open. */
-export function initialWindows<Id extends string>(apps: readonly AppMeta<Id>[], open: readonly Id[], viewportWidth: number, iconsOnRight = false) {
+ *  on macOS, on the left elsewhere, `dock` px further right when a dock sits on the left), the first one on top. The others are staggered, ready for when they open. */
+export function initialWindows<Id extends string>(apps: readonly AppMeta<Id>[], open: readonly Id[], viewportWidth: number, iconsOnRight = false, dock = 0) {
   const right = viewportWidth - (iconsOnRight ? ICONS : 8)
-  let next = iconsOnRight ? 8 : ICONS
+  let next = iconsOnRight ? 8 : ICONS + dock
   return Object.fromEntries(
     apps.map((a, i) => {
       const k = open.indexOf(a.id)
@@ -35,8 +35,8 @@ export function initialWindows<Id extends string>(apps: readonly AppMeta<Id>[], 
 }
 
 /** Open/minimised/maximised state, position and stacking of every app window. */
-export function useWindowManager<Id extends string>(apps: readonly AppMeta<Id>[], initiallyOpen: readonly NoInfer<Id>[], iconsOnRight = false) {
-  const [wins, setWins] = useState(() => initialWindows(apps, initiallyOpen, innerWidth, iconsOnRight))
+export function useWindowManager<Id extends string>(apps: readonly AppMeta<Id>[], initiallyOpen: readonly NoInfer<Id>[], iconsOnRight = false, dock = 0) {
+  const [wins, setWins] = useState(() => initialWindows(apps, initiallyOpen, innerWidth, iconsOnRight, dock))
   const ids = apps.map((a) => a.id)
   const top = Math.max(...ids.map((id) => wins[id].z))
   const focused = topWindow(wins)

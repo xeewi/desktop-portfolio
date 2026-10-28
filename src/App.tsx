@@ -30,6 +30,7 @@ import { ExperienceApp } from './apps/ExperienceApp'
 import { SkillsApp } from './apps/SkillsApp'
 import { ProjectsApp } from './apps/ProjectsApp'
 import { ContactApp } from './apps/ContactApp'
+import { WebApp } from './apps/WebApp'
 import { PersonalizeApp } from './apps/PersonalizeApp'
 import { SystemApp } from './apps/SystemApp'
 import { HoodApp } from './apps/hood/HoodApp'
@@ -51,7 +52,8 @@ export default function App() {
   const { os, theme, pickOs, pickTheme } = useThemeSelection()
   // on phones we start on the desktop: the icon grid is the home screen
   // macOS keeps its desktop icons on the right
-  const wm = useWindowManager(APPS, matchMedia(TOUCH).matches ? [] : ['about', 'tour'], os.chrome === 'mac')
+  // Ubuntu's dock pushes the icons 64px right (gnome.css --icons-left)
+  const wm = useWindowManager(APPS, matchMedia(TOUCH).matches ? [] : ['about', 'tour'], os.chrome === 'mac', os.chrome === 'gnome' ? 64 : 0)
   const [startOpen, setStartOpen] = useState(false)
   const [booting, setBooting] = useState(motionOk)
   const closeStart = useCallback(() => setStartOpen(false), [])
@@ -83,8 +85,10 @@ export default function App() {
     tour: <TourApp c={c} onOpen={open} />,
     xp: <ExperienceApp c={c} />,
     skills: <SkillsApp c={c} />,
-    projects: <ProjectsApp c={c} />,
+    projects: <ProjectsApp c={c} onOpen={open} />,
     contact: <ContactApp c={c} />,
+    costcalc: <WebApp c={c} url={links.costcalc} title={c.ui.apps.costcalc} />,
+    mixcoach: <WebApp c={c} url={links.mixcoach} title={c.ui.apps.mixcoach} />,
     themes: <PersonalizeApp c={c} lang={lang} os={os} theme={theme} onPickTheme={pickTheme} onChangeOs={() => open('system')} />,
     system: <SystemApp c={c} os={os} onPickOs={switchOs} />,
     hood: <HoodApp c={c} onShow={show} />,
@@ -166,7 +170,8 @@ export default function App() {
         <StartButton label={startLabel} open={startOpen} onToggle={() => setStartOpen((s) => !s)} />
         <AppName>{wm.focused ? c.ui.apps[wm.focused] : c.ui.desktop}</AppName>
         <TaskList>
-          {APPS.map((a) => (
+          {/* the sites only show in the dock while open: 11 buttons don't fit a phone's dock at 24px */}
+          {APPS.filter((a) => !('web' in a) || wm.wins[a.id].open).map((a) => (
             <Task
               key={a.id}
               id={`task-${a.id}`}
