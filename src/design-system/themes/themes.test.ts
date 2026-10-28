@@ -29,8 +29,8 @@ describe('OSES', () => {
 })
 
 describe('saved choice (no storage available here)', () => {
-  it('falls back to Vista and to the first theme of an OS', () => {
-    expect(savedOs().id).toBe('vista')
+  it('falls back to the default OS (XP here: not a Windows browser) and to the first theme of an OS', () => {
+    expect(savedOs().id).toBe('xp')
     for (const os of OSES) expect(savedTheme(os)).toBe(os.themes[0])
   })
 })

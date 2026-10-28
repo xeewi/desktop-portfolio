@@ -3,7 +3,12 @@ import { DESKTOP } from './media'
 import { read, write } from './storage'
 import { readable } from '../tokens/contrast'
 
-export const savedOs = (): Os => OSES.find((o) => o.id === read('os')) ?? OSES.find((o) => o.id === 'vista')!
+/** The OS shown on a first visit: the opposite of the visitor's. Windows on a computer gets macOS;
+ *  macOS, Linux, phones and anything unknown get Windows XP. */
+export const defaultOsId = (userAgent: string) => (/Windows/.test(userAgent) && !/Mobi|Android/.test(userAgent) ? 'mac' : 'xp')
+
+export const savedOs = (): Os =>
+  OSES.find((o) => o.id === read('os')) ?? OSES.find((o) => o.id === defaultOsId(navigator.userAgent))!
 export const savedTheme = (os: Os): Theme => os.themes.find((th) => th.id === read('theme:' + os.id)) ?? os.themes[0]
 
 /** Palette (text colours made readable, see tokens/contrast.ts) + all-size token overrides,
