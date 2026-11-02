@@ -1,0 +1,68 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "mona sans",
+        "createdAt": "2026-11-02T12:17:34.229Z",
+        "reason": "classic site (2026-11-02, \"La conférence\" direction): Mona Sans at normal width as the one grotesque for slide titles and presenter notes alike, 400/600/700, self-hosted; a talk deck in one face is the point of the world, so a swap would be a sideways move"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          ".impeccable/tmp/r3/assigned.tpl.html"
+        ],
+        "createdAt": "2026-11-02T13:05:29.875Z",
+        "reason": "agent: throwaway decision sketch; tags on products in a shop window are the direction's objects, not nested cards"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          ".impeccable/tmp/r3/challenger-rail.tpl.html"
+        ],
+        "createdAt": "2026-11-02T13:05:29.890Z",
+        "reason": "agent: throwaway decision sketch; film frames on a rail are the direction's objects, not nested cards"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          ".impeccable/tmp/r3/r1-assigned.tpl.html"
+        ],
+        "createdAt": "2026-11-02T13:09:46.968Z",
+        "reason": "agent: throwaway decision sketch in gitignored .impeccable/tmp, never shipped; the chosen direction is rebuilt and re-checked in src/classic"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          ".impeccable/tmp/r3/r1-pick.tpl.html"
+        ],
+        "createdAt": "2026-11-02T13:09:46.982Z",
+        "reason": "agent: throwaway decision sketch in gitignored .impeccable/tmp, never shipped; the chosen direction is rebuilt and re-checked in src/classic"
+      },
+      {
+        "rule": "skipped-heading",
+        "value": "*",
+        "files": [
+          ".impeccable/tmp/r3/r1-pick.tpl.html"
+        ],
+        "createdAt": "2026-11-02T13:09:46.995Z",
+        "reason": "agent: throwaway decision sketch in gitignored .impeccable/tmp, never shipped; the chosen direction is rebuilt and re-checked in src/classic"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          ".impeccable/tmp/r3/r1-board.tpl.html"
+        ],
+        "createdAt": "2026-11-02T13:09:47.008Z",
+        "reason": "agent: throwaway decision sketch in gitignored .impeccable/tmp, never shipped; the chosen direction is rebuilt and re-checked in src/classic"
+      }
+    ]
+  }
+}

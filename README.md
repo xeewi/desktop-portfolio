@@ -17,7 +17,18 @@ them. In English or French, on a desktop or a phone.
   </tr>
 </table>
 
-## What you can do on it
+## Two ways in
+
+- **`/`, the desktop**: everything below. Its About me window offers the classic page to whoever prefers a more
+  traditional format (`/desktop` still works too).
+- **`/classic`, the classic page**: the essentials on one page for someone who has 30 seconds, set as a talk in a dark
+  room: each section is a slide (the clients, what I'm brought in for, one slide per mission with its screenshots,
+  skills, side projects, talks, contact), and a presenter view in liquid glass follows the reading and keeps the
+  "Email me about a mission" button in reach. A plainer version is kept on the `classic-plain` branch.
+
+Both read the same content (`src/content/`). Each page is its own chunk, so neither loads the other's code or styles.
+
+## What you can do on the desktop
 
 - **Read the resume**: about me, experience (company by company), skills, projects & talks, contact, and the
   PDF version.
@@ -44,7 +55,9 @@ A **Guided tour** window opens next to *About me* on start, to show all of this.
 
 ```
 src/
-├── App.tsx            composition root: the whole site, top to bottom, in one file
+├── main.tsx           picks the page: desktop on "/", classic on "/classic"
+├── App.tsx            composition root of the desktop, top to bottom, in one file
+├── classic/           the classic page: one component, its CSS, its self-hosted font (Mona Sans)
 ├── apps/              one component per window (About, Experience, Under the hood…)
 ├── content/           every string visitors read, in English and French (fr.ts is typed by en.ts)
 ├── design-system/     themes → chromes (tokens) → components, behind one entry point

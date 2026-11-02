@@ -1,0 +1,256 @@
+/* The classic site as a talk: a dark room, one lit slide per section, a presenter view in liquid glass.
+   Loaded only on "/": the desktop's styles never reach this page, and these never reach it. */
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('./fonts/mona-sans.woff2') format('woff2');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+}
+
+.cl {
+  --room: #08090a;
+  --slide: #16181c;
+  --text: #eceae4;
+  --soft: #a9aeb6;          /* secondary text: 8.1:1 on --slide, 9.4:1 on --room */
+  --line: rgb(255 255 255 / 0.1);
+  --signal: #f2c94c;        /* what moves or acts: progress and the primary action, nothing else */
+  --signal-hover: #f7d977;
+  --gutter: clamp(0.75rem, 3vw, 2.5rem);
+  --pad: clamp(1.4rem, 5.5vw, 5.25rem);
+  --presenter: 10.5rem;     /* room kept free under the last slide for the presenter bar */
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--room);
+  font: 400 1.0625rem/1.6 'Mona Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+:root { color-scheme: dark; background: #08090a; scroll-padding-top: 1.5rem; scroll-padding-bottom: 10.5rem; scrollbar-color: #3a3d42 #08090a; }
+body { margin: 0; }
+@media (prefers-reduced-motion: no-preference) { :root { scroll-behavior: smooth; } }
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation-duration: 0s !important; transition-duration: 0s !important; }
+}
+.cl ::selection { background: rgb(242 201 76 / 0.35); color: #fff; }
+.cl :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
+:where(.cl) a { color: var(--text); text-underline-offset: 0.2em; text-decoration-thickness: 0.07em; }
+:where(.cl) a:hover { color: var(--signal); }
+/* resets at zero specificity, so every component class below wins without a fight */
+:where(.cl) *, :where(.cl) ::before, :where(.cl) ::after { box-sizing: border-box; }
+:where(.cl) :is(h1, h2, h3) { margin: 0; text-wrap: balance; }
+:where(.cl) p { margin: 0; text-wrap: pretty; }
+:where(.cl) :is(ul, ol, dl, dd) { margin: 0; padding: 0; }
+:where(.cl) :is(ul, ol) { list-style: none; }
+.cl h2 { font-size: clamp(1.75rem, 1.2rem + 1.8vw, 3rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; }
+.cl h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+
+.cl-wrap { width: min(75rem, 100% - 2 * var(--gutter)); margin-inline: auto; }
+.cl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cl-skip { position: absolute; left: 1rem; top: -4rem; z-index: 20; padding: 0.6rem 1rem; border-radius: 8px; background: var(--signal); color: #141414; font-weight: 600; }
+.cl-skip:focus { top: 1rem; }
+.cl-muted { color: var(--soft); font-size: 0.9375rem; }
+.cl-lead { margin-top: 0.75rem; max-width: 40em; color: var(--soft); font-size: 1.125rem; }
+.cl-icon { flex: none; width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cl-link { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; }
+.cl-link .cl-icon { width: 0.95em; height: 0.95em; }
+
+/* buttons: one solid signal, the rest liquid glass */
+.cl-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; white-space: nowrap;
+  min-height: 3.25rem; padding: 0 1.4rem; border-radius: 14px; border: 0;
+  background: var(--signal); color: #141414; font: inherit; font-weight: 600; text-decoration: none;
+  transition: background-color 0.15s;
+}
+:where(.cl) a.cl-btn { color: #141414; }
+.cl-btn:hover { background: var(--signal-hover); }
+.cl-btn--glass, :where(.cl) a.cl-btn--glass {
+  color: var(--text); background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 -1px 0 rgb(255 255 255 / 0.04), inset 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+.cl-btn--glass:hover { background: rgb(255 255 255 / 0.11); color: var(--text); }
+
+/* the line on the black above the first slide */
+.cl-top { display: flex; align-items: center; gap: 2rem; min-height: 4.25rem; }
+.cl-brand { font-weight: 600; text-decoration: none; }
+.cl-nav { display: flex; gap: 1.6rem; margin-left: auto; }
+.cl-nav a, .cl-quiet, .cl-now { color: var(--soft); font-size: 0.9375rem; text-decoration: none; }
+.cl-nav a:hover { color: var(--text); }
+.cl-tools { display: flex; align-items: center; gap: 0.35rem; }
+.cl-quiet {
+  display: inline-flex; align-items: center; gap: 0.45rem; min-height: 2.5rem; padding: 0 0.7rem;
+  border: 0; border-radius: 8px; background: none; font: inherit; font-size: 0.9375rem; cursor: pointer;
+}
+.cl-quiet:hover { background: rgb(255 255 255 / 0.06); color: var(--text); }
+.cl-now { padding-left: 0.7rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* a slide: the one lit surface; its footer line says where you are in the talk */
+main { padding-bottom: var(--presenter); }
+.cl-slide {
+  position: relative; margin-bottom: 2.5rem; padding: var(--pad) var(--pad) calc(var(--pad) * 0.6 + 3rem);
+  border-radius: 12px; background: var(--slide);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 40px 120px -40px rgb(0 0 0 / 0.9);
+}
+.cl-slide > h2 { margin-bottom: 2.5rem; }
+#projects > h2 + .cl-lead { margin-top: -1.75rem; margin-bottom: 2.5rem; }
+.cl-slide__foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 1.5rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--soft); font-size: 0.875rem; }
+/* client logos sit on a light tile with a rim: a black or navy brand mark still reads on the dark slide */
+.cl-logo { background: #f4f2ec; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.2); }
+
+/* 01: the title slide */
+.cl-title { display: grid; grid-template-columns: minmax(0, 1fr) 18.75rem; gap: 2.5rem 3.75rem; align-content: center; min-height: clamp(30rem, calc(100svh - 17rem), 40rem); padding-bottom: var(--pad); }
+.cl-title h1 { font-size: clamp(3rem, 1.2rem + 5.2vw, 6rem); font-weight: 700; line-height: 0.93; letter-spacing: -0.04em; }
+.cl-role { margin-top: 1.75rem; font-size: clamp(1.25rem, 1rem + 0.9vw, 1.75rem); font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
+.cl-offer { margin-top: 1.1rem; max-width: 30em; color: var(--soft); font-size: clamp(1.0625rem, 0.95rem + 0.4vw, 1.25rem); line-height: 1.5; }
+.cl-facts { align-self: end; display: flex; flex-direction: column; gap: 1.4rem; }
+.cl-facts div { padding-top: 0.75rem; border-top: 1px solid var(--line); }
+.cl-facts dt { font-size: 1.875rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+.cl-facts dd { color: var(--soft); font-size: 0.9375rem; }
+.cl-title__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem 2rem; color: var(--soft); font-size: 0.9375rem; }
+.cl-address { display: flex; align-items: center; gap: 0.35rem; color: var(--soft); }
+.cl-copy { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 8px; background: none; color: inherit; cursor: pointer; }
+.cl-copy:hover { background: rgb(255 255 255 / 0.08); color: var(--text); }
+.cl-address output { color: var(--signal); font-weight: 600; font-size: 0.9375rem; }
+
+/* 02: clients */
+.cl-clients { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem 2rem; }
+.cl-clients a { display: flex; align-items: center; gap: 1rem; font-size: 1.25rem; font-weight: 600; text-decoration: none; }
+.cl-clients img { flex: none; border-radius: 14px; }
+.cl-clients small { display: block; color: var(--soft); font-size: 0.875rem; font-weight: 400; }
+
+/* 03: what I'm brought in for */
+.cl-services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+.cl-services li { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 1.5rem; border-top: 2px solid var(--text); }
+.cl-services p { color: var(--soft); }
+.cl-services .cl-where { margin-top: auto; padding-top: 0.25rem; color: var(--text); font-size: 0.9375rem; font-weight: 600; }
+
+/* 04: the missions, a divider on the black, then one slide per client in its own colour */
+.cl-divider { display: flex; gap: 1.5rem; align-items: baseline; padding: 2rem var(--pad) 2.25rem; }
+.cl-divider > span { color: var(--soft); font-weight: 600; font-variant-numeric: tabular-nums; }
+.cl-divider p { margin-top: 0.6rem; color: var(--soft); }
+.cl-case { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 1.5rem clamp(2rem, 4vw, 4rem); }
+.cl-case:target { animation: cl-flash 1.8s ease-out; }
+@keyframes cl-flash { from { box-shadow: 0 0 0 3px var(--signal), 0 40px 120px -40px rgb(0 0 0 / 0.9); } }
+.cl-case__head { display: flex; gap: 1rem; align-items: flex-start; align-self: start; position: sticky; top: 1.5rem; }
+.cl-case__head > img, .cl-case__nologo { flex: none; width: 56px; height: 56px; border-radius: 14px; }
+.cl-case__nologo { display: grid; place-items: center; background: var(--text); color: var(--slide); font-weight: 700; }
+.cl-case__head > div { display: flex; flex-direction: column; gap: 0.2rem; }
+.cl-case__role { margin-top: 0.15rem; font-weight: 600; line-height: 1.4; }
+.cl-case__head .cl-link { margin-top: 0.35rem; font-size: 0.9375rem; }
+/* the mission slide's one colour, its client's: a short rule over the lead, lifted so black brands still show */
+.cl-case__lead::before { content: ''; display: block; width: 2.75rem; height: 3px; margin-bottom: 1.1rem; border-radius: 2px; background: color-mix(in oklab, var(--brand, #888), white 28%); }
+.cl-case__lead { max-width: 40em; margin-bottom: 1.4rem; font-size: 1.25rem; font-weight: 600; line-height: 1.45; }
+.cl-points { display: flex; flex-direction: column; gap: 0.7rem; max-width: 44em; color: var(--soft); }
+.cl-points li { position: relative; padding-left: 1.4rem; }
+.cl-points li::before { content: ''; position: absolute; left: 0.1rem; top: 0.68em; width: 0.45rem; height: 0.45rem; border-radius: 2px; background: rgb(255 255 255 / 0.3); }
+.cl-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
+.cl-stack > span:not(.cl-sr) { padding: 0.2rem 0.75rem; border-radius: 999px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.16); font-size: 0.875rem; }
+.cl-shots { display: flex; gap: 1rem; margin-top: 2rem; padding: 0.25rem 0.25rem 1rem; overflow-x: auto; scrollbar-width: thin; }
+.cl-shots img { flex: none; width: auto; height: clamp(14rem, 22vw, 20rem); border-radius: 12px; }
+
+/* 05: expertise */
+.cl-skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 2.25rem 2.5rem; }
+.cl-skills dt { padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); font-weight: 600; }
+.cl-skills ul { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.75rem; color: var(--soft); }
+
+/* 06: side projects */
+.cl-projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 3rem; }
+.cl-projects li { display: flex; flex-direction: column; gap: 0.6rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+.cl-projects li > p:first-of-type { color: var(--soft); }
+.cl-project__head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.2rem; }
+.cl-project__logo { flex: none; width: 44px; height: 44px; border-radius: 11px; }
+.cl-project__logo--none { display: grid; place-items: center; background: rgb(255 255 255 / 0.08); box-shadow: inset 0 0 0 1px var(--line); color: var(--soft); font-weight: 700; }
+.cl-projects .cl-link { margin-top: auto; padding-top: 0.4rem; align-self: flex-start; }
+
+/* 07: trainings and talks */
+.cl-talks { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 1.5rem clamp(2rem, 4vw, 4rem); }
+.cl-talks > h2 { margin: 0; }
+.cl-talks li { padding-block: 1rem; border-bottom: 1px solid var(--line); font-size: 1.125rem; }
+.cl-talks li:first-child { padding-top: 0.35rem; }
+
+/* 08: contact, the closing slide; the desktop mode as a quiet line under it */
+.cl-contact h2 { font-size: clamp(2.5rem, 1.5rem + 3vw, 4.25rem); letter-spacing: -0.035em; margin-bottom: 0; }
+.cl-contact > .cl-lead { margin: 1.1rem 0 0; font-size: 1.1875rem; }
+.cl-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
+.cl-contact .cl-address { margin-top: 1.25rem; }
+.cl-aside { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 1.5rem; align-items: center; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.cl-aside img { width: 100%; height: auto; border-radius: 8px; }
+.cl-aside h3 { font-size: 1.0625rem; }
+.cl-aside p { margin: 0.35rem 0 0.6rem; max-width: 46em; color: var(--soft); font-size: 0.9375rem; }
+
+.cl-foot { padding: 0.5rem var(--pad) 2rem; color: var(--soft); font-size: 0.875rem; }
+
+/* the presenter view: liquid glass across the bottom of the room, clear in the middle, light at the rim */
+.cl-presenter {
+  position: fixed; z-index: 10; bottom: 1rem; left: max(1rem, (100vw - 85rem) / 2); right: max(1rem, (100vw - 85rem) / 2);
+  display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; gap: 1.75rem; align-items: center;
+  padding: 1rem 1.25rem 1.5rem 1.75rem; border-radius: 22px;
+  background: rgb(22 24 28 / 0.55);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6); backdrop-filter: blur(22px) saturate(1.6);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 -1px 0 rgb(255 255 255 / 0.05), inset 0 0 0 1px rgb(255 255 255 / 0.08), 0 20px 50px -20px rgb(0 0 0 / 0.9);
+}
+.cl-presenter::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.35), rgb(255 255 255 / 0) 30%, rgb(255 255 255 / 0) 70%, rgb(255 255 255 / 0.18));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.cl-count { display: flex; flex-direction: column; min-width: 9.5rem; }
+.cl-count b { font-size: 2.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.cl-count span { color: var(--soft); font-size: 0.875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 12rem; }
+.cl-next { display: flex; gap: 0.9rem; align-items: center; }
+.cl-thumb { display: flex; flex-direction: column; justify-content: space-between; width: 10.5rem; height: 5.9rem; padding: 0.7rem; border-radius: 6px; background: var(--slide); box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1); font-size: 0.8125rem; }
+.cl-thumb__logos { display: flex; gap: 4px; }
+.cl-thumb__line { color: var(--soft); font-size: 0.75rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cl-thumb img { border-radius: 5px; }
+.cl-next small { color: var(--soft); font-size: 0.8125rem; line-height: 1.4; }
+.cl-note { color: var(--soft); font-size: 0.9375rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.cl-note b { display: block; color: var(--text); font-weight: 600; font-size: 0.875rem; }
+.cl-presenter__actions { grid-column: -2 / -1; display: flex; gap: 0.6rem; }
+/* the note keeps its column even on the last slide, where there is no next one to preview */
+.cl-note { grid-column: 3; }
+.cl-progress { position: absolute; left: 1.75rem; right: 1.75rem; bottom: 0.7rem; height: 3px; border-radius: 3px; background: rgb(255 255 255 / 0.08); overflow: hidden; }
+.cl-progress i { display: block; height: 100%; background: var(--signal); transform-origin: left; transform: scaleX(var(--p, 0.125)); }
+/* the progress line follows the scroll where the browser can drive it; elsewhere it steps with the slide number */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .cl-progress i { animation: cl-grow linear both; animation-timeline: scroll(root); }
+  }
+}
+@keyframes cl-grow { from { transform: scaleX(0.03); } to { transform: scaleX(1); } }
+
+/* narrower rooms: the presenter keeps the count and the action */
+@media (max-width: 1240px) { .cl-note { display: none; } .cl-presenter { grid-template-columns: auto auto minmax(0, 1fr); } .cl-presenter__actions { justify-self: end; } }
+@media (max-width: 960px) {
+  .cl { --presenter: 7.5rem; }
+  .cl-top { flex-wrap: wrap; row-gap: 0.25rem; padding-top: 0.75rem; min-height: 0; }
+  .cl-tools { margin-left: auto; }
+  .cl-nav { order: 3; width: 100%; margin: 0; padding-bottom: 0.75rem; gap: 1.4rem; }
+  .cl-next { display: none; }
+  .cl-presenter { grid-template-columns: auto minmax(0, 1fr); gap: 1rem; padding: 0.75rem 0.75rem 1.2rem 1.1rem; border-radius: 18px; }
+  .cl-count { min-width: 0; }
+  .cl-count b { font-size: 1.5rem; }
+  .cl-title, .cl-case, .cl-talks, .cl-aside { grid-template-columns: minmax(0, 1fr); }
+  .cl-title { min-height: 0; }
+  .cl-services { grid-template-columns: minmax(0, 1fr); }
+  .cl-clients { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cl-case__head { position: static; }
+  .cl-projects { grid-template-columns: minmax(0, 1fr); }
+  .cl-aside img { max-width: 20rem; }
+}
+@media (max-width: 560px) {
+  .cl-top { gap: 0.5rem; }
+  .cl-hide-s { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .cl-now { display: none; }
+  .cl-presenter { background: rgb(22 24 28 / 0.97); }
+  .cl-presenter .cl-btn--glass { display: none; }
+  .cl-presenter .cl-btn { min-height: 2.9rem; padding: 0 1rem; }
+  .cl-presenter .cl-btn .cl-icon, .cl-count span { display: none; }
+  .cl-count b { font-size: 1.25rem; }
+  .cl-presenter__actions { justify-self: end; }
+  .cl-actions .cl-btn { flex: 1 1 100%; }
+  .cl-clients { gap: 1.25rem 1rem; }
+  .cl-clients a { font-size: 1.0625rem; gap: 0.75rem; }
+  .cl-clients img { width: 44px; height: 44px; border-radius: 11px; }
+  .cl-skills { grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 1.75rem 1.25rem; }
+  .cl-slide__foot span:last-child { display: none; }
+}

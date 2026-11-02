@@ -39,6 +39,10 @@ export function AboutApp({ c, lang, onOpen, onToggleLang, onSurprise }: Props) {
       {ui.site.map((p) => (
         <Text key={p}>{p}</Text>
       ))}
+      <div className="about-classic">
+        <Text>{ui.traditional}</Text>
+        <Button href="/classic">{ui.seeClassic}</Button>
+      </div>
 
       <section className="about-section">
       <Heading level={3}>{ui.tryTitle}</Heading>

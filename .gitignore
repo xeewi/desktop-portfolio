@@ -30,3 +30,9 @@ playwright-report
 
 # raw test results (Vitest JSON), see e2e/reporter.ts
 reports
+
+# Impeccable working files (the surface brief in .impeccable/surfaces is kept)
+.impeccable/review
+.impeccable/mocks
+.impeccable/tmp
+.impeccable/hook.cache.json

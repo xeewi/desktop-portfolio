@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { read, write } from '../design-system'
+// straight from storage, not the design-system entry: the classic page must not pull in the desktop's components
+import { read, write } from '../design-system/runtime/storage'
 import type { Lang } from '../content'
 
 /** English by default; the visitor's choice is remembered and set on <html lang>. */

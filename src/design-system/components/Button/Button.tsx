@@ -8,7 +8,8 @@ type Props = Common & ({ onClick: () => void; href?: never } | { href: string; o
 export function Button({ variant = 'default', block, children, ...action }: Props) {
   const cls = 'ds-button' + (variant === 'primary' ? ' ds-button--primary' : '') + (block ? ' ds-button--block' : '')
   if (action.href) {
-    const external = !action.href.startsWith('mailto:')
+    // other sites and the PDF open in a tab; e-mail and this site's own pages stay here
+    const external = /^https?:|\.pdf$/.test(action.href)
     return (
       <a className={cls} href={action.href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
         {children}

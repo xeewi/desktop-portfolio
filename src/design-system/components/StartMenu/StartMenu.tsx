@@ -61,7 +61,8 @@ function Profile({ initials, name }: { initials: string; name: string }) {
 }
 
 function Link({ href, children }: { href: string; children: ReactNode }) {
-  const external = !href.startsWith('mailto:')
+  // other sites and the PDF open in a tab; e-mail and this site's own pages stay here
+  const external = /^https?:|\.pdf$/.test(href)
   return (
     <a className="ds-startmenu__link" href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
       {children}

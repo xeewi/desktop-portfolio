@@ -1,3 +1,5 @@
+// first: the design system's base and tokens must come before every component's styles
+import './design-system/styles.css'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import {
   AnalogClock,
@@ -169,6 +171,7 @@ export default function App() {
             <StartMenu.Link href={links.github}>GitHub</StartMenu.Link>
             <StartMenu.Link href={`mailto:${links.email}`}>{c.ui.email}</StartMenu.Link>
             <StartMenu.Link href="/cv.pdf">{c.ui.cvShort}</StartMenu.Link>
+            <StartMenu.Link href="/classic">{c.classic.classicSite}</StartMenu.Link>
           </StartMenu.Links>
         </StartMenu.Root>
       )}

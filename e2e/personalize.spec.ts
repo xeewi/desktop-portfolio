@@ -22,6 +22,7 @@ test('picking a theme applies it and is remembered', async ({ page }) => {
   expect(await wall()).not.toBe(before)
   const picked = await wall()
   await page.reload()
+  await page.getByRole('contentinfo').waitFor() // the desktop is its own chunk
   expect(await wall()).toBe(picked)
 })
 

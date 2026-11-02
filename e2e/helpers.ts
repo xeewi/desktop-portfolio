@@ -14,6 +14,7 @@ export async function visit(page: Page, { os = 'vista', lang = 'en' }: { os?: st
     [os, lang],
   )
   await page.goto('/')
+  await page.getByRole('contentinfo').waitFor() // the desktop is its own chunk: wait for its taskbar
 }
 
 /** App titles in English, in desktop order. */

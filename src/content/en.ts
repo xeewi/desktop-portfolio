@@ -23,6 +23,8 @@ export const en = {
     projectsTitle: 'Side projects',
     projectsSub: 'What I build when nobody asks me to.',
     talksTitle: 'Training & talks given',
+    contactTitle: "Let's work together",
+    contactText: 'Freelance mission, codebase audit, monorepo migration, or want to put agentic AI to work for your team: drop me a line.',
     downloadCv: 'Download my resume (PDF)',
     cvShort: 'Resume (PDF)',
     email: 'Email',
@@ -48,6 +50,8 @@ export const en = {
     tryTitle: 'Things to try',
     openApp: (app: string) => `Open “${app}”`,
     surpriseMe: 'Surprise me',
+    traditional: 'Prefer a more traditional format?',
+    seeClassic: 'See the classic version',
     tries: {
       surprise: { icon: 'science' as IconName, title: 'Feeling lucky?', text: 'Reboot into a random system, with a random theme.' },
       themes: { icon: 'appearance' as IconName, title: 'Change the look', text: '55 themes, every one checked for contrast.' },
@@ -79,6 +83,78 @@ export const en = {
     archItems: (n: number) => `${n} item(s)`,
     archLines: (n: number) => `${n} lines`,
   },
+  classic: {
+    skip: 'Skip to content',
+    nav: { work: 'Work', expertise: 'Expertise', projects: 'Projects', contact: 'Contact' },
+    navLabel: 'Sections',
+    desktopMode: 'Desktop mode',
+    offer: 'Twice CTO, now freelance. I clean up, structure and grow existing codebases, and bring agentic AI into how teams work.',
+    place: 'Paris · Full remote · 10+ years',
+    mission: 'Email me about a mission',
+    copy: 'Copy the address',
+    copied: 'Address copied',
+    clientsTitle: 'Companies I worked with',
+    servicesTitle: 'What I’m brought in for',
+    servicesWhere: 'Where:',
+    services: [
+      {
+        title: 'Clean up and structure an existing codebase',
+        text: 'Legacy audits, deciding what to keep and what to retire, monorepo migrations (Nx, Module Federation), consolidating design systems, team conventions.',
+        where: ['Believe', 'Sunday', 'Seaver'],
+      },
+      {
+        title: 'Build a product from zero',
+        text: 'Twice CTO: architecture, stack and hosting choices, the first lines of code to production, then hiring and leading the tech and product team.',
+        where: ['Lola Health', 'Deskover', 'Travel retail'],
+      },
+      {
+        title: 'Bring agentic AI into the team',
+        text: 'Claude Code and custom agents in the daily workflow, trainings from the first prompt to building agents, and AI inside the product when it helps users.',
+        where: ['Believe', 'Sunday', 'Lola Health'],
+      },
+    ],
+    workTitle: 'Missions',
+    workLead: 'Newest first: the context, what I did, and the stack it ran on.',
+    stackLabel: 'Stack',
+    anonymised: 'Client anonymised',
+    slideIntro: 'Introduction',
+    facts: {
+      years: '10+ years',
+      yearsText: 'React, TypeScript, Node, NestJS',
+      cto: 'Twice CTO',
+      ctoText: 'Lola Health, Deskover',
+      missions: (n: number) => `${n} missions`,
+      missionsText: (from: string, to: string) => `from ${from} to ${to}`,
+    },
+    presenter: 'Presenter view',
+    next: 'Next',
+    noteLabel: 'Note',
+    /** the presenter's note for each slide */
+    notes: [
+      'Freelance, full remote. Legacy audits, monorepo migrations, design systems, agentic AI in the team.',
+      'Six of the seven companies; the travel retail client stays anonymous.',
+      'Each offer links to the missions where I did it.',
+      'Newest first: the context, what I did, the stack.',
+      'Grouped by area, front-end first.',
+      'What I build when nobody asks me to.',
+      'Given to product teams and developers, juniors included.',
+      'An email is enough. The resume, LinkedIn and GitHub are here too.',
+    ],
+    paris: 'Paris',
+    skillsTitle: 'Expertise',
+    siteTitle: 'This site also boots like a computer',
+    siteText:
+      'The same resume, as a desktop you can play with: Windows 95 to macOS, 55 themes. Its “Under the hood” app explains every technical choice, shows the source and the latest test results.',
+    siteFacts: [
+      { title: 'Two dependencies', text: 'React and React DOM. Windows, themes, translations: written by hand.' },
+      { title: 'WCAG 2.2 AA', text: 'Every theme is checked for contrast, by a unit test and by axe-core.' },
+      { title: 'Tested like a visitor', text: 'Playwright drives the built site, on desktop and on a phone.' },
+    ],
+    siteShot: 'The desktop mode on Windows XP: desktop icons, an About me window with things to try, a sticky note',
+    launch: 'Launch desktop mode',
+    classicSite: 'Classic version',
+    footer: 'Built with React and TypeScript, no other runtime dependency.',
+  },
   profile: {
     name: 'Guillaume Gautier',
     title: 'Senior Full-Stack Engineer & AI Workflow Advisor',
@@ -98,6 +174,7 @@ export const en = {
   experiences: [
     {
       company: 'Believe',
+      lead: "Modernising one of Believe's oldest applications, the analytics artists and labels use every day, and moving it into the cross-team monorepo.",
       role: 'Senior Full-Stack & AI Workflow (Freelance)',
       period: '2026',
       place: 'Full remote',
@@ -116,6 +193,7 @@ export const en = {
     },
     {
       company: 'Sunday',
+      lead: 'Three design system iterations consolidated into one, and La Bonne App for Groupe Bertrand built on the existing base.',
       role: 'Senior Frontend Engineer (Freelance)',
       period: '2025',
       place: 'Full remote',
@@ -138,6 +216,7 @@ export const en = {
     },
     {
       company: 'Lola Health',
+      lead: 'First employee and CTO: the whole tech stack from scratch, 300+ daily users three years later, a team of ~10.',
       role: 'Chief Technology Officer (first employee)',
       period: '2022 – 2025',
       place: 'Full remote',
@@ -161,6 +240,7 @@ export const en = {
     },
     {
       company: 'Travel retail',
+      lead: 'A workforce scheduling platform replacing manual planning: 1,000+ schedules across ~10 airports worldwide.',
       role: 'Lead Developer (Freelance)',
       period: '2019 – 2020',
       place: 'Full remote',
@@ -174,6 +254,7 @@ export const en = {
     },
     {
       company: 'Chronogolf (Lightspeed)',
+      lead: 'Features on the golf booking platform and integrations with partners, notably Lightspeed, which later acquired Chronogolf.',
       role: 'Frontend Engineer',
       period: '2018 – 2019',
       place: 'Montreal, Canada',
@@ -194,6 +275,7 @@ export const en = {
     },
     {
       company: 'Seaver',
+      lead: 'A year-long refactoring of an equestrian data app slowed down by performance and scalability problems.',
       role: 'Fullstack Engineer',
       period: '2017 – 2018',
       place: 'Paris, France',
@@ -214,6 +296,7 @@ export const en = {
     },
     {
       company: 'Deskover',
+      lead: 'Co-founder and CTO of a marketplace to rent a desk near you: the whole product, web and mobile.',
       role: 'CTO / Co-founder',
       period: '2016 – 2018',
       place: 'Full remote',
