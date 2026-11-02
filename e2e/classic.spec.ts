@@ -16,6 +16,16 @@ test('the classic page gives the essentials and a way to write', async ({ page }
   await expect(page.locator('.ds-desktop, [role="contentinfo"] button')).toHaveCount(0) // none of the desktop
 })
 
+test('every way to reach me is on the page: email, LinkedIn, Malt, GitHub', async ({ page }) => {
+  await open(page)
+  const title = page.locator('[data-slide="1"]')
+  await expect(title.getByRole('link', { name: 'gg-xeewi@pm.me' })).toHaveAttribute('href', 'mailto:gg-xeewi@pm.me')
+  for (const [name, href] of [['LinkedIn', 'https://www.linkedin.com/in/gautierg'], ['Malt', 'https://www.malt.fr/profile/xeewi'], ['GitHub', 'https://github.com/xeewi']]) {
+    await expect(title.getByRole('link', { name })).toHaveAttribute('href', href)
+    await expect(page.locator('#contact').getByRole('link', { name })).toHaveAttribute('href', href)
+  }
+})
+
 test('the clients lead to their missions', async ({ page }) => {
   await open(page)
   const clients = page.getByRole('region', { name: 'Companies I worked with' })

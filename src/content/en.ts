@@ -138,7 +138,7 @@ export const en = {
       'Grouped by area, front-end first.',
       'What I build when nobody asks me to.',
       'Given to product teams and developers, juniors included.',
-      'An email is enough. The resume, LinkedIn and GitHub are here too.',
+      'An email is enough. The resume, LinkedIn, Malt and GitHub are here too.',
     ],
     paris: 'Paris',
     skillsTitle: 'Expertise',

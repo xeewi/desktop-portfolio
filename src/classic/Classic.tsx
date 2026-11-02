@@ -2,6 +2,9 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import { content, links, type Content } from '../content'
 import costcalc from '../design-system/icons/apps/costcalc.svg'
 import directchange from '../design-system/icons/apps/directchange.svg'
+import github from '../design-system/icons/apps/github.svg'
+import linkedin from '../design-system/icons/apps/linkedin.svg'
+import malt from '../design-system/icons/apps/malt.svg'
 import mixcoach from '../design-system/icons/apps/mixcoach.svg'
 import { useLang } from '../hooks/useLang'
 import { anchor } from './anchor'
@@ -48,7 +51,31 @@ function External({ href, c, className, children }: { href: string; c: Content; 
   )
 }
 
-/** The address, readable and copyable: a mailto alone does nothing on a machine without a mail app. */
+// where else to find me: the same logos the desktop shows (icons/apps.css)
+const PROFILES = [
+  { name: 'LinkedIn', href: links.linkedin, logo: linkedin },
+  { name: 'Malt', href: links.malt, logo: malt },
+  { name: 'GitHub', href: links.github, logo: github },
+]
+
+/** My profiles, each with its logo: as named links, or as logos alone where room is short. */
+function Profiles({ c, iconsOnly }: { c: Content; iconsOnly?: boolean }) {
+  return (
+    <ul className={iconsOnly ? 'cl-profiles cl-profiles--icons' : 'cl-profiles'}>
+      {PROFILES.map((p) => (
+        <li key={p.name}>
+          <a href={p.href} target="_blank" rel="noreferrer">
+            <img src={p.logo} alt="" width={22} height={22} />
+            <span className={iconsOnly ? 'cl-sr' : undefined}>{p.name}</span>
+            <span className="cl-sr"> {c.ui.newTab}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/** The address, a link and copyable: a mailto alone does nothing on a machine without a mail app. */
 function Address({ c }: { c: Content }) {
   const [copied, setCopied] = useState(false)
   const copy = () =>
@@ -61,7 +88,8 @@ function Address({ c }: { c: Content }) {
     )
   return (
     <p className="cl-address">
-      <span>{links.email}</span>
+      <Icon name="mail" />
+      <a href={`mailto:${links.email}`}>{links.email}</a>
       <button type="button" className="cl-copy" onClick={copy} aria-label={c.classic.copy}>
         <Icon name={copied ? 'check' : 'copy'} />
       </button>
@@ -160,6 +188,7 @@ export default function Classic() {
           <a href="#contact">{k.nav.contact}</a>
         </nav>
         <div className="cl-tools">
+          <Profiles c={c} iconsOnly />
           <a className="cl-quiet" href="/">
             <Icon name="desktop" />
             <span className="cl-hide-s">{k.desktopMode}</span>
@@ -197,6 +226,7 @@ export default function Classic() {
           </dl>
           <div className="cl-title__foot">
             <Address c={c} />
+            <Profiles c={c} />
             <p>{c.profile.location}</p>
           </div>
         </section>
@@ -383,12 +413,12 @@ export default function Classic() {
               <Icon name="download" />
               {c.ui.cvShort}
             </a>
-            <External className="cl-btn cl-btn--glass" href={links.linkedin} c={c}>
-              LinkedIn
-            </External>
-            <External className="cl-btn cl-btn--glass" href={links.github} c={c}>
-              GitHub
-            </External>
+            {PROFILES.map((p) => (
+              <External key={p.name} className="cl-btn cl-btn--glass" href={p.href} c={c}>
+                <img className="cl-btn__logo" src={p.logo} alt="" width={22} height={22} />
+                {p.name}
+              </External>
+            ))}
           </div>
           <Address c={c} />
           <div className="cl-aside">
@@ -406,6 +436,8 @@ export default function Classic() {
         </section>
 
         <footer className="cl-foot">
+          <a href={`mailto:${links.email}`}>{links.email}</a>
+          <Profiles c={c} />
           <p>
             © {name} · {k.footer}
           </p>

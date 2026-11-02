@@ -138,7 +138,7 @@ export const fr: Content = {
       'Rangée par domaine, le front-end d’abord.',
       'Ce que je construis quand personne ne me le demande.',
       'Données à des équipes produit et à des développeurs, juniors compris.',
-      'Un email suffit. Le CV, LinkedIn et GitHub sont là aussi.',
+      'Un email suffit. Le CV, LinkedIn, Malt et GitHub sont là aussi.',
     ],
     paris: 'Paris',
     skillsTitle: 'Expertise',

@@ -107,7 +107,9 @@ main { padding-bottom: var(--presenter); }
 .cl-facts dt { font-size: 1.875rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
 .cl-facts dd { color: var(--soft); font-size: 0.9375rem; }
 .cl-title__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem 2rem; color: var(--soft); font-size: 0.9375rem; }
-.cl-address { display: flex; align-items: center; gap: 0.35rem; color: var(--soft); }
+.cl-address { display: flex; align-items: center; gap: 0.45rem; color: var(--soft); }
+.cl-address a { color: inherit; }
+.cl-address a:hover { color: var(--signal); }
 .cl-copy { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 8px; background: none; color: inherit; cursor: pointer; }
 .cl-copy:hover { background: rgb(255 255 255 / 0.08); color: var(--text); }
 .cl-address output { color: var(--signal); font-weight: 600; font-size: 0.9375rem; }
@@ -178,7 +180,18 @@ main { padding-bottom: var(--presenter); }
 .cl-aside h3 { font-size: 1.0625rem; }
 .cl-aside p { margin: 0.35rem 0 0.6rem; max-width: 46em; color: var(--soft); font-size: 0.9375rem; }
 
-.cl-foot { padding: 0.5rem var(--pad) 2rem; color: var(--soft); font-size: 0.875rem; }
+.cl-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.75rem; padding: 0.5rem var(--pad) 2rem; color: var(--soft); font-size: 0.875rem; }
+.cl-foot p { flex-basis: 100%; }
+
+/* LinkedIn, Malt, GitHub: their own logos (square tiles), a light rim so GitHub's black tile shows on the dark */
+.cl-profiles { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+.cl-profiles a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.25rem; color: var(--soft); text-decoration: none; }
+.cl-profiles a:hover { color: var(--text); }
+.cl-profiles img, .cl-btn__logo { flex: none; border-radius: 19%; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.2); }
+.cl-profiles--icons { gap: 0.25rem; margin-right: 0.35rem; }
+.cl-profiles--icons a { justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: 8px; }
+.cl-profiles--icons a:hover { background: rgb(255 255 255 / 0.06); }
+.cl-profiles--icons img { width: 20px; height: 20px; }
 
 /* the presenter view: liquid glass across the bottom of the room, clear in the middle, light at the rim */
 .cl-presenter {
@@ -241,6 +254,7 @@ main { padding-bottom: var(--presenter); }
   .cl-top { gap: 0.5rem; }
   .cl-hide-s { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .cl-now { display: none; }
+  .cl-top .cl-profiles--icons { display: none; } /* the title slide lists them right below */
   .cl-presenter { background: rgb(22 24 28 / 0.97); }
   .cl-presenter .cl-btn--glass { display: none; }
   .cl-presenter .cl-btn { min-height: 2.9rem; padding: 0 1rem; }
