@@ -30,7 +30,6 @@ import { surprise } from './apps/surprise'
 import { ExperienceApp } from './apps/ExperienceApp'
 import { SkillsApp } from './apps/SkillsApp'
 import { ProjectsApp } from './apps/ProjectsApp'
-import { ContactApp } from './apps/ContactApp'
 import { WebApp } from './apps/WebApp'
 import { PersonalizeApp } from './apps/PersonalizeApp'
 import { SystemApp } from './apps/SystemApp'
@@ -51,10 +50,10 @@ export default function App() {
   const { lang, toggleLang } = useLang()
   const c = content[lang]
   const { os, theme, pickOs, pickTheme } = useThemeSelection()
-  // on phones we start on the desktop: the icon grid is the home screen
+  // every visit starts on About me, phones included: nothing about windows is remembered
   // macOS keeps its desktop icons on the right
   // Ubuntu's dock pushes the icons 64px right (gnome.css --icons-left)
-  const wm = useWindowManager(APPS, matchMedia(TOUCH).matches ? [] : ['about'], os.chrome === 'mac', os.chrome === 'gnome' ? 64 : 0)
+  const wm = useWindowManager(APPS, ['about'], os.chrome === 'mac', os.chrome === 'gnome' ? 64 : 0)
   const [startOpen, setStartOpen] = useState(false)
   const [booting, setBooting] = useState(motionOk)
   const closeStart = useCallback(() => setStartOpen(false), [])
@@ -91,7 +90,6 @@ export default function App() {
     xp: <ExperienceApp c={c} />,
     skills: <SkillsApp c={c} />,
     projects: <ProjectsApp c={c} onOpen={open} />,
-    contact: <ContactApp c={c} />,
     costcalc: <WebApp c={c} url={links.costcalc} title={c.ui.apps.costcalc} />,
     mixcoach: <WebApp c={c} url={links.mixcoach} title={c.ui.apps.mixcoach} />,
     directchange: <WebApp c={c} url={links.directchange} title={c.ui.apps.directchange} />,
@@ -106,11 +104,14 @@ export default function App() {
     <Desktop onPointerDown={() => setStartOpen(false)}>
       <Wallpaper signature={{ name: c.profile.name, title: c.profile.title, place: c.profile.location, stats: c.profile.stats }} />
 
-      <DesktopIcons label={c.ui.desktop}>
+      <DesktopIcons label={c.ui.desktop} inert={startOpen}>
         {APPS.map((a) => (
           <DesktopIcon key={a.id} icon={a.icon} label={c.ui.apps[a.id]} onOpen={() => open(a.id)} />
         ))}
         <DesktopIcon icon="pdf" label="CV.pdf" href="/cv.pdf" />
+        <DesktopIcon icon="linkedin" label="LinkedIn" href={links.linkedin} />
+        <DesktopIcon icon="malt" label="Malt" href={links.malt} />
+        <DesktopIcon icon="github" label="GitHub" href={links.github} />
       </DesktopIcons>
 
       <Gadgets>

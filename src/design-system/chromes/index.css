@@ -1,6 +1,7 @@
 /* Order matters: defaults, then shared groups, then each chrome (same specificity). */
 @import '../tokens/base.css';
 @import '../icons/icons.css';
+@import '../icons/apps.css';
 @import './_flat.css';
 @import './vista.css';
 @import './classic.css';

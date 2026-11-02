@@ -45,3 +45,19 @@ test('Projects opens each site in its window, with the keyboard', async ({ page 
   }
   expect(await a11yViolations(page)).toEqual([])
 })
+
+test('each of my apps shows its own icon, whatever the OS', async ({ page }) => {
+  const icons = async () => {
+    const all: Record<string, string> = {}
+    for (const name of [...Object.keys(WEB_APPS), 'Projects & talks'])
+      all[name] = await desktopIcon(page, name).locator('.ds-icon').evaluate((e) => getComputedStyle(e).backgroundImage)
+    return all
+  }
+  await visit(page, { os: 'xp' })
+  const xp = await icons()
+  await page.evaluate(() => localStorage.setItem('os', 'mac'))
+  await page.reload()
+  const mac = await icons()
+  for (const name of Object.keys(WEB_APPS)) expect(mac[name], name).toBe(xp[name])
+  expect(mac['Projects & talks']).not.toBe(xp['Projects & talks']) // the OS's own icons do change
+})

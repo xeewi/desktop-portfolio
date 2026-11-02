@@ -43,7 +43,7 @@ test('each OS has its own icons, and they load', async ({ page }) => {
     await pickOs(page, os.name)
     await expect(page.locator('html')).toHaveAttribute('data-chrome', os.chrome)
     const urls = await page.locator('nav .ds-icon').evaluateAll((els) => els.map((e) => getComputedStyle(e).backgroundImage))
-    expect(urls).toHaveLength(APPS.length + Object.keys(WEB_APPS).length + 1) // every app + CV.pdf
+    expect(urls).toHaveLength(APPS.length + Object.keys(WEB_APPS).length + 4) // every app + CV.pdf, LinkedIn, Malt, GitHub
     for (const u of urls) {
       const src = u.match(/^url\("(.+)"\)$/)?.[1]
       expect(src, 'icon has an image').toBeTruthy()

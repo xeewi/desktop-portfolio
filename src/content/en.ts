@@ -2,7 +2,7 @@ import type { IconName } from '../design-system'
 
 export const en = {
   ui: {
-    apps: { about: 'About me', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', contact: 'Contact', costcalc: 'Migration cost', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
+    apps: { about: 'About me', xp: 'Experience', skills: 'Skills', projects: 'Projects & talks', costcalc: 'Migration cost', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personalize', system: 'Change OS', hood: 'Under the hood' },
     desktop: 'Desktop',
     start: 'Start',
     activities: 'Activities',
@@ -23,8 +23,6 @@ export const en = {
     projectsTitle: 'Side projects',
     projectsSub: 'What I build when nobody asks me to.',
     talksTitle: 'Training & talks given',
-    contactTitle: "Let's work together",
-    contactText: 'Freelance mission, codebase audit, monorepo migration, or want to put agentic AI to work for your team: drop me a line.',
     downloadCv: 'Download my resume (PDF)',
     cvShort: 'Resume (PDF)',
     email: 'Email',
@@ -251,21 +249,21 @@ export const en = {
   projects: [
     {
       name: 'MixCoach',
-      icon: 'video' as IconName,
+      icon: 'mixcoach' as IconName,
       desc: 'A mixing coach inside Ableton Live: it listens to every track and says, in plain words, what to fix in the mix, how, and why. One click applies the fix. 18 languages.',
       stack: ['Max for Live', 'Python', 'JavaScript'],
       opens: 'mixcoach' as const,
     },
     {
       name: 'noMigrationCost',
-      icon: 'package' as IconName,
+      icon: 'costcalc' as IconName,
       desc: 'Puts a euro figure on the hidden cost of duplicated code versus a shared library: every feature built twice, every bug fixed twice. Year by year, it shows when sharing pays for itself.',
       stack: ['React', 'TypeScript', 'shadcn/ui', 'Recharts'],
       opens: 'costcalc' as const,
     },
     {
       name: 'DirectChange',
-      icon: 'money' as IconName,
+      icon: 'directchange' as IconName,
       desc: "Every price on the web, in your own currency, at today's live rate: a small badge right next to each foreign price. A browser extension, 36 languages, no account, no tracking.",
       stack: ['Browser extension', 'JavaScript', 'Shadow DOM'],
       opens: 'directchange' as const,
@@ -441,6 +439,7 @@ export const en = {
       files: [
         { path: 'scripts/fetch-icons.mjs', role: 'downloads them and writes icons.css' },
         { path: 'src/design-system/icons/icons.css', role: 'one variable per icon and OS' },
+        { path: 'src/design-system/icons/apps.css', role: 'my own apps’ icons, the same on every OS' },
         { path: 'src/design-system/icons/CREDITS.md', role: 'sources and licenses' },
       ],
     },

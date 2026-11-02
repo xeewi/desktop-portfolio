@@ -1,0 +1,10 @@
+/* Same on every OS, each has its own look. Not generated: scripts/fetch-icons.mjs only writes icons.css.
+   My own apps' icons, copied from their repos; LinkedIn, Malt, GitHub: brand logos from Simple Icons (CC0). */
+[data-chrome] {
+  --icon-costcalc: url('./apps/costcalc.svg');
+  --icon-mixcoach: url('./apps/mixcoach.svg');
+  --icon-directchange: url('./apps/directchange.svg');
+  --icon-linkedin: url('./apps/linkedin.svg');
+  --icon-malt: url('./apps/malt.svg');
+  --icon-github: url('./apps/github.svg');
+}

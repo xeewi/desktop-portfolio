@@ -56,8 +56,8 @@ for (const os of OSES)
       const theme = await cards.nth(i).locator('b').textContent()
       await personalize.getByRole('button', { name: 'Close' }).click()
       await desktopIcon(page, 'About me').click()
-      for (const name of ['See my career', 'Contact me']) {
-        const sides = await edgeContrast(page, about.getByRole('button', { name }))
+      for (const [role, name] of [['button', 'See my career'], ['link', 'LinkedIn']] as const) {
+        const sides = await edgeContrast(page, about.getByRole(role, { name }))
         expect(sides.filter((c) => c >= 3).length, `${theme} / ${name}: ${sides.map((c) => c.toFixed(1))}`).toBeGreaterThanOrEqual(2)
       }
       await about.getByRole('button', { name: 'Close' }).click()
@@ -129,9 +129,9 @@ test('keyboard: closing a window hands focus to the next one', async ({ page }) 
 
 test('keyboard: tabbing into a window behind brings it to the front', async ({ page }) => {
   await visit(page)
-  await desktopIcon(page, 'Contact').click()
+  await desktopIcon(page, 'Skills').click()
   await expect(appWindow(page, 'About me')).not.toHaveAttribute('data-active')
-  await appWindow(page, 'About me').getByRole('button', { name: 'Contact me' }).focus()
+  await appWindow(page, 'About me').getByRole('link', { name: 'Contact me' }).focus()
   await expect(appWindow(page, 'About me')).toHaveAttribute('data-active', 'true')
 })
 
@@ -145,6 +145,21 @@ test('keyboard: the start menu takes focus, Escape closes it and gives focus bac
   await page.keyboard.press('Escape')
   await expect(menu).toHaveCount(0)
   await expect(start).toBeFocused()
+})
+
+// regression: the start menu left a 20px sliver of CV.pdf showing, too small to hit (WCAG 2.5.8)
+test('a click beside the open start menu only closes it, the icon under it stays put', async ({ page }) => {
+  await visit(page)
+  await taskbar(page).getByRole('button', { name: 'Start' }).click()
+  const menu = page.getByRole('navigation', { name: 'Start' })
+  const cv = page.getByRole('navigation', { name: 'Desktop' }).getByRole('link', { name: 'CV.pdf' })
+  const b = (await cv.boundingBox())!
+  const tabs = page.context().pages().length
+  const top = (await menu.boundingBox())!.y
+  expect(top).toBeGreaterThan(b.y) // the strip of the icon still showing above the menu
+  await page.mouse.click(b.x + b.width / 2, (b.y + top) / 2)
+  await expect(menu).toHaveCount(0)
+  expect(page.context().pages()).toHaveLength(tabs)
 })
 
 // regression: the invisible resize corner covered the top-right of the close button

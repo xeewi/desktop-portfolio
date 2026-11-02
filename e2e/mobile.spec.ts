@@ -1,9 +1,21 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 import { APPS, WEB_APPS, a11yViolations, eachScreen, appWindow, desktopIcon, dragBy, visit } from './helpers.ts'
 
-test.beforeEach(({ page }) => visit(page))
+/** About me opens full-screen on every visit: close it to reach the icon grid. */
+const home = (page: Page) => appWindow(page, 'About me').getByRole('button', { name: 'Close' }).click()
 
-test('starts on the home screen: icon grid, no window', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+  await visit(page)
+  await home(page)
+})
+
+// regression: phones started on the icon grid, so returning visitors never saw About me
+test('every visit starts on About me, full-screen; closing it shows the icon grid', async ({ page }) => {
+  await page.reload()
+  const about = appWindow(page, 'About me')
+  await expect(about).toBeVisible()
+  expect((await about.boundingBox())!.width).toBeGreaterThan(page.viewportSize()!.width - 20)
+  await home(page)
   for (const name of APPS) await expect(desktopIcon(page, name)).toBeVisible()
   await expect(page.getByRole('region')).toHaveCount(0)
 })
@@ -30,6 +42,7 @@ test('no signature on the wallpaper: the business card already says who this is'
 for (const os of ['95', 'xp', 'vista', '10', 'ubuntu', 'mac'])
   test(`axe: home screen and every app on ${os}`, async ({ page }) => {
     await visit(page, { os })
+    await home(page)
     expect(await a11yViolations(page), 'home').toEqual([])
     for (const app of APPS) {
       await desktopIcon(page, app).click()

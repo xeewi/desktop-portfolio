@@ -1,5 +1,5 @@
 import { Avatar, Button, Feature, Heading, Icon, Pane, Stat, Text } from '../design-system'
-import type { Content, Lang } from '../content'
+import { links, type Content, type Lang } from '../content'
 import type { AppId } from './registry'
 import './AboutApp.css'
 
@@ -27,6 +27,14 @@ export function AboutApp({ c, lang, onOpen, onToggleLang, onSurprise }: Props) {
           <Text variant="subtitle">{profile.title}</Text>
           <Text variant="muted"><Icon name="location" /> {profile.location}</Text>
         </div>
+      </div>
+      {/* reach me straight from the first window: no separate contact page */}
+      <div className="about-contact">
+        <Button variant="primary" href={`mailto:${links.email}`}><Icon name="mail" /> {ui.contactMe}</Button>
+        <Button href={links.linkedin}><Icon name="linkedin" /> LinkedIn</Button>
+        <Button href={links.malt}><Icon name="malt" /> Malt</Button>
+        <Button href={links.github}><Icon name="github" /> GitHub</Button>
+        <Button href="/cv.pdf"><Icon name="pdf" /> {ui.cvShort}</Button>
       </div>
       {ui.site.map((p) => (
         <Text key={p}>{p}</Text>
@@ -59,7 +67,6 @@ export function AboutApp({ c, lang, onOpen, onToggleLang, onSurprise }: Props) {
       <div className="about-actions">
         <Button variant="primary" onClick={() => onOpen('xp')}>{ui.seeCareer}</Button>
         <Button onClick={() => onOpen('projects')}>{ui.seeProjects}</Button>
-        <Button onClick={() => onOpen('contact')}>{ui.contactMe}</Button>
       </div>
       </section>
     </Pane>

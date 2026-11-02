@@ -17,7 +17,7 @@ export async function visit(page: Page, { os = 'vista', lang = 'en' }: { os?: st
 }
 
 /** App titles in English, in desktop order. */
-export const APPS = ['About me', 'Experience', 'Skills', 'Projects & talks', 'Contact', 'Personalize', 'Change OS', 'Under the hood'] as const
+export const APPS = ['About me', 'Experience', 'Skills', 'Projects & talks', 'Personalize', 'Change OS', 'Under the hood'] as const
 
 /** Windows that show another site of mine in a frame. Kept out of APPS: axe would audit those sites too. */
 export const WEB_APPS = { 'Migration cost': 'https://migration-cost.xeewi.cool', MixCoach: 'https://mixcoach.xeewi.cool', DirectChange: 'https://directchange.xeewi.cool' } as const

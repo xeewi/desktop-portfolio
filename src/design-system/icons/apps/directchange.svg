@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- app icon and the price tag's mark: orange ground, cream ≈ waves -->
+  <rect x="4" y="4" width="120" height="120" rx="30" fill="#e0701c"/>
+  <path d="M30 50c11.3-10.7 22.7-10.7 34 0s22.7 10.7 34 0M30 80c11.3-10.7 22.7-10.7 34 0s22.7 10.7 34 0" fill="none" stroke="#fff7ec" stroke-width="13" stroke-linecap="round"/>
+</svg>

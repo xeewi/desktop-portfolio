@@ -62,6 +62,10 @@ Each chrome sets one token per icon, `--icon-user`, `--icon-folder`…, in the g
 (Vista's set is the default, on `[data-chrome]`). `<Icon name="folder" />` shows the current OS's image,
 1em square: size it with `font-size`. Only the current chrome's images are downloaded.
 
+My own apps (`costcalc`, `mixcoach`, `directchange`) and my profiles (`linkedin`, `malt`, `github`) keep their
+real icon on every OS: hand-written in `icons/apps.css`, files in `icons/apps/`. App icons are copied from each
+app's repo; brand logos are Simple Icons glyphs (CC0) on a tile of the brand's colour.
+
 `node scripts/fetch-icons.mjs` downloads everything again. The themes all follow the freedesktop naming spec,
 so the script maps each icon name to freedesktop names once, for every OS. Credits and licenses: `icons/CREDITS.md`.
 

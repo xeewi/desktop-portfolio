@@ -2,7 +2,7 @@ import type { Content } from './en'
 
 export const fr: Content = {
   ui: {
-    apps: { about: 'À propos de moi', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', contact: 'Contact', costcalc: 'Coût de migration', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
+    apps: { about: 'À propos de moi', xp: 'Expériences', skills: 'Compétences', projects: 'Projets & talks', costcalc: 'Coût de migration', mixcoach: 'MixCoach', directchange: 'DirectChange', themes: 'Personnaliser', system: 'Changer d’OS', hood: 'Sous le capot' },
     desktop: 'Bureau',
     start: 'Démarrer',
     activities: 'Activités',
@@ -23,8 +23,6 @@ export const fr: Content = {
     projectsTitle: 'Projets perso',
     projectsSub: 'Ce que je construis quand personne ne me le demande.',
     talksTitle: 'Formations & talks donnés',
-    contactTitle: 'Travaillons ensemble',
-    contactText: "Mission freelance, audit de codebase, migration monorepo, ou envie de mettre l'IA agentique au service de votre équipe : écrivez-moi.",
     downloadCv: 'Télécharger le CV (PDF)',
     cvShort: 'CV (PDF)',
     email: 'E-mail',
@@ -251,21 +249,21 @@ export const fr: Content = {
   projects: [
     {
       name: 'MixCoach',
-      icon: 'video',
+      icon: 'mixcoach',
       desc: 'Un coach de mixage dans Ableton Live : il écoute chaque piste et explique, en mots simples, quoi corriger dans le mix, comment et pourquoi. Un clic applique la correction. 18 langues.',
       stack: ['Max for Live', 'Python', 'JavaScript'],
       opens: 'mixcoach',
     },
     {
       name: 'noMigrationCost',
-      icon: 'package',
+      icon: 'costcalc',
       desc: 'Chiffre en euros le coût caché du code dupliqué face à une librairie partagée : chaque fonctionnalité construite deux fois, chaque bug corrigé deux fois. Année par année, il montre quand le partage devient rentable.',
       stack: ['React', 'TypeScript', 'shadcn/ui', 'Recharts'],
       opens: 'costcalc',
     },
     {
       name: 'DirectChange',
-      icon: 'money',
+      icon: 'directchange',
       desc: 'Chaque prix du web dans votre devise, au taux du jour : un petit badge juste à côté de chaque prix étranger. Une extension de navigateur, 36 langues, sans compte ni pistage.',
       stack: ['Extension navigateur', 'JavaScript', 'Shadow DOM'],
       opens: 'directchange',
@@ -439,6 +437,7 @@ export const fr: Content = {
       files: [
         { path: 'scripts/fetch-icons.mjs', role: 'les télécharge et écrit icons.css' },
         { path: 'src/design-system/icons/icons.css', role: 'une variable par icône et par OS' },
+        { path: 'src/design-system/icons/apps.css', role: 'les icônes de mes propres apps, identiques sur tous les OS' },
         { path: 'src/design-system/icons/CREDITS.md', role: 'sources et licences' },
       ],
     },
